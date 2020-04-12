@@ -1,0 +1,262 @@
+<%- include("layout/header") %>
+<%- include("layout/layoutnavbar") %>
+<div class="container">
+  <!-- path list -->
+  <!-- <div class="mt-3">
+    <ul class="breadcrumb">
+      <li>Home</li>
+      <li><a href="#">Pictures</a></li>
+      <li><a href="#">Summer 15</a></li>
+      <li>Italy</li>
+    </ul>
+  </div> -->
+ 
+  
+  <!-- main article list group -->
+  <div class="mt-lg-5 mt-3 mb-3">
+    <h1>รวมอันดับที่สุดของที่เที่ยว อัพเดททุกเทรนด์ของการท่องเที่ยว</h1>
+  </div>  
+  <!-- slide header -->
+  <div id="carouselExampleControls" class="carousel slide mt-4" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://cms.dmpcdn.com/travel/2020/04/10/072d08b0-7b0b-11ea-8f99-cd9a3968ebb2_original.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://cms.dmpcdn.com/travel/2020/04/09/79acb900-7a4b-11ea-b636-8be4657c2373_original.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div> 
+  <!-- main content -->
+  <div class="blog-group-contect">
+    <div class="mt-5 mb-2">
+      <a href="">
+        <h2>ทดสอบ <i class="fas fa-angle-right"></i></h2>
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-xl-9 col-lg-6 col-md-6 col-12 pb-3">
+        <article>
+          <a href="">
+            <div class="card" >
+              <img src="<%= post_eat[0].imgurl %>" alt="">
+              <div class="p-2">
+                <h5><%= post_eat[0].name %></h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
+                </div>
+              </div>
+            </div>
+          </a>     
+        </article>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-6 col-12 pb-3">
+        <div class="row">
+          <article class="col-md-12 col-6 pb-3">
+            <a href="">
+              <div class="card">
+                <img src="<%= post_eat[1].imgurl %>" alt="" style="height: 150px;">
+                <div class="p-2">
+                  <h5><%= post_eat[1].name %></h5>
+                  <div class="mt-auto">
+                    <i class="fas fa-eye eye-view"> 10 </i>
+                  </div>
+                </div>
+              </div>
+            </a>     
+          </article>
+          <article class="col-md-12 col-6 pb-3">
+            <a href="">
+              <div class="card">
+                <img src="<%= post_eat[2].imgurl %>" alt="" style="height: 150px;">
+                <div class="p-2">
+                  <h5><%= post_eat[2].name %></h5>
+                  <div class="mt-auto">
+                    <i class="fas fa-eye eye-view"> 10 </i>
+                  </div>
+                </div>
+              </div>
+            </a>     
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="blog-group-contect">
+    <div class="mt-5 mb-2">
+      <a href="">
+        <h2>เที่ยวตามสบาย <i class="fas fa-angle-right"></i></h2>
+      </a>
+      </div>
+    <div class="row">
+      <div class="col-12">
+        <article class="pb-3">
+          <a href="">
+            <div class="card">
+              <img src="images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
+                </div>
+              </div>
+            </div>
+          </a>     
+        </article>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <article class="col-md-6 col-6 pb-3">
+            <a href="">
+              <div class="card">
+                <img src="images/no-image.png" alt="">
+                <div class="p-2">
+                  <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+                  <div class="mt-auto">
+                    <i class="fas fa-eye eye-view"> 10 </i>
+                  </div>
+                </div>
+              </div>
+            </a>     
+          </article>
+          <article class="col-md-6 col-6 pb-3">
+            <a href="">
+              <div class="card">
+                <img src="images/no-image.png" alt="">
+                <div class="p-2">
+                  <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+                  <div class="mt-auto">
+                    <i class="fas fa-eye eye-view"> 10 </i>
+                  </div>
+                </div>
+              </div>
+            </a>     
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="blog-group-contect">
+    <div class="mt-5 mb-2">
+      <a href="">
+        <h2>เที่ยวแบบไทยๆ <i class="fas fa-angle-right"></i></h2>
+      </a>
+    </div>
+    <div class="row">
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-3">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
+        <a href="">
+          <div class="card">
+            <img src="images/no-image.png" alt="">
+            <div class="p-2">
+              <h5>One Day Trip อยุธยา-อ่างทอง ขับรถชิล เที่ยวใกล้กรุงเทพ</h5>
+              <div class="mt-auto">
+                <i class="fas fa-eye eye-view"> 10 </i>
+              </div>
+            </div>
+          </div>
+        </a>     
+      </article>
+    </div>
+  </div>
+</div>  
+<%- include("layout/footer") %>
+

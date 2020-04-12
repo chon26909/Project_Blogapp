@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" defer></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
+	<script src="https://kit.fontawesome.com/a076d05399.js" defer></script>
+	<style>
+		*
+		{
+			font-family: 'Mitr', sans-serif;
+		}
+		body
+		{
+			background-color:whitesmoke;
+		}
+	</style>
+</head>
+<body >
+<div class="container mt-lg-5 mt-2">
+	<h1 class="text-center">Create Account</h1>
+	<div class="row mt-lg-5 mt-0">
+		<div class="col-lg-7">
+			<div class="card text-center p-1">
+				<img src="/images/เที่ยวเชียงใหม่.jpg" style="width: 100%; height: auto;">
+				<p class="pt-1">เป็นส่วนหนึ่งกับการรีวิวสถานที่ท่องเที่ยว แลกเปลี่ยนประสบการณ์ที่คุ้นเคย</p>
+			</div>
+		</div>
+		<div class="col-lg-5">
+			<% if(locals.errors){ %>
+				<div class="alert alert-warning mt-md-0 mt-3 p-2">
+					<strong>Warning!</strong>
+					<ul style="font-size: 18px;">
+					<% Object.values(errors).forEach(function(error){ %>
+						<li><%= error.msg %></li>
+					<% }) %>
+					</ul>
+				</div>	
+			<% } %>
+			
+			<form class="form-group"  method="POST" action="/blogs/register">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" class="form-control" id="Username" placeholder="Enter Username" name="username">
+                </div>
+                <div class="form-group">
+      				<label for="email">Email:</label>
+			  		<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+				</div>
+				<div class="form-group">
+					<label for="pwd">Password:</label>
+					<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+				</div>
+				<button type="submit" class="btn btn-success btn-block">Register</button>
+				<a href="/blogs/login">
+					<p class="text-center text-primary pt-2"> I have my account </p>
+				</a>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

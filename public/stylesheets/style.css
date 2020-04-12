@@ -1,0 +1,88 @@
+*
+{
+  font-family: 'Mitr', sans-serif;
+}
+h1,h2,h3,h4,h5
+{
+  font-family: 'Mitr', sans-serif;
+}
+body
+{
+  background-color: white;
+}
+img
+{
+  width: 100%;
+  height: auto;
+}
+/* path list */
+.breadcrumb
+{
+  padding: 10px 16px;
+  list-style: none;
+}
+.breadcrumb li
+{
+  display: inline;
+  font-size: 18px;
+}
+.breadcrumb li+li:before
+{
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+.blog-group-contect
+{
+  padding: 10px 0px 10px 0px;
+}
+.blog-group-contect a
+{
+  color: black;
+}
+.card
+{
+  background-color: whitesmoke;
+}
+/* view eye */
+.eye-view
+{
+  font-family: 'Mitr', sans-serif;
+  color: grey;
+}
+footer a
+{
+  color: white;
+}
+footer a:hover
+{
+  color: pink;
+}
+/* profile */
+/* .background-profile
+{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+} */
+/* .background-profile{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  width:100%;
+  height: 350px;
+  overflow:hidden;  */
+  /* margin:-18.0% 0;   */
+  /* display:block; */
+  /* position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+	background-position: center;
+  background-attachment: fixed;
+}
+.background-profile figure img{
+
+  display:block; 
+  width:100%; 
+  margin:-18.0% 0;
+} */

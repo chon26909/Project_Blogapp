@@ -1,0 +1,98 @@
+<%- include("layout/header") %>
+<%- include("layout/layoutnavbar") %>
+<% if(locals.user){ %>
+<div style="background-color: whitesmoke">
+    <div class="container pt-lg-4 pb-lg-4 pt-3 pb-3">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <div class="card p-2">
+                    <img src="/images/hqdefault-1.jpg" alt="" width="100%" height="300px">
+                </div>
+            </div>
+            <div class="col-md-8 col-12 ">
+                <div class="card bg-white p-4">
+                    <h3>ชื่อผู้ใช้ : <%= user.username %></h3>
+                    <h6>รหัสสมาชิก : <%= user._id %></h6>
+                    <h6>อีเมล : <%= user.email %></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <% if(photogallery.length > 0){ %>
+    <div class="mt-5">      
+        <div class="row">
+            <div class="col-md-9 col-12">
+                <div class="row">
+                    <div class="col-12">
+                      <article class="pb-3">
+                        <a href="">
+                          <div class="card">
+                            <img src="<%= photogallery[0].imgurl %>" alt="">
+                            <div class="p-2">
+                              <h5><%= photogallery[0].name %></h5>
+                              <div class="mt-auto">
+                                <i class="fas fa-eye eye-view"> 10 </i>
+                              </div>
+                            </div>
+                          </div>
+                        </a>     
+                      </article>
+                    </div>
+                    <div class="col-12">
+                      <div class="row">
+                        <% for(var i=1; i < (photogallery.length); i++) { %>
+                        <article class="col-md-6 col-6 pb-3">
+                          <a href="">
+                            <div class="card">
+                              <img src="<%= photogallery[i].imgurl %>" alt="">
+                              <div class="p-2">
+                                <h5><%= photogallery[i].name %></h5>
+                                <div class="mt-auto">
+                                  <i class="fas fa-eye eye-view"> 10 </i>
+                                </div>
+                              </div>
+                            </div>
+                          </a>     
+                        </article>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-3 col-12 pt-3" style="background-color: whitesmoke;">
+                <div class="bg-white">
+                    <div class="p-2 bg-success text-white">Catelog</div>
+                    <div class="p-1">
+                        <ul>
+                            <li>ของกิน</li>
+                            <li>เที่ยวใกล้กรุงเทพ</li>
+                            <li>โรงแรม</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <% } %> 
+    <% if(photogallery.length <= 0){ %>
+        <div class="text-center">
+            <h2>No timeline</h2>
+        </div>
+    <% } %>    
+</div>
+    
+    
+
+
+
+
+
+
+<% } %> 
+<% if(!locals.user){ %>
+    <div class="text-center p-5"><h2>Please Login!</h2></div>
+<% } %> 
+<%- include("layout/footer") %>  
