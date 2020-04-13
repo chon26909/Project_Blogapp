@@ -1,7 +1,7 @@
 //model
 var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
-var url = "mongodb://localhost:27017/Blogapp";
+var url = "mongodb://localhost:27017/Blog";
 
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
 

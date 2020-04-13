@@ -6,7 +6,7 @@ var { check, validationResult } = require('express-validator');
 var LocalStrategy = require('passport-local').Strategy;
 //DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Blogapp', {useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/Blog', {useNewUrlParser: true,useUnifiedTopology: true});
 let PostSchema = new mongoose.Schema({
     userid: String,
     name: String,
@@ -158,12 +158,12 @@ router.post("/new/id=:userid", function(req, res){
     res.redirect("/blogs");
 });
 
-// router.get("/:id", async function(req, res)
-// {
-//     const { id } = req.params
-//     const product = await con.findById(id);
-//     res.render("review",{ idBlog:product});
-// });
+router.get("/review/id=:id", async function(req, res)
+{
+    const { id } = req.params;
+    const result = await conPost.findById(id);
+    res.render("review",{ Blogs : result});
+});
 
 
 router.get("/test", async function(req, res)
@@ -177,6 +177,10 @@ router.get("/profile/id=:id", async function(req, res){
   const { id } = req.params;
   const result = await conPost.find({userid : id});
   res.render("profile",{ photogallery : result});
+});
+
+router.get("/profile/edit/id=:id", async function(req, res){
+  res.render("edit");
 });
 
 router.get("/mygallery/id=:id", async function(req, res){
