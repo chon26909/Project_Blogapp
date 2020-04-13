@@ -107,8 +107,8 @@ passport.deserializeUser(function(id,done){
   })
 });
 
-passport.use(new LocalStrategy(function(username,password,done){
-  User.getUserByName(username,function(err,user){
+passport.use(new LocalStrategy(function(email,password,done){
+  User.getUserByName(email,function(err,user){
     if(err) throw errors
     //กรณีที่ว่า ชื่อผู้ใช้เดียวกัน แต่อีเมล รหัสผ่านต่างกัน
     if(!user){
@@ -131,7 +131,6 @@ passport.use(new LocalStrategy(function(username,password,done){
         }
         
       })
-      
       //ส่งไปหา passport.serializeUser
     }
   });
