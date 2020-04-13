@@ -37,9 +37,9 @@ module.exports.getUserById = function(id,callback)
 {
     User.findById(id,callback);
 }
-module.exports.getUserByName = function(email,callback)
+module.exports.getUserByName = function(username,callback)
 {
-    var query = { email : email };
+    var query = { username : username };
     User.findOne(query,callback);
 }
 module.exports.comparePassword = function(password,hash,callback)
