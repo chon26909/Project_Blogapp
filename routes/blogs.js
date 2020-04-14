@@ -1,5 +1,14 @@
 var express = require('express');
 var router = express.Router();
+
+var bodyParser = require('body-parser');
+var path = require('path');
+var crypto = require('crypto');
+var multer = require('multer');
+var GridFsStorage = require('multer-gridfs-storage');
+var Grid = require('gridfs-stream');
+var methodOverride = require('method-override');
+
 var passport = require('passport');
 var User = require('../model/usermodel');
 var { check, validationResult } = require('express-validator');
@@ -189,4 +198,11 @@ router.get("/mygallery/id=:id", async function(req, res){
   console.log(result);
   res.render("mygallery",{ photogallery : result});
 });
+
+router.get("/upload",function(req, res){
+  res.render("upload");
+})
+router.post("/upload",function(req, res){
+
+})
 module.exports = router;

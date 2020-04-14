@@ -3,7 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bcrypt = require('bcryptjs');
+
+var bodyParser = require('body-parser');
+var path = require('path');
+var crypto = require('crypto');
+var multer = require('multer');
+var GridFsStorage = require('multer-gridfs-storage');
+var Grid = require('gridfs-stream');
+var methodOverride = require('method-override');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -15,6 +22,8 @@ var db = mongoose.Connection;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var blogRouter = require('./routes/blogs');
+
+
 
 var app = express();
 app.set('trust proxy', 1) // trust first proxy
@@ -36,10 +45,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+
+let gfs;
+
+//create storage engine
+var storage = new GridFsStorage({
+  url: 'mongodb://host:27017/database',
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'uploads'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
+
 app.get("*",function(req,res,next){
   res.locals.user = req.user || null;
   next();
 })
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
