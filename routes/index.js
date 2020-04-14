@@ -13,11 +13,11 @@ router.get('/index',checkAuthentication, function(req, res, next) {
 function checkAuthentication(req,res,next){
   if(req.isAuthenticated())
   {
-      return next();
+    return next();
   } 
   else
   {
-      return next();
+    return next();
   }
 }
 
