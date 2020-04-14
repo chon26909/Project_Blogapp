@@ -3,26 +3,33 @@
 <% if(locals.user){ %>
     <div class="container mt-5 mb-5">
         <h3 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">Edit profile</h3>
-        <form method="POST" action="/profile/edit/id=<%= user._id %>" style="background-color: whitesmoke; padding: 5px; margin: 10px auto;">
-            
-            <div class="m-3">
-                <div class="row p-2">
-                    <div class="col-4">Username: </div>
-                    <div class="col-4"><%= user.username %></div>
-                    <div class="col-4"><input type="text" placeholder="New username" name="username"></div>
+        <form method="POST" action="/profile/edit/id=<%= user._id %>" class="" style="background-color: whitesmoke; padding: 20px; margin: 10px auto; width: 500px;">
+            <div class="btn-edit">
+                <div class="mt-3">
+                    <div class="">Username: <%= user.username %>
+                        <i class="fas fa-user-edit" id="showboxedit"></i>
+                        <span style="float: right;" id="showboxeditname"></span>
+                    </div>
                 </div>
-                <div class="row p-2">
-                    <div class="col-4">Email: </div>
-                    <div class="col-4"><%= user.email %></div>
-                    <div class="col-4"><input type="text" placeholder="New email" name="email"></div>
-                </div>
-                  
+                <hr>
+                <div class="mt-3">
+                    <div class="">Email: <%= user.email %>
+                    <span style="float: right;"><input type="text" placeholder="New email" name="email"></span>
+                </div>      
+                <hr>
             </div>
             <div style="text-align:center;">
                 <button type="submit" class="btn btn-success" >save</button>
             </div>
             
         </form>
+        <script>
+            $(document).ready(function(){
+                $("i").click(function(){
+                    $("div").prepend("<input>");
+                });
+            });
+        </script>
     </div>
 <% } %> 
 <% if(!locals.user){ %>

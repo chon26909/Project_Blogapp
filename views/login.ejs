@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>login</title>
+	<title>Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -13,15 +13,21 @@
 		*
 		{
 			font-family: 'Mitr', sans-serif;
+			margin: 0px;
+			padding: 0px;
 		}
 		.form-login
 		{
+
 			max-width: 100%;
-			width: 450px;
-			padding: 20px;
+			width: 480px;
+			padding: 30px;
 			margin: 100px auto;
 			border-radius: 10px;
-			text-shadow: 4px 4px 10px #000000;
+			color: black;
+			border: thin;
+			font-size: large;
+			text-shadow: 4px 4px 10px whitesmoke;
 		}
 		.background-login
 		{
@@ -31,10 +37,15 @@
 			background-position: center center;
 			background-attachment: fixed;
 		}
+		#notaccount
+		{
+			color: white;
+			text-shadow: 4px 4px 10px #000000;
+		}
 	</style>
 </head>
 <body class="background-login">
-	<div>	
+	<div >	
 		<div class="container">
 			<form class="form-group form-login" method="POST" action="/blogs/login"> 
 				<h1 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">Login</h1>
@@ -52,7 +63,7 @@
 					</label>
 				</div> -->
                 <button type="submit" class="btn btn-success btn-block ">Submit</button>
-                <a href="/blogs/register"><p class="text-center pt-2">I don't have my account</p></a>
+                <a href="/blogs/register"><p class="text-center pt-2" id="notaccount">I don't have my account</p></a>
 			</form>
 		</div>
 	</div>

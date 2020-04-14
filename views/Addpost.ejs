@@ -1,23 +1,42 @@
 <%- include("layout/header") %>
 <%- include("layout/layoutnavbar") %>
 <% if(locals.user){ %>
-<div class="container mt-5 mb-5">
-    <form method="POST" action="/blogs/new/id=<%= user._id %>">
-        <h3 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">Post something</h3>
+<div class="container mt-5 mb-5 p-4" style="background-color: whitesmoke;">
+    <form method="POST" action="/blogs/new/id=<%= user._id %>" >
+        <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">Write article</h3>
         <div class="form-group">
               <label for="text">Title :</label>
               <input type="text" class="form-control" placeholder="ชื่อหัวเรื่อง" name="name">
         </div>
-        <div class="form-group">
-            <label for="text">Image URL :</label>
-            <input type="text" class="form-control" placeholder="ลิงค์รูปภาพ" name="imgurl">
+        <p>Image title:</p>
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="customFile" name="filename">
+            <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
         </div>
         <div class="form-group">
-            <label for="text">Description :</label>
-            <input type="text" class="form-control" placeholder="คำบรรยาย" name="desc">
+            <label for="Catelog">Catelog :</label>
+            <select class="form-control" id="catelog">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+        <div class="form-group">
+            <label for="text">Articel :</label>
+            <textarea name="editor"></textarea>
         </div>
-        <button type="submit" class="btn btn-success btn-block">Post</button>
+        <div class="mt-2">
+            
+            <button type="submit" class="btn btn-success btn-block">Post</button>
+        </div>
+        
     </form>
+    
+    <script>
+        CKEDITOR.replace('editor'); 
+    </script>
+    
 </div>
 <% } %> 
 <% if(!locals.user){ %>

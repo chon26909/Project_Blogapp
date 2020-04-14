@@ -12,7 +12,8 @@ db.on('error', console.error.bind(console,'Connection Error'));
 var userSchema = mongoose.Schema({
     username:{ type:String },
     email:{ type:String },
-    password:{ type:String}
+    password:{ type:String },
+    birthdate:{ type:Date },
 });
 //export model ไปใช้ router ชื่อ users.js
 var User = module.exports = mongoose.model('User',userSchema);

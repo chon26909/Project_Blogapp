@@ -120,7 +120,26 @@ footer a:hover
 	float: left;
 }
 
-
+.img-crop
+{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center ; 
+  border: 1px solid;
+  border-color:white;
+  cursor: pointer;
+}
+.img-crop-pageprofile
+{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center ; 
+  border: 1px solid;
+  border-color:white;
+  cursor: pointer;
+}
 /* display image fullscreen */
 #myImg {
   width: 100%;
@@ -205,4 +224,12 @@ footer a:hover
   .modal-content {
     width: 100%;
   }
+  
 }
+/* @media (max-width: 700px)
+{
+  #imgpageprofile
+  {
+    height: 30px;
+  }
+} */

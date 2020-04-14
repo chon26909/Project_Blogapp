@@ -162,7 +162,7 @@ router.get("/review/id=:id", async function(req, res)
 {
     const { id } = req.params;
     const result = await conPost.findById(id);
-    res.render("review",{ Blogs : result});
+    res.render("review",{ Blogs : result, title : result});
 });
 
 
