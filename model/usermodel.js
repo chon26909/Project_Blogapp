@@ -10,10 +10,11 @@ db.on('error', console.error.bind(console,'Connection Error'));
 
 //schema table ใน DB
 var userSchema = mongoose.Schema({
-    username:{ type:String },
-    email:{ type:String },
-    password:{ type:String },
-    birthdate:{ type:Date },
+    username: String ,
+    email: String ,
+    password: String ,
+    birthdate: Date ,
+    image: String
 });
 //export model ไปใช้ router ชื่อ users.js
 var User = module.exports = mongoose.model('User',userSchema);

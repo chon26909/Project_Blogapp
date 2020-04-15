@@ -1,13 +1,20 @@
 var express = require('express');
 var router = express.Router();
-
 var bodyParser = require('body-parser');
 var path = require('path');
-var crypto = require('crypto');
+
 var multer = require('multer');
-var GridFsStorage = require('multer-gridfs-storage');
-var Grid = require('gridfs-stream');
-var methodOverride = require('method-override');
+var Storage = multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,"./public/images/img-profile/") 
+  },
+  filename:function(req,file,cb){
+    cb(null,file.originalname);
+  }
+});
+var upload = multer({storage:Storage});
+
+
 
 var passport = require('passport');
 var User = require('../model/usermodel');
@@ -20,16 +27,29 @@ let PostSchema = new mongoose.Schema({
     userid: String,
     name: String,
     imgurl: String,
-    desc: String
+    content: String,
+    comment: String,
+    view: String,
 })
 let conPost = mongoose.model("post",PostSchema);
 
-/* GET users listing. */
+let UserSchema = new mongoose.Schema({
+    username: String ,
+    email: String ,
+    password: String ,
+    birthdate: Date ,
+    image: String
+})
+let conUser = mongoose.model("users", UserSchema);
+
+let CatelogSchema = new mongoose.Schema({
+    name: String,
+})
+let conCatelog = mongoose.model("categories", CatelogSchema);
 
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/',checkAuthentication, async function(req, res,) {
-    const post_eat = await conPost.find({category: "ของกิน"}).limit(3);
-    console.log(post_eat);
+    const post_eat = await conPost.find();
     res.render("index",{ post_eat : post_eat});
   });
   function checkAuthentication(req,res,next){
@@ -52,38 +72,39 @@ router.post("/register",[
   check("username","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
   check("email","กรุณาป้อนอีเมล").isEmail(),
   check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty()
-] ,function(req, res)
-{
-  const result = validationResult(req);
-  var errors = result.errors;
-  if(!result.isEmpty())
+  ] ,function(req, res)
   {
-    //return to page
-    res.render("register", { errors : errors });
-  }
-  else
-  {
-    var username = req.body.username;
-    var email = req.body.email;
-    var password = req.body.password;
-    var newUser = new User
-    ({
-      username:username,
-      email:email,
-      password:password
-    })
-    console.log(newUser);
-    User.createUser(newUser,function(err){
-      if(err) console.log(err);
-      else
-      {
-        res.location('/blogs/');
-        res.redirect('/blogs/login');
-      }
-    });
-    
-  }
-});
+    const result = validationResult(req);
+    var errors = result.errors;
+    if(!result.isEmpty())
+    {
+      //return to page
+      res.render("register", { errors : errors });
+    }
+    else
+    {
+      var username = req.body.username;
+      var email = req.body.email;
+      var password = req.body.password;
+      var newUser = new User
+      ({
+        username:username,
+        email:email,
+        password:password,
+        image: "no-imgprofile.png"
+      })
+      console.log(newUser);
+      User.createUser(newUser,function(err){
+        if(err) console.log(err);
+        else
+        {
+          res.location('/blogs/');
+          res.redirect('/blogs/login');
+        }
+      });
+      
+    }
+  });
 
 router.get("/login", function(_req, res)
 {
@@ -146,24 +167,19 @@ passport.use(new LocalStrategy(function(username,password,done){
   });
 }));
 
-router.get("/new", function(req, res){
-    res.render("Addpost");
+router.get("/new",async function(req, res){
+  const cat = await conCatelog.find();
+  console.log(cat);
+  res.render("Addpost",{ categories:cat });
 })
-router.post("/new/id=:userid", function(req, res){
+
+router.post("/new/id=:userid", upload.single('img_title') , async function(req, res){
     let { userid } = req.params;
-    console.log( userid );
     let n_name = req.body.name;
-    let n_imgurl = req.body.imgurl;
+    let n_imgurl = req.file.originalname;
     let n_desc = req.body.desc;
-    let schema_post = {userid:userid ,name:n_name, imgurl:n_imgurl, desc:n_desc};
-    conPost.create(schema_post,function(err,newdata){
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(newdata);
-        }
-    })
+    let n_content = req.body.editor;
+    await conPost.create({userid:userid ,name:n_name, imgurl:n_imgurl, desc:n_desc, content:n_content});
     res.redirect("/blogs");
 });
 
@@ -171,7 +187,8 @@ router.get("/review/id=:id", async function(req, res)
 {
     const { id } = req.params;
     const result = await conPost.findById(id);
-    res.render("review",{ Blogs : result, title : result});
+    console.log(result);
+    res.render("review",{ Blogs : result});
 });
 
 
@@ -188,21 +205,37 @@ router.get("/profile/id=:id", async function(req, res){
   res.render("profile",{ photogallery : result});
 });
 
-router.get("/profile/edit/id=:id", async function(req, res){
-  res.render("edit");
-});
 
-router.get("/mygallery/id=:id", async function(req, res){
+
+router.get("/mygallery/id=:id", async function(req, res)
+{
   const { id } = req.params;
   const result = await conPost.find({userid : id});
   console.log(result);
   res.render("mygallery",{ photogallery : result});
 });
 
-router.get("/upload",function(req, res){
+router.get("/upload",function(req, res)
+{
   res.render("upload");
-})
-router.post("/upload",function(req, res){
+});
 
-})
+
+
+router.post("/profile/edit/id=:userid",upload.single('pic'),async function(req, res){
+  let { userid } = req.params;
+  let n_image = req.file.originalname;
+  let n_name = req.body.username;
+  let n_email = req.body.email;
+  // let update_user = conUser({username:n_name, image:n_image});
+  // const complete = await schema_user.save();
+  const data = await conUser.updateMany({_id:userid},{$set:{username:n_name,email:n_email,image:n_image}});
+  res.redirect("/blogs");
+});
+
+router.get("/profile/edit/id=:id", async function(req, res)
+{
+  res.render("edit");
+});
+
 module.exports = router;

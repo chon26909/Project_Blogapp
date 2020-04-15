@@ -48,34 +48,19 @@ app.use(passport.session());
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
-let gfs;
-
-//create storage engine
-var storage = new GridFsStorage({
-  url: 'mongodb://host:27017/database',
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads'
-        };
-        resolve(fileInfo);
-      });
-    });
-  }
-});
-const upload = multer({ storage });
 
 app.get("*",function(req,res,next){
   res.locals.user = req.user || null;
   next();
 })
 
+app.use(function(err, req, res, next){
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.status || 500);
+  res.render('error');
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

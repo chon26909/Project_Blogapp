@@ -2,7 +2,7 @@
 <%- include("layout/layoutnavbar") %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 mt-3 bg-white">
+        <div class="col-lg-8 mt-3 bg-white pr-3">
             <h1><%= Blogs.name%></h1>
             <div>
                 <img src="/images/no-image.png" alt="" class="author-img mr-2">
@@ -11,7 +11,11 @@
                 </div>
             </div>
             <article class="mt-3">
-                <img src="<%= Blogs.imgurl%>" alt="">
+                <img src="/images/img-profile/<%= Blogs.imgurl%>" alt="">
+                <div class="mt-2 mb-2 pt-2">
+                    <%- Blogs.content%>
+                </div>
+                
             </article>
         </div>
         <div class="col-lg-4 mt-3 bg-white">
