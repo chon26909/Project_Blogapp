@@ -5,6 +5,7 @@
 h1,h2,h3,h4,h5,h6
 {
   font-family: 'Mitr', sans-serif;
+  color: #424040;
 }
 body
 {
@@ -96,6 +97,14 @@ footer a:hover
 {
 	width: 50px;
 	height: 50px;
+	border-radius: 50%;
+	border: 1px solid ;
+	float: left;
+}
+.usercomment-img
+{
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	border: 1px solid ;
 	float: left;
@@ -228,8 +237,9 @@ footer a:hover
 }
 /* @media (max-width: 700px)
 {
-  #imgpageprofile
+  h1
   {
-    height: 30px;
+    font-size: xx-large;
+    color: black;
   }
 } */

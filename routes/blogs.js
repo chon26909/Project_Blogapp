@@ -26,8 +26,10 @@ mongoose.connect('mongodb://localhost:27017/Blog', {useNewUrlParser: true,useUni
 let PostSchema = new mongoose.Schema({
     userid: String,
     name: String,
+    category: String,
     imgurl: String,
     content: String,
+    date: Date,
     comment: String,
     view: String,
 })
@@ -49,8 +51,11 @@ let conCatelog = mongoose.model("categories", CatelogSchema);
 
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/',checkAuthentication, async function(req, res,) {
-    const post_eat = await conPost.find();
-    res.render("index",{ post_eat : post_eat});
+    const post = await conPost.find();
+    const userid = post.userid;
+    const user = await conUser.findById(userid);
+    
+    res.render("index",{ post_eat : post, byuser : user});
   });
   function checkAuthentication(req,res,next){
     if(req.isAuthenticated())
@@ -176,21 +181,26 @@ router.get("/new",async function(req, res){
 router.post("/new/id=:userid", upload.single('img_title') , async function(req, res){
     let { userid } = req.params;
     let n_name = req.body.name;
+    let n_category = req.body.category;
     let n_imgurl = req.file.originalname;
     let n_desc = req.body.desc;
     let n_content = req.body.editor;
-    await conPost.create({userid:userid ,name:n_name, imgurl:n_imgurl, desc:n_desc, content:n_content});
+    let n_date = new Date().toISOString();
+    console.log(n_date);
+    await conPost.create({userid:userid ,name:n_name, category:n_category , imgurl:n_imgurl, desc:n_desc, content:n_content, date:n_date});
     res.redirect("/blogs");
 });
 
 router.get("/review/id=:id", async function(req, res)
 {
     const { id } = req.params;
-    const result = await conPost.findById(id);
-    console.log(result);
-    res.render("review",{ Blogs : result});
-});
+    const post = await conPost.findById(id);
 
+    const userid = post.userid;
+    const user = await conUser.findById(userid);
+
+    res.render("review",{ Blogs : post, authors : user});
+});
 
 router.get("/test", async function(req, res)
 {
@@ -206,7 +216,6 @@ router.get("/profile/id=:id", async function(req, res){
 });
 
 
-
 router.get("/mygallery/id=:id", async function(req, res)
 {
   const { id } = req.params;
@@ -219,8 +228,6 @@ router.get("/upload",function(req, res)
 {
   res.render("upload");
 });
-
-
 
 router.post("/profile/edit/id=:userid",upload.single('pic'),async function(req, res){
   let { userid } = req.params;
@@ -238,4 +245,13 @@ router.get("/profile/edit/id=:id", async function(req, res)
   res.render("edit");
 });
 
+router.get("/showmore/:name", async function(req, res){
+  let { name } = req.params;
+  const post = await conPost.find({category:name});
+  console.log(post);
+  // const userid = post.userid;
+  // const user = await conUser.findById(userid);
+    
+  res.render("showmore",{ posts : post});
+})
 module.exports = router;

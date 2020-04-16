@@ -29,11 +29,14 @@
                       <article class="pb-3">
                         <a href="/blogs/review/id=<%= photogallery[0]._id %>">
                           <div class="card">
-                            <img src="<%= photogallery[0].imgurl %>" alt=""  class="img-crop">
+                            <img src="/images/img-profile/<%= photogallery[0].imgurl %>" alt=""  class="img-crop">
                             <div class="p-2">
                               <h5><%= photogallery[0].name %></h5>
                               <div class="mt-auto">
-                                <i class="fas fa-eye eye-view"> 0 </i>
+                                <i class="fas fa-eye eye-view"> 0</i>
+                                <a href="">
+                                  <i class="fas fa-edit" style="float: right;"></i>
+                                </a>
                               </div>
                             </div>
                           </div>
@@ -46,11 +49,14 @@
                         <article class="col-md-6 col-6 pb-3">
                           <a href="/blogs/review/id=<%= photogallery[i]._id %>">
                             <div class="card">
-                              <img src="<%= photogallery[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
+                              <img src="/images/img-profile/<%= photogallery[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
                               <div class="p-2">
                                 <h5><%= photogallery[i].name %></h5>
                                 <div class="mt-auto">
-                                  <i class="fas fa-eye eye-view"> 0 </i>
+                                  <i class="fas fa-eye eye-view"> 0</i>
+                                  <a href="">
+                                    <i class="fas fa-edit" style="float: right;"></i>
+                                  </a>
                                 </div>
                               </div>
                             </div>
@@ -68,7 +74,7 @@
               </div>
             <% } %>
             <div class="col-md-3 col-12 pt-3" style="background-color: whitesmoke;">
-                <div class="bg-white">
+                <!-- <div class="bg-white">
                     <div class="p-2 bg-success text-white">Catelog</div>
                     <div class="p-1">
                         <ul>
@@ -77,21 +83,32 @@
                             <li>โรงแรม</li>
                         </ul>
                     </div>
+                </div> -->
+                <div class="bg-white">
+                  <div class="p-2 bg-success text-white">หมวดหมู่</div>
+                  <div class="p-1">
+                      <ul>
+                          <li>เที่ยวสงกรานต์</li>
+                          <li>ร้านอาหาร</li>
+                          <li>ที่พัก</li>
+                          <li>คาเฟ่</li>
+                          <li>ตลาดกลางคืน</li>
+                          <li>แหล่งช๊อปปิ้ง</li>
+                          <li>สวนสาธารณะ</li>
+                      </ul>
+                  </div>
                 </div>
-                
             </div>
-          
-      </div>
-    
-      <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="img01">
-      <div id="caption"></div>
-    </div> 
-  
 
-    <script>
+      </div>
+  </div>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+  <script>
     
     // Get the modal
     var modal = document.getElementById('myModal');
@@ -114,8 +131,6 @@
       modal.style.display = "none";
     }
     </script>
-  </div>
-  
 </div>
  
 <% } %>

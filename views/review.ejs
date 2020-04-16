@@ -2,62 +2,87 @@
 <%- include("layout/layoutnavbar") %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 mt-3 bg-white pr-3">
+        <div class="col-lg-8 mt-3 bg-white pr-3" style="background-color: whitesmoke;">
             <h1><%= Blogs.name%></h1>
             <div>
-                <img src="/images/no-image.png" alt="" class="author-img mr-2">
+                <img src="/images/img-profile/<%= authors.image %>" alt="" class="author-img mr-2">
                 <div>
-                    <p><a href="#">บอส บอสซ่า</a><br><i class="far fa-clock"> 27-03-2020 </i></p>
+                    <p><a href="#"><%= authors.username %> </a><br><i class="far fa-clock"> 27-03-2020 </i></p>
                 </div>
             </div>
             <article class="mt-3">
                 <img src="/images/img-profile/<%= Blogs.imgurl%>" alt="">
-                <div class="mt-2 mb-2 pt-2">
+                <div class="mt-2 mb-2 pt-3">
                     <%- Blogs.content%>
                 </div>
                 
             </article>
+            
+            <div style="background-color: whitesmoke; padding: 15px; margin: 10px 0px 10px 0px;">
+                <h6>1 Comment</h6>
+                <div class="p-1 m-1">
+                    <div class="bg-light">
+                        <img src="/images/img-profile/no-imgprofile.png" alt="" class="usercomment-img mr-2">
+                        <p class="p-1">อยากไปเที่ยวจัง </p> 
+                    </div>
+                    <% if(locals.user){ %>
+                    <form action="">
+                        <textarea name="" id="" rows="3" style="width: 100%;"></textarea>
+                        <input type="submit">
+                    </form>
+                <% } %>
+                </div>
+                
+            </div>
+            
         </div>
         <div class="col-lg-4 mt-3 bg-white">
-            <div class="mt-3 bg-light">
+            <div class="mt-3 bg-light ">
                 <div class="btn-success pl-3 mt-2 p-1">
-                    <h5>แนะนำ</h5>
+                    <h5 class="text-white">แนะนำ</h5>
                 </div>
                 
                 <div class="media">
-                    <a href="#">
+                    <a href="">
                         <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
                         <div class="media-body p-1">
-                            <p>ที่เที่ยวจังหวัดอ่างทอง พระตำหนักคำหยาด โบราณสถาน ในอดีต แห่งความทรงจำ</p>
+                            <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p>
                         </div>
                     </a>
                 </div>
                 <div class="media">
-                    <a href="#">
+                    <a href="">
                         <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
                         <div class="media-body p-1">
-                            <p>ที่เที่ยวจังหวัดอ่างทอง พระตำหนักคำหยาด โบราณสถาน ในอดีต แห่งความทรงจำ</p>
+                            <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p>
                         </div>
                     </a>
                 </div>
                 <div class="media">
-                    <a href="#">
+                    <a href="">
                         <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
                         <div class="media-body p-1">
-                            <p>ที่เที่ยวจังหวัดอ่างทอง พระตำหนักคำหยาด โบราณสถาน ในอดีต แห่งความทรงจำ</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="media">
-                    <a href="#">
-                        <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
-                        <div class="media-body p-1">
-                            <p>ที่เที่ยวจังหวัดอ่างทอง พระตำหนักคำหยาด โบราณสถาน ในอดีต แห่งความทรงจำ</p>
+                            <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p>
                         </div>
                     </a>
                 </div>
             </div>
+            <div class="bg-light mt-3">
+                <div class="p-2 bg-success text-white">หมวดหมู่</div>
+                <div class="p-1">
+                    <ul>
+                        <li>เที่ยวสงกรานต์</li>
+                        <li>ร้านอาหาร</li>
+                        <li>ที่พัก</li>
+                        <li>คาเฟ่</li>
+                        <li>ตลาดกลางคืน</li>
+                        <li>แหล่งช๊อปปิ้ง</li>
+                        <li>สวนสาธารณะ</li>
+                    </ul>
+                </div>
+              </div>
         </div>
     </div>
     
 </div>
+<%- include("layout/footer") %> 
