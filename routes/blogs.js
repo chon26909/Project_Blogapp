@@ -3,7 +3,6 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var path = require('path');
 var moment = require('moment');
-
 var multer = require('multer');
 var Storage = multer.diskStorage({
   destination:function(req,file,cb){
@@ -23,15 +22,15 @@ var { check, validationResult } = require('express-validator');
 var LocalStrategy = require('passport-local').Strategy;
 //DB
 var mongoose = require('mongoose');
-
+var ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 let PostSchema = new mongoose.Schema({
-    userid: Object,
+    userid: ObjectId,
     name: String,
     category: String,
     imgurl: String,
     content: String,
-    date: String,
+    date: Date,
     comment: String,
     view: String,
 })
@@ -201,25 +200,33 @@ router.post("/new/id=:userid", upload.single('img_title') , async function(req, 
 router.get("/review/id=:id", async function(req, res)
 {
     const { id } = req.params;
-    const post = await conPost.findById(id);
+    // const post = await conPost.findById(id);
 
-    const userid = post.userid;
-    const user = await conUser.findById(userid);
+    // const userid = post.userid;
+    // const user = await conUser.findById(userid);
 
-    const result = await conPost.aggregate([
-      {
-        $lookup:
+    const postreview = await conPost.aggregate(
+      [
         {
-          from: 'users',
-          localField: 'userid',
-          foreignField: '_id',
-          as: "postby"
+          //select 
+          $match: 
+          { 
+            _id : ObjectId(id)
+          } 
         }
-      }
-    ]);
-    console.log(result);
-    console.log(result.postby);
-    res.render("review",{ Blogs : post, authors : user});
+        , 
+        {$lookup: 
+          {
+            from: 'users', //join กับ collection users
+            localField: 'userid', 
+            foreignField: '_id',
+            as: "postby"
+          }
+        }
+      ]
+      );
+      console.log(postreview);
+      res.render("review",{ Blogs : postreview });
 });
 
 router.get("/test", async function(req, res)
@@ -231,8 +238,28 @@ router.get("/test", async function(req, res)
 
 router.get("/profile/id=:id", async function(req, res){
   const { id } = req.params;
-  const result = await conPost.find({userid : id});
-  res.render("profile",{ photogallery : result});
+  const result = await conUser.aggregate(
+  [
+    {
+      //select 
+      $match: 
+      { 
+        _id : ObjectId(id)
+      } 
+    }
+    , 
+    {$lookup: 
+      {
+        from: 'posts', //join กับ collection users
+        localField: '_id', 
+        foreignField: 'userid',
+        as: "post"
+      }
+    }
+  ]
+    );
+  console.log(result);
+  res.render("profile",{ profile : result});
 });
 
 
@@ -272,5 +299,21 @@ router.get("/showmore/:name", async function(req, res){
   // const user = await conUser.findById(userid);
     
   res.render("showmore",{ posts : post});
+})
+
+router.get("/chon", async function(req, res){
+    // id=:id
+  // const { id } = req.params;
+  var chon = await conPost.aggregate(
+    [{$match: {
+      _id: ObjectId('5e96d9f398f25299e4e6bb7d')
+   }}, {$lookup: {
+     from: 'users',
+     localField: 'userid',
+     foreignField: '_id',
+     as: "postby"
+   }}]
+    );
+  res.json(chon);
 })
 module.exports = router;
