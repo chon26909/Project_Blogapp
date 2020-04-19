@@ -215,7 +215,8 @@ router.get("/review/id=:id", async function(req, res)
           } 
         }
         , 
-        {$lookup: 
+        {
+          $lookup:
           {
             from: 'users', //join กับ collection users
             localField: 'userid', 
@@ -248,9 +249,10 @@ router.get("/profile/id=:id", async function(req, res){
       } 
     }
     , 
-    {$lookup: 
+    {
+      $lookup:
       {
-        from: 'posts', //join กับ collection users
+        from: 'posts', //join กับ collection users 
         localField: '_id', 
         foreignField: 'userid',
         as: "post"
@@ -294,7 +296,7 @@ router.get("/profile/edit/id=:id", async function(req, res)
 
 router.get("/showmore/:name", async function(req, res){
   let { name } = req.params;
-  const post = await conPost.find({category:name});
+  const post = await conPost.find({ category : name });
   // const userid = post.userid;
   // const user = await conUser.findById(userid);
     
@@ -302,17 +304,22 @@ router.get("/showmore/:name", async function(req, res){
 })
 
 router.get("/chon", async function(req, res){
-    // id=:id
-  // const { id } = req.params;
   var chon = await conPost.aggregate(
-    [{$match: {
-      _id: ObjectId('5e96d9f398f25299e4e6bb7d')
-   }}, {$lookup: {
-     from: 'users',
-     localField: 'userid',
-     foreignField: '_id',
-     as: "postby"
-   }}]
+    [
+      {$match: 
+        {
+          _id: ObjectId('5e96d9f398f25299e4e6bb7d')
+        }
+      }, 
+      {$lookup: 
+        {
+          from: 'users',
+          localField: 'userid',
+          foreignField: '_id',
+          as: "postby"
+        }
+      }
+    ]
     );
   res.json(chon);
 })
