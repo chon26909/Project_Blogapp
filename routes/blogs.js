@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var path = require('path');
+var moment = require('moment');
 
 var multer = require('multer');
 var Storage = multer.diskStorage({
@@ -22,14 +23,15 @@ var { check, validationResult } = require('express-validator');
 var LocalStrategy = require('passport-local').Strategy;
 //DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Blog', {useNewUrlParser: true,useUnifiedTopology: true});
+
+mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 let PostSchema = new mongoose.Schema({
-    userid: String,
+    userid: Object,
     name: String,
     category: String,
     imgurl: String,
     content: String,
-    date: Date,
+    date: String,
     comment: String,
     view: String,
 })
@@ -123,19 +125,23 @@ router.get("/logout", function(req, res)
 });
 
 router.post("/login", passport.authenticate('local',{
+  // ไม่สำเสร็จ
   failureRedirect:'/blogs/login',
   failureFlash:false
 }),
-function(req, res){
+function(req, res)
+{
+  // สำเร็จ
   res.redirect('/blogs');
 });
 
-passport.serializeUser(function(user,done){
+passport.serializeUser(function(user,done)
+{
   done(null,user.id);
-  //ลงชื่อเข้าใช้สำเร็จ
 });
 
-passport.deserializeUser(function(id,done){
+passport.deserializeUser(function(id,done)
+{
   //ต่อมา
   User.getUserById(id,function(err,username){
     done(err,username);
@@ -158,6 +164,7 @@ passport.use(new LocalStrategy(function(username,password,done){
         if(isMatch)
         {
           console.log(user);
+          //return ออกไปเก็บ session
           return done(null,user);
         }
         else
@@ -185,7 +192,7 @@ router.post("/new/id=:userid", upload.single('img_title') , async function(req, 
     let n_imgurl = req.file.originalname;
     let n_desc = req.body.desc;
     let n_content = req.body.editor;
-    let n_date = new Date().toISOString();
+    let n_date = new Date().toLocaleString("en-US",{ timeZone: "Asia/Bangkok"});
     console.log(n_date);
     await conPost.create({userid:userid ,name:n_name, category:n_category , imgurl:n_imgurl, desc:n_desc, content:n_content, date:n_date});
     res.redirect("/blogs");
@@ -199,6 +206,19 @@ router.get("/review/id=:id", async function(req, res)
     const userid = post.userid;
     const user = await conUser.findById(userid);
 
+    const result = await conPost.aggregate([
+      {
+        $lookup:
+        {
+          from: 'users',
+          localField: 'userid',
+          foreignField: '_id',
+          as: "postby"
+        }
+      }
+    ]);
+    console.log(result);
+    console.log(result.postby);
     res.render("review",{ Blogs : post, authors : user});
 });
 
@@ -248,7 +268,6 @@ router.get("/profile/edit/id=:id", async function(req, res)
 router.get("/showmore/:name", async function(req, res){
   let { name } = req.params;
   const post = await conPost.find({category:name});
-  console.log(post);
   // const userid = post.userid;
   // const user = await conUser.findById(userid);
     

@@ -1,9 +1,8 @@
 //model
 var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
-var url = "mongodb://localhost:27017/Blog";
 
-mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'Connection Error'));
