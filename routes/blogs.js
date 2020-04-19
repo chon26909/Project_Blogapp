@@ -208,7 +208,7 @@ router.get("/review/id=:id", async function(req, res)
     const postreview = await conPost.aggregate(
       [
         {
-          //select 
+          //select with condition
           $match: 
           { 
             _id : ObjectId(id)
@@ -316,4 +316,5 @@ router.get("/chon", async function(req, res){
     );
   res.json(chon);
 })
+
 module.exports = router;
