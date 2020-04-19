@@ -142,8 +142,9 @@ passport.serializeUser(function(user,done)
 passport.deserializeUser(function(id,done)
 {
   //ต่อมา
-  User.getUserById(id,function(err,username){
-    done(err,username);
+  User.getUserById(id,function(err,username)
+  {
+    done(err,username)
   })
 });
 
@@ -151,7 +152,8 @@ passport.use(new LocalStrategy(function(username,password,done){
   User.getUserByName(username,function(err,user){
     if(err) throw errors
     //กรณีที่ว่า ชื่อผู้ใช้เดียวกัน แต่อีเมล รหัสผ่านต่างกัน
-    if(!user){
+    if(!user)
+    {
       //ไม่พบผู้ใช้
       return done(null,false)
     }
@@ -159,7 +161,8 @@ passport.use(new LocalStrategy(function(username,password,done){
     { 
       console.log(user.password);
       console.log(password);
-      User.comparePassword(password,user.password,function(err,isMatch){
+      User.comparePassword(password,user.password,function(err,isMatch)
+      {
         if(isMatch)
         {
           console.log(user);
@@ -172,7 +175,6 @@ passport.use(new LocalStrategy(function(username,password,done){
         }
         
       })
-      
       //ส่งไปหา passport.serializeUser
     }
   });
@@ -285,7 +287,7 @@ router.post("/profile/edit/id=:userid",upload.single('pic'),async function(req, 
   let n_email = req.body.email;
   // let update_user = conUser({username:n_name, image:n_image});
   // const complete = await schema_user.save();
-  const data = await conUser.updateMany({_id:userid},{$set:{username:n_name,email:n_email,image:n_image}});
+  const data = await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image:n_image}});
   res.redirect("/blogs");
 });
 
