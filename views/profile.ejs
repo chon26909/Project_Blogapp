@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-12">
                       <article class="pb-3">
-                        <a href="/blogs/review/id=<%= profile[0].post[0]._id %>">
+                        <a href="/blogs/review/<%= profile[0].post[0]._id %>">
                           <div class="card">
                             <img src="/images/img-profile/<%= profile[0].post[0].imgurl %>" alt=""  class="img-crop">
                             <div class="p-2">
@@ -47,7 +47,7 @@
                       <div class="row">
                         <% for(var i=1; i < (profile[0].post.length); i++) { %>
                         <article class="col-md-6 col-6 pb-3">
-                          <a href="/blogs/review/id=<%= profile[0].post[i]._id %>">
+                          <a href="/blogs/review/<%= profile[0].post[i]._id %>">
                             <div class="card">
                               <img src="/images/img-profile/<%= profile[0].post[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
                               <div class="p-2">
@@ -88,13 +88,9 @@
                   <div class="p-2 bg-success text-white">หมวดหมู่</div>
                   <div class="p-1">
                       <ul>
+                        
                           <li>เที่ยวสงกรานต์</li>
-                          <li>ร้านอาหาร</li>
-                          <li>ที่พัก</li>
-                          <li>คาเฟ่</li>
-                          <li>ตลาดกลางคืน</li>
-                          <li>แหล่งช๊อปปิ้ง</li>
-                          <li>สวนสาธารณะ</li>
+                    
                       </ul>
                   </div>
                 </div>

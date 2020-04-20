@@ -18,13 +18,8 @@ var userSchema = mongoose.Schema({
 //export model ไปใช้ router ชื่อ users.js
 var User = module.exports = mongoose.model('User',userSchema);
 
-// var PostSchema = new mongoose.Schema({
-//     name: String,
-//     imgurl: String,
-//     desc: String
-// });
-// var conPost = module.exports = mongoose.model('posts',PostSchema);
 
+//หน้า register ก่อนที่บันทึก password ต้อง bcrypt ซะก่อน 
 module.exports.createUser = function(newUser, callback)
 {
     bcrypt.genSalt(10, function(err, salt) {
@@ -34,13 +29,15 @@ module.exports.createUser = function(newUser, callback)
         });
     }); 
 }
+
 module.exports.getUserById = function(id,callback)
 {
     User.findById(id,callback);
 }
-module.exports.getUserByName = function(username,callback)
+
+module.exports.getUserByEmail = function(email,callback)
 {
-    var query = { username : username };
+    var query = { email : email };
     User.findOne(query,callback);
 }
 module.exports.comparePassword = function(password,hash,callback)

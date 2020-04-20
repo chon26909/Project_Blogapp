@@ -3,10 +3,12 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var path = require('path');
 var moment = require('moment');
+
+//ย้ายข้อมูลจาก form ไปเก็บในโฟลเดอร์
 var multer = require('multer');
 var Storage = multer.diskStorage({
   destination:function(req,file,cb){
-    cb(null,"./public/images/img-profile/") 
+    cb(null,"./public/images/img-profile/")
   },
   filename:function(req,file,cb){
     cb(null,file.originalname);
@@ -15,15 +17,20 @@ var Storage = multer.diskStorage({
 var upload = multer({storage:Storage});
 
 
-
+//passport login
 var passport = require('passport');
+//import model เข้ามาใช้แค่ในระบบ login
 var User = require('../model/usermodel');
+//ตรวจข้อมูลและการแจ้งข้อผิดพลาด ใช้ในการหน้า register
 var { check, validationResult } = require('express-validator');
+//login
 var LocalStrategy = require('passport-local').Strategy;
-//DB
+//connect DB
 var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectId;
+//URL Mongo Cloud
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
+//รูปแบบ schema ของ posts
 let PostSchema = new mongoose.Schema({
     userid: ObjectId,
     name: String,
@@ -36,6 +43,7 @@ let PostSchema = new mongoose.Schema({
 })
 let conPost = mongoose.model("post",PostSchema);
 
+//รูปแบบ schema ของ users
 let UserSchema = new mongoose.Schema({
     username: String ,
     email: String ,
@@ -45,6 +53,7 @@ let UserSchema = new mongoose.Schema({
 })
 let conUser = mongoose.model("users", UserSchema);
 
+//รูปแบบ schema ของ categories
 let CatelogSchema = new mongoose.Schema({
     name: String,
 })
@@ -52,20 +61,25 @@ let conCatelog = mongoose.model("categories", CatelogSchema);
 
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/',checkAuthentication, async function(req, res,) {
+  //ไปดึงข้อมูล posts มาแสดงหน้าแรก
     const post = await conPost.find();
-    const userid = post.userid;
-    const user = await conUser.findById(userid);
     
-    res.render("index",{ post_eat : post, byuser : user});
+    const cat = await conCatelog.find();
+
+    res.render("index",{ post_eat : post, Category : cat});
   });
   function checkAuthentication(req,res,next){
+    //ตรวจสอบว่า login แล้วหรือยัง
     if(req.isAuthenticated())
     {
-        return next();
+      //ถ้า login แล้ว ให้ next() คือ res.render("index") ออกไปเลย
+      return next();
     } 
     else
     {
-        return next();
+      //กรณีถ้ายังไม่ login จะ redirect ไปหน้าไหนก่อน
+      //next() -> เข้าหน้าแรกได้เลย ไม่loginก็ได้
+      return next();
     }
   }
 
@@ -92,6 +106,7 @@ router.post("/register",[
       var username = req.body.username;
       var email = req.body.email;
       var password = req.body.password;
+      //ค่าเริ่มต้นในการ register แล้วค่อยไปเพิ่มข้อมูลภายหลัง
       var newUser = new User
       ({
         username:username,
@@ -99,7 +114,6 @@ router.post("/register",[
         password:password,
         image: "no-imgprofile.png"
       })
-      console.log(newUser);
       User.createUser(newUser,function(err){
         if(err) console.log(err);
         else
@@ -119,12 +133,13 @@ router.get("/login", function(_req, res)
 
 router.get("/logout", function(req, res)
 {
+  //ทำลาย session ทิ้ง
   req.logout();
   res.redirect("/blogs");
 });
 
 router.post("/login", passport.authenticate('local',{
-  // ไม่สำเสร็จ
+  // ถ้าไม่สำเสร็จให้ไปที่หน้า /blogs/login
   failureRedirect:'/blogs/login',
   failureFlash:false
 }),
@@ -148,25 +163,25 @@ passport.deserializeUser(function(id,done)
   })
 });
 
-passport.use(new LocalStrategy(function(username,password,done){
-  User.getUserByName(username,function(err,user){
+passport.use(new LocalStrategy(function(email,password,done){
+  //ค้นหาด้วย email 
+  User.getUserByEmail(email,function(err,user){
+    //ส่งข้อมูล user กลับมา
     if(err) throw errors
-    //กรณีที่ว่า ชื่อผู้ใช้เดียวกัน แต่อีเมล รหัสผ่านต่างกัน
     if(!user)
     {
-      //ไม่พบผู้ใช้
+      //อีเมลไม่ถูกต้อง ไม่พบผู้ใช้
       return done(null,false)
     }
     else
     { 
-      console.log(user.password);
-      console.log(password);
+      //อีเมลล์ถูกค้อง แล้วค่อยเปรียบเทียบ password
       User.comparePassword(password,user.password,function(err,isMatch)
       {
         if(isMatch)
         {
-          console.log(user);
-          //return ออกไปเก็บ session
+          //รหัสผ่านถูกต้อง
+          //return ออกไปเก็บ session ตัวแปร locals.user สามารถเรียกใช้งานได้ทั้งระบบ
           return done(null,user);
         }
         else
@@ -180,33 +195,30 @@ passport.use(new LocalStrategy(function(username,password,done){
   });
 }));
 
-router.get("/new",async function(req, res){
+router.get("/new",async function(req, res)
+{
   const cat = await conCatelog.find();
-  console.log(cat);
-  res.render("Addpost",{ categories:cat });
+  res.render("Addpost",{ categories : cat });
 })
 
 router.post("/new/id=:userid", upload.single('img_title') , async function(req, res){
+    //ส่ง img_title 
     let { userid } = req.params;
     let n_name = req.body.name;
     let n_category = req.body.category;
     let n_imgurl = req.file.originalname;
     let n_desc = req.body.desc;
     let n_content = req.body.editor;
-    let n_date = new Date().toLocaleString("en-US",{ timeZone: "Asia/Bangkok"});
-    console.log(n_date);
+    let n_date = new Date();
     await conPost.create({userid:userid ,name:n_name, category:n_category , imgurl:n_imgurl, desc:n_desc, content:n_content, date:n_date});
     res.redirect("/blogs");
 });
 
-router.get("/review/id=:id", async function(req, res)
+router.get("/review/:id", async function(req, res)
 {
+    //การ join ระหว่าง collection 
+    //userid ใน posts join กับ _id ใน users
     const { id } = req.params;
-    // const post = await conPost.findById(id);
-
-    // const userid = post.userid;
-    // const user = await conUser.findById(userid);
-
     const postreview = await conPost.aggregate(
       [
         {
@@ -221,23 +233,25 @@ router.get("/review/id=:id", async function(req, res)
           $lookup:
           {
             from: 'users', //join กับ collection users
-            localField: 'userid', 
-            foreignField: '_id',
-            as: "postby"
+            localField: 'userid', //ฟิลล์ใน posts
+            foreignField: '_id', //ฟิลล์ใน users
+            as: "postby" //เปลี่ยนชื่อ array ที่เก็บผลลัพธ์
           }
         }
       ]
       );
-      console.log(postreview);
-      res.render("review",{ Blogs : postreview });
+
+      const cat = await conCatelog.find();
+      console.log(cat);
+      res.render("review",{ Blogs : postreview , Category : cat});
 });
 
-router.get("/test", async function(req, res)
-{
-    const product = await conPost.find();
-    console.log(product);
-    res.redirect('/blogs');
-});
+// router.get("/test", async function(req, res)
+// {
+//     const product = await conPost.find();
+//     console.log(product);
+//     res.redirect('/blogs');
+// });
 
 router.get("/profile/id=:id", async function(req, res){
   const { id } = req.params;
@@ -275,10 +289,10 @@ router.get("/mygallery/id=:id", async function(req, res)
   res.render("mygallery",{ photogallery : result});
 });
 
-router.get("/upload",function(req, res)
-{
-  res.render("upload");
-});
+// router.get("/upload",function(req, res)
+// {
+//   res.render("upload");
+// });
 
 router.post("/profile/edit/id=:userid",upload.single('pic'),async function(req, res){
   let { userid } = req.params;
@@ -301,29 +315,9 @@ router.get("/showmore/:name", async function(req, res){
   const post = await conPost.find({ category : name });
   // const userid = post.userid;
   // const user = await conUser.findById(userid);
-    
+  console.log(post);
   res.render("showmore",{ posts : post});
 })
 
-router.get("/chon", async function(req, res){
-  var chon = await conPost.aggregate(
-    [
-      {$match: 
-        {
-          _id: ObjectId('5e96d9f398f25299e4e6bb7d')
-        }
-      }, 
-      {$lookup: 
-        {
-          from: 'users',
-          localField: 'userid',
-          foreignField: '_id',
-          as: "postby"
-        }
-      }
-    ]
-    );
-  res.json(chon);
-})
 
 module.exports = router;

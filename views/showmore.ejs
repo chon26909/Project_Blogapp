@@ -1,6 +1,7 @@
 <%- include("layout/header") %>
 <%- include("layout/layoutnavbar") %>  
 <div class="container mt-5">
+    <% if(posts.length > 0) {%> 
     <div class="mt-3 mb-3">
         <h1><%= posts[0].category %></h1>
     </div>
@@ -8,7 +9,7 @@
     <div class="row">
         <div class="col-xl-9 col-lg-6 col-md-6 col-12 pb-3">
           <article>
-            <a href="/blogs/review/id=<%= posts[0]._id %>">
+            <a href="/blogs/review/<%= posts[0]._id %>">
               <div class="card">
                 <img src="/images/img-profile/<%= posts[0].imgurl %>" alt="" class="img-crop">
                 <div class="p-2">
@@ -26,7 +27,7 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-12 pb-3">
           <div class="row">
             <article class="col-md-12 col-6 pb-3">
-              <a href="/blogs/review/id=<%= posts[1]._id %>">
+              <a href="/blogs/review/<%= posts[1]._id %>">
                 <div class="card">
                   <img src="/images/img-profile/<%= posts[1].imgurl %>" alt="" style="height: 150px;" class="img-crop">
                   <div class="p-2">
@@ -39,7 +40,7 @@
               </a>     
             </article>
             <article class="col-md-12 col-6 pb-3">
-              <a href="/blogs/review/id=<%= posts[2]._id %>">
+              <a href="/blogs/review/<%= posts[2]._id %>">
                 <div class="card">
                   <img src="/images/img-profile/<%= posts[2].imgurl %>" alt="" style="height: 150px;" class="img-crop">
                   <div class="p-2">
@@ -57,7 +58,7 @@
     <div class="row">
         <% for(var i=1; i < (posts.length); i++) { %>
             <article class="col-md-4 col-12 pb-3">
-              <a href="/blogs/review/id=<%= posts[i]._id %>">
+              <a href="/blogs/review/<%= posts[i]._id %>">
                 <div class="card">
                   <img src="/images/img-profile/<%= posts[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
                   <div class="p-2">
@@ -71,6 +72,11 @@
             </article>
         <% } %>
     </div>
-</div>
-
+    <% } %>
+    <% if(posts.length <= 0) {%> 
+      <div class="text-center mt-3">
+        <h2>ยังไม่มีบทความ</h2>
+      </div>
+    <% } %> 
+  </div>
 <%- include("layout/footer") %>  
