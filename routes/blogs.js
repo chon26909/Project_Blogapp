@@ -91,7 +91,8 @@ router.get("/register", function(_req, res)
 router.post("/register",[
   check("username","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
   check("email","กรุณาป้อนอีเมล").isEmail(),
-  check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty()
+  check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
+  check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty()
   ] ,function(req, res)
   {
     const result = validationResult(req);
@@ -103,10 +104,12 @@ router.post("/register",[
     }
     else
     {
-      var username = req.body.username;
-      var email = req.body.email;
-      var password = req.body.password;
-      //ค่าเริ่มต้นในการ register แล้วค่อยไปเพิ่มข้อมูลภายหลัง
+      let username = req.body.username;
+      let email = req.body.email;
+      let password = req.body.password;
+      let password2 = req.body.password2;
+
+      //ค่าเริ่มต้นในการ register แล้วค่อยไปเพิ่มข้อมูลอื่นๆ ในภายหลัง
       var newUser = new User
       ({
         username:username,
@@ -242,16 +245,9 @@ router.get("/review/:id", async function(req, res)
       );
 
       const cat = await conCatelog.find();
-      console.log(cat);
+
       res.render("review",{ Blogs : postreview , Category : cat});
 });
-
-// router.get("/test", async function(req, res)
-// {
-//     const product = await conPost.find();
-//     console.log(product);
-//     res.redirect('/blogs');
-// });
 
 router.get("/profile/id=:id", async function(req, res){
   const { id } = req.params;
@@ -276,8 +272,8 @@ router.get("/profile/id=:id", async function(req, res){
     }
   ]
     );
-  console.log(result);
-  res.render("profile",{ profile : result});
+  const cat = conCatelog.find();
+  res.render("profile",{ profile : result, Category : cat});
 });
 
 
@@ -289,18 +285,12 @@ router.get("/mygallery/id=:id", async function(req, res)
   res.render("mygallery",{ photogallery : result});
 });
 
-// router.get("/upload",function(req, res)
-// {
-//   res.render("upload");
-// });
-
 router.post("/profile/edit/id=:userid",upload.single('pic'),async function(req, res){
   let { userid } = req.params;
   let n_image = req.file.originalname;
   let n_name = req.body.username;
   let n_email = req.body.email;
-  // let update_user = conUser({username:n_name, image:n_image});
-  // const complete = await schema_user.save();
+
   const data = await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image:n_image}});
   res.redirect("/blogs");
 });
@@ -313,9 +303,7 @@ router.get("/profile/edit/id=:id", async function(req, res)
 router.get("/showmore/:name", async function(req, res){
   let { name } = req.params;
   const post = await conPost.find({ category : name });
-  // const userid = post.userid;
-  // const user = await conUser.findById(userid);
-  console.log(post);
+
   res.render("showmore",{ posts : post});
 })
 

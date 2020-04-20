@@ -84,16 +84,16 @@
                         </ul>
                     </div>
                 </div> -->
-                <div class="bg-white">
+                <div class="bg-light mt-3">
                   <div class="p-2 bg-success text-white">หมวดหมู่</div>
                   <div class="p-1">
                       <ul>
-                        
-                          <li>เที่ยวสงกรานต์</li>
-                    
+                          <% for(var i=0; i<(Category.length); i++) { %>
+                              <li><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
+                          <% } %>
                       </ul>
                   </div>
-                </div>
+              </div>
             </div>
 
       </div>
