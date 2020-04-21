@@ -172,7 +172,7 @@ passport.serializeUser(function(user,done)
 
 passport.deserializeUser(function(id,done)
 {
-  //ต่อมา
+  //User อันนี้ เป็น module ที่ export ออกมาจาก /model/usermodel.js แล้วเข้าไปใช้งาน method ชื่อว่า getUserById
   User.getUserById(id,function(err,username)
   {
     done(err,username)
@@ -262,6 +262,13 @@ router.get("/review/:id", async function(req, res)
       res.render("review",{ Blogs : postreview , Category : cat, moment : moment});
 });
 
+router.get("/edit/:postid",async function(req, res){
+  const { postid } = req.params;
+  const Editpost = await conPost.findById(postid);
+  const cat = await conCatelog.find();
+  res.render("Editpost", { post : Editpost, categories : cat });
+})
+
 router.get("/profile/id=:id", async function(req, res){
   const { id } = req.params;
   const result = await conUser.aggregate(
@@ -294,17 +301,19 @@ router.get("/mygallery/id=:id", async function(req, res)
 {
   const { id } = req.params;
   const result = await conPost.find({userid : id});
-  console.log(result);
   res.render("mygallery",{ photogallery : result});
 });
 
-router.post("/profile/edit/id=:userid",upload.single('pic'),async function(req, res){
+router.post("/profile/edit/id=:userid",async function(req, res){
+  // upload.single('pic'),
   let { userid } = req.params;
-  let n_image = req.file.originalname;
+  // let n_image = req.file.originalname;
   let n_name = req.body.username;
   let n_email = req.body.email;
-
-  const data = await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image:n_image}});
+  console.log(n_name);
+  console.log(n_email);
+  const data = await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email } });
+  console.log(data);
   res.redirect("/blogs");
 });
 

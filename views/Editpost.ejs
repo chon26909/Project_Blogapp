@@ -1,0 +1,64 @@
+<%- include("layout/header") %>
+<%- include("layout/layoutnavbar") %>
+<% if(locals.user){ %>
+<div class="container mt-5 mb-5 p-3" style="background-color: whitesmoke;">
+    <form method="POST" action="/blogs/new/id=<%= user._id %>" class="p-2" enctype="multipart/form-data" runat="server">
+        <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">Edit article</h3>
+        <div class="form-group">
+            <label for="text">Title :</label>
+            <input type="text" class="form-control" value="<%= post.name %>" placeholder="ชื่อหัวเรื่อง" name="name" required>
+        </div>
+        <p>Image title:</p>
+        <div class=" mb-3">
+            <input type="file" name="img_title" id="img_preview" value="<%= post.imgurl %>" required>
+            <div style=" padding: 30px;">
+                <img src="/images/posts/<%= post.imgurl %>" id="img_show" alt="">
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <label for="Catelog">Catelog :</label>
+            <select class="form-control" id="catelog" name="category">
+                <% categories.forEach(function(catelog){ %>
+                    <option name="<%= catelog.name %>"><%=catelog.name %></option>
+                <% }); %>
+            </select>
+          </div>
+        <div class="form-group">
+            <label for="text">Articel :</label>
+            <textarea name="editor"><%= post.content %> </textarea>
+        </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-success btn-block">Update post</button>
+        </div>
+    
+        <script>
+
+            var filename = document.getElementById("img_preview");
+            filename.onchange = function()
+            {
+                var file = filename.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(){
+                    var result = reader.result;
+                    document.getElementById("img_show").src = result;
+                };
+            };
+
+
+            CKEDITOR.replace('editor');
+            // // Add the following code if you want the name of the file appear on select
+            // $(".custom-file-input").on("change", function() {
+            // var fileName = $(this).val().split("\\").pop();
+            // $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            // });
+
+        </script>
+    </form>
+</div>
+<% } %> 
+<% if(!locals.user){ %>
+    <div class="text-center p-5"><h2>Please Login!</h2></div>
+<% } %> 
+<%- include("layout/footer") %>  
