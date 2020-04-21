@@ -29,7 +29,7 @@
                       <article class="pb-3">
                         <a href="/blogs/review/<%= profile[0].post[0]._id %>">
                           <div class="card">
-                            <img src="/images/img-profile/<%= profile[0].post[0].imgurl %>" alt=""  class="img-crop">
+                            <img src="/images/posts/<%= profile[0].post[0].imgurl %>" alt="" class="img-crop">
                             <div class="p-2">
                               <h5><%= profile[0].post[0].name %></h5>
                               <div class="mt-auto">
@@ -49,7 +49,7 @@
                         <article class="col-md-6 col-6 pb-3">
                           <a href="/blogs/review/<%= profile[0].post[i]._id %>">
                             <div class="card">
-                              <img src="/images/img-profile/<%= profile[0].post[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
+                              <img src="/images/posts/<%= profile[0].post[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
                               <div class="p-2">
                                 <h5><%= profile[0].post[i].name %></h5>
                                 <div class="mt-auto">
@@ -74,16 +74,6 @@
               </div>
             <% } %>
             <div class="col-md-3 col-12 pt-3" style="background-color: whitesmoke;">
-                <!-- <div class="bg-white">
-                    <div class="p-2 bg-success text-white">Catelog</div>
-                    <div class="p-1">
-                        <ul>
-                            <li>ของกิน</li>
-                            <li>เที่ยวใกล้กรุงเทพ</li>
-                            <li>โรงแรม</li>
-                        </ul>
-                    </div>
-                </div> -->
                 <div class="bg-light mt-3">
                   <div class="p-2 bg-success text-white">หมวดหมู่</div>
                   <div class="p-1">

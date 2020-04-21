@@ -59,7 +59,13 @@ app.use(function(err, req, res, next){
 
   res.status(err.status || 500);
   res.render('error');
-})
+});
+
+app.locals.description = function(text,lenght){
+  //ส่งผลลัพธ์กลับไป
+  //แสดงตั้งแต่ตัวที่ 0 จนถึง ความยาวที่กำหนด
+  return text.substring(0,lenght);
+}
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

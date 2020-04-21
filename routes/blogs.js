@@ -4,17 +4,30 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var moment = require('moment');
 
-//ย้ายข้อมูลจาก form ไปเก็บในโฟลเดอร์
+//ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
 var multer = require('multer');
-var Storage = multer.diskStorage({
+var StorageOfimageprofile = multer.diskStorage({
   destination:function(req,file,cb){
     cb(null,"./public/images/img-profile/")
   },
   filename:function(req,file,cb){
+    //เก็บชื่อรูปต้นฉบับลงโฟลเดอร์
     cb(null,file.originalname);
   }
 });
-var upload = multer({storage:Storage});
+var upload = multer({storage : StorageOfimageprofile});
+
+//ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/posts
+var StorageOfimagepost = multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,"./public/images/posts/")
+  },
+  filename:function(req,file,cb){
+    //เปลี่ยนชื่อรูปก่อนเก็บลงโฟลเดอร์
+    cb(null,Date.now()+".jpg");
+  }
+});
+var upload_imgpost = multer({storage : StorageOfimagepost});
 
 
 //passport login
@@ -204,12 +217,12 @@ router.get("/new",async function(req, res)
   res.render("Addpost",{ categories : cat });
 })
 
-router.post("/new/id=:userid", upload.single('img_title') , async function(req, res){
+router.post("/new/id=:userid", upload_imgpost.single('img_title') , async function(req, res){
     //ส่ง img_title 
     let { userid } = req.params;
     let n_name = req.body.name;
     let n_category = req.body.category;
-    let n_imgurl = req.file.originalname;
+    let n_imgurl = req.file.filename;
     let n_desc = req.body.desc;
     let n_content = req.body.editor;
     let n_date = new Date();
@@ -246,7 +259,7 @@ router.get("/review/:id", async function(req, res)
 
       const cat = await conCatelog.find();
 
-      res.render("review",{ Blogs : postreview , Category : cat});
+      res.render("review",{ Blogs : postreview , Category : cat, moment : moment});
 });
 
 router.get("/profile/id=:id", async function(req, res){
@@ -272,8 +285,8 @@ router.get("/profile/id=:id", async function(req, res){
     }
   ]
     );
-  const cat = conCatelog.find();
-  res.render("profile",{ profile : result, Category : cat});
+  const cat = await conCatelog.find();
+  res.render("profile",{ profile : result, Category : cat, moment : moment});
 });
 
 

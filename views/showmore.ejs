@@ -7,30 +7,11 @@
     </div>
     
     <div class="row">
-        <div class="col-xl-9 col-lg-6 col-md-6 col-12 pb-3">
-          <article>
-            <a href="/blogs/review/<%= posts[0]._id %>">
-              <div class="card">
-                <img src="/images/img-profile/<%= posts[0].imgurl %>" alt="" class="img-crop">
-                <div class="p-2">
-                  <h5><%= posts[0].name %></h5>
-                  <div class="mt-auto">
-                    <span>
-                      <i class="fas fa-eye eye-view"> 0</i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </a>     
-          </article>
-        </div>
-    </div>
-    <div class="row">
-        <% for(var i=1; i < (posts.length); i++) { %>
+        <% for(var i=0; i < (posts.length); i++) { %>
             <article class="col-md-4 col-12 pb-3">
               <a href="/blogs/review/<%= posts[i]._id %>">
                 <div class="card">
-                  <img src="/images/img-profile/<%= posts[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
+                  <img src="/images/posts/<%= posts[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
                   <div class="p-2">
                     <h5><%= posts[i].name %></h5>
                     <div class="mt-auto">
