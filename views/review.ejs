@@ -2,9 +2,9 @@
 <%- include("layout/layoutnavbar") %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 mt-3 bg-white pr-3" style="background-color: whitesmoke;">
-            <h1><%= Blogs[0].name%></h1>
-            <div>
+        <div class="col-lg-8 mt-5 bg-white pr-3" style="background-color: whitesmoke;">
+            <h2><%= Blogs[0].name%></h2>
+            <div class="mt-4">
                 <img src="/images/img-profile/<%= Blogs[0].postby[0].image %>" alt="" class="author-img mr-2">
                 <div>
                     <p><a href="#"><%= Blogs[0].postby[0].username %> </a><br><i class="far fa-clock"> <%= moment(Blogs[0].date).format("DD-MM-YYYY HH:mm") %> </i></p>

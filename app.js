@@ -22,7 +22,7 @@ var db = mongoose.Connection;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var blogRouter = require('./routes/blogs');
-
+var adminRouter = require('./routes/admin');
 
 
 var app = express();
@@ -70,5 +70,5 @@ app.locals.description = function(text,lenght){
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/blogs', blogRouter);
-
+app.use('/admin',adminRouter);
 module.exports = app;

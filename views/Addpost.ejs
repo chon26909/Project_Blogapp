@@ -10,7 +10,10 @@
         </div>
         <p>Image title:</p>
         <div class=" mb-3">
-            <input type="file" name="img_title" required>
+            <input type="file" name="img_title" id="img_preview">
+            <div style=" padding: 10px;">
+                <img src="" id="img_show" alt="">
+            </div>
         </div>
         <div class="form-group">
             <label for="Catelog">Catelog :</label>
@@ -32,6 +35,18 @@
     </form>
     
     <script>
+        var filename = document.getElementById("img_preview");
+            filename.onchange = function()
+            {
+                var file = filename.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(){
+                    var result = reader.result;
+                    document.getElementById("img_show").src = result;
+                };
+            };
+
         CKEDITOR.replace('editor'); 
         
         // Add the following code if you want the name of the file appear on select

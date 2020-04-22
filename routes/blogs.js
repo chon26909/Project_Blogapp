@@ -15,7 +15,7 @@ var StorageOfimageprofile = multer.diskStorage({
     cb(null,file.originalname);
   }
 });
-var upload = multer({storage : StorageOfimageprofile});
+var upload_profile = multer({storage : StorageOfimageprofile});
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/posts
 var StorageOfimagepost = multer.diskStorage({
@@ -24,7 +24,7 @@ var StorageOfimagepost = multer.diskStorage({
   },
   filename:function(req,file,cb){
     //เปลี่ยนชื่อรูปก่อนเก็บลงโฟลเดอร์
-    cb(null,Date.now()+".jpg");
+    cb(null,file.originalname);
   }
 });
 var upload_imgpost = multer({storage : StorageOfimagepost});
@@ -75,7 +75,7 @@ let conCatelog = mongoose.model("categories", CatelogSchema);
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/',checkAuthentication, async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
-    const post = await conPost.find();
+    const post = await conPost.find({category : "เที่ยวสงกรานต์"});
     
     const cat = await conCatelog.find();
 
@@ -222,7 +222,7 @@ router.post("/new/id=:userid", upload_imgpost.single('img_title') , async functi
     let { userid } = req.params;
     let n_name = req.body.name;
     let n_category = req.body.category;
-    let n_imgurl = req.file.filename;
+    let n_imgurl = req.file.originalname;
     let n_desc = req.body.desc;
     let n_content = req.body.editor;
     let n_date = new Date();
@@ -269,6 +269,33 @@ router.get("/edit/:postid",async function(req, res){
   res.render("Editpost", { post : Editpost, categories : cat });
 })
 
+router.post("/edit/:postid", upload_imgpost.single('img_title'), async function(req,res){
+
+  let { postid } = req.params;
+
+  //ถ้ามีการอัพเดตรูปภาพ
+  if(req.file)
+  { 
+    //ส่งรูปไปเก็บในโฟลเดอร์
+    let n_name = req.body.name;
+    let n_category = req.body.category;
+    let n_imgurl = req.file.filename;
+    let n_content = req.body.editor;
+    let n_date = new Date();
+    let data = await conPost.updateMany({_id : postid},{$set: {name:n_name, category:n_category , imgurl : n_imgurl, content:n_content, date:n_date}});
+    res.redirect("/blogs/review/" + postid);
+  }
+  else
+  {
+    let n_name = req.body.name;
+    let n_category = req.body.category;
+    let n_content = req.body.editor;
+    let n_date = new Date();
+    let data = await conPost.updateMany({_id : postid},{$set: {name:n_name, category:n_category, content:n_content, date:n_date}});
+    res.redirect("/blogs/review/" + postid);
+  }  
+});
+
 router.get("/profile/id=:id", async function(req, res){
   const { id } = req.params;
   const result = await conUser.aggregate(
@@ -304,22 +331,29 @@ router.get("/mygallery/id=:id", async function(req, res)
   res.render("mygallery",{ photogallery : result});
 });
 
-router.post("/profile/edit/id=:userid",async function(req, res){
-  // upload.single('pic'),
+router.post("/profile/edit/id=:userid", upload_profile.single('imgprofile'), async function(req, res){
   let { userid } = req.params;
-  // let n_image = req.file.originalname;
-  let n_name = req.body.username;
-  let n_email = req.body.email;
-  console.log(n_name);
-  console.log(n_email);
-  const data = await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email } });
-  console.log(data);
-  res.redirect("/blogs");
+
+  if(req.file)
+  {
+    let n_name = req.body.username;
+    let n_email = req.body.email;
+    let n_imageprofile = req.file.filename;
+    await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image :n_imageprofile } });
+    res.redirect("/blogs/profile/id=" + userid);
+  }
+  else
+  {
+    let n_name = req.body.username;
+    let n_email = req.body.email;
+    await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email } });
+    res.redirect("/blogs/profile/id=" + userid);
+  }
 });
 
 router.get("/profile/edit/id=:id", async function(req, res)
 {
-  res.render("edit");
+  res.render("Editprofile");
 });
 
 router.get("/showmore/:name", async function(req, res){

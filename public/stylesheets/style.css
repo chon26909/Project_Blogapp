@@ -5,7 +5,7 @@
 h1,h2,h3,h4,h5,h6
 {
   font-family: 'Mitr', sans-serif;
-  color: #424040;
+  color: #272727;
 }
 body
 {
@@ -149,6 +149,20 @@ footer a:hover
   border-color:white;
   cursor: pointer;
 }
+.img-crop-preview-edit
+{
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  object-position: center ; 
+  border: 1px solid;
+  border-color:white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color:white;
+}
+
 /* display image fullscreen */
 #myImg {
   width: 100%;

@@ -2,7 +2,7 @@
 <%- include("layout/layoutnavbar") %>
 <% if(locals.user){ %>
 <div class="container mt-5 mb-5 p-3" style="background-color: whitesmoke;">
-    <form method="POST" action="/blogs/new/id=<%= user._id %>" class="p-2" enctype="multipart/form-data" runat="server">
+    <form method="POST" action="/blogs/edit/<%= post._id %>" class="p-2" enctype="multipart/form-data">
         <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">Edit article</h3>
         <div class="form-group">
             <label for="text">Title :</label>
@@ -10,16 +10,17 @@
         </div>
         <p>Image title:</p>
         <div class=" mb-3">
-            <input type="file" name="img_title" id="img_preview" value="<%= post.imgurl %>" required>
-            <div style=" padding: 30px;">
+            <input type="file" name="img_title" id="img_preview">
+            <div style=" padding: 10px;">
                 <img src="/images/posts/<%= post.imgurl %>" id="img_show" alt="">
             </div>
-            
         </div>
         <div class="form-group">
             <label for="Catelog">Catelog :</label>
             <select class="form-control" id="catelog" name="category">
+                <option name="<%= post.category %>"><%= post.category %></option>
                 <% categories.forEach(function(catelog){ %>
+                    
                     <option name="<%= catelog.name %>"><%=catelog.name %></option>
                 <% }); %>
             </select>
@@ -33,6 +34,12 @@
         </div>
     
         <script>
+            CKEDITOR.replace('editor');
+            // // Add the following code if you want the name of the file appear on select
+            // $(".custom-file-input").on("change", function() {
+            // var fileName = $(this).val().split("\\").pop();
+            // $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            // });
 
             var filename = document.getElementById("img_preview");
             filename.onchange = function()
@@ -45,15 +52,6 @@
                     document.getElementById("img_show").src = result;
                 };
             };
-
-
-            CKEDITOR.replace('editor');
-            // // Add the following code if you want the name of the file appear on select
-            // $(".custom-file-input").on("change", function() {
-            // var fileName = $(this).val().split("\\").pop();
-            // $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            // });
-
         </script>
     </form>
 </div>
