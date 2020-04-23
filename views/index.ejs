@@ -1,6 +1,6 @@
 <%- include("layout/header") %>
 <%- include("layout/layoutnavbar") %>
-<div class="container">
+
   <!-- path list -->
   <!-- <div class="mt-3">
     <ul class="breadcrumb">
@@ -13,11 +13,11 @@
  
   
   <!-- main article list group -->
-  <div class="mt-lg-5 mt-3 mb-3">
+  <div class="container mt-lg-5 mt-3 mb-3">
     <h1>รวมอันดับที่สุดของที่เที่ยว อัพเดททุกเทรนด์ของการท่องเที่ยว</h1>
   </div>  
   <!-- slide header -->
-  <div id="carouselExampleControls" class="carousel slide mt-4 mb-3" data-ride="carousel">
+  <div id="carouselExampleControls" class="container carousel slide mt-4 mb-3" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="/images/slidebar1.jpg" class="d-block w-100" alt="...">
@@ -35,196 +35,229 @@
       <span class="sr-only">Next</span>
     </a>
   </div> 
-  <div class="row">
-    <div class="col-lg-9">
-      <!-- main content -->
-    <div class="blog-group-contect mt-4 p-4" style="background-color: whitesmoke; border-radius: 5px;">
-      <div class="">
-        <a href="/blogs/showmore/<%= post_eat[0].category %>">
-          <h2>สงกรานต์นี้เที่ยวไหนดี <i class="fas fa-angle-right"></i></h2>
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <!-- content section 1-->
+          <section class=" ">
+            <div class=" blog-group-contect mt-4 p-4" style="background-color: whitesmoke; border-radius: 5px;">
+              <div class="">
+                <a href="/blogs/showmore/<%= post_eat[0].category %>">
+                  <h2>สงกรานต์นี้เที่ยวไหนดี <i class="fas fa-angle-right"></i></h2>
+                </a>
+              </div>
+              <div class="row">
+                <div class="col-xl-8 col-lg-6 col-md-6 col-12 pb-3">
+                  <article>
+                    <a href="/blogs/review/<%= post_eat[0]._id %>">
+                      <div class="card">
+                        <img src="/images/posts/<%= post_eat[0].imgurl %>" alt="" class="img-crop">
+                        <div class="p-2">
+                          <h5><%= post_eat[0].name %></h5>
+                          <div class="mt-auto">
+                            <span>
+                              <i class="fas fa-eye eye-view"> 0</i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>     
+                  </article>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12 pb-3">
+                  <div class="row">
+                    <article class="col-md-12 col-6 pb-3">
+                      <a href="/blogs/review/<%= post_eat[1]._id %>">
+                        <div class="card">
+                          <img src="/images/posts/<%= post_eat[1].imgurl %>" alt="" style="height: 150px;" class="img-crop">
+                          <div class="p-2">
+                            <h5><%= post_eat[1].name %></h5>
+                            <div class="mt-auto">
+                              <i class="fas fa-eye eye-view"> 0</i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>     
+                    </article>
+                    <article class="col-md-12 col-6 pb-3">
+                      <a href="/blogs/review/<%= post_eat[2]._id %>">
+                        <div class="card">
+                          <img src="/images/posts/<%= post_eat[2].imgurl %>" alt="" style="height: 150px;" class="img-crop">
+                          <div class="p-2">
+                            <h5><%= post_eat[2].name %></h5>
+                            <div class="mt-auto">
+                              <i class="fas fa-eye eye-view"> 0 </i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>     
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- content section 2-->
+          <section>
+            <div class="blog-group-contect">
+              <div class="mt-5 mb-2">
+                <a href="">
+                  <h2>เดินกินแบบชิวๆริมน้ำ<i class="fas fa-angle-right"></i></h2>
+                </a>
+              </div>
+              <div class="row">
+                <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-3">
+                  <a href="">
+                    <div class="card">
+                      <img src="/images/no-image.png" alt="">
+                      <div class="p-2">
+                        <h5>One Day Trip</h5>
+                        <div class="mt-auto">
+                          <i class="fas fa-eye eye-view"> 10 </i>
+                        </div>
+                      </div>
+                    </div>
+                  </a>     
+                </article>
+                <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-4">
+                  <a href="">
+                    <div class="card">
+                      <img src="/images/no-image.png" alt="">
+                      <div class="p-2">
+                        <h5>One Day Trip</h5>
+                        <div class="mt-auto">
+                          <i class="fas fa-eye eye-view"> 10 </i>
+                        </div>
+                      </div>
+                    </div>
+                  </a>     
+                </article>
+                <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-4">
+                  <a href="">
+                    <div class="card">
+                      <img src="/images/no-image.png" alt="">
+                      <div class="p-2">
+                        <h5>One Day Trip</h5>
+                        <div class="mt-auto">
+                          <i class="fas fa-eye eye-view"> 10 </i>
+                        </div>
+                      </div>
+                    </div>
+                  </a>     
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- sidebar right-->
+        <div class="col-lg-3 mt-4 p-3">
+          <div class="bg-light mt-3">
+            <div class="p-2 bg-success text-white">หมวดหมู่</div>
+            <div class="p-1">
+                <ul>
+                    <% for(var i=0; i<(Category.length); i++) { %>
+                        <li><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
+                    <% } %>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <div class="main-content-section3 bg-success">
+    <div class="container">
+      <div class="mt-3 mb-3">
+        <a href="">
+          <h2 class="text-white">เดินกินแบบชิวๆริมน้ำ<i class="fas fa-angle-right"></i></h2>
         </a>
       </div>
       <div class="row">
-        <div class="col-xl-8 col-lg-6 col-md-6 col-12 pb-3">
-          <article>
-            <a href="/blogs/review/<%= post_eat[0]._id %>">
-              <div class="card">
-                <img src="/images/posts/<%= post_eat[0].imgurl %>" alt="" class="img-crop">
-                <div class="p-2">
-                  <h5><%= post_eat[0].name %></h5>
-                  <div class="mt-auto">
-                    <span>
-                      <i class="fas fa-eye eye-view"> 0</i>
-                    </span>
-                    
-                  </div>
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
+          <a href="">
+            <div class="card">
+              <img src="/images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
                 </div>
               </div>
-            </a>     
-          </article>
-        </div>
-        <div class="col-xl-4 col-lg-6 col-md-6 col-12 pb-3">
-          <div class="row">
-            <article class="col-md-12 col-6 pb-3">
-              <a href="/blogs/review/<%= post_eat[1]._id %>">
-                <div class="card">
-                  <img src="/images/posts/<%= post_eat[1].imgurl %>" alt="" style="height: 150px;" class="img-crop">
-                  <div class="p-2">
-                    <h5><%= post_eat[1].name %></h5>
-                    <div class="mt-auto">
-                      <i class="fas fa-eye eye-view"> 0</i>
-                    </div>
-                  </div>
+            </div>
+          </a>     
+        </article>
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
+          <a href="">
+            <div class="card">
+              <img src="/images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
                 </div>
-              </a>     
-            </article>
-            <article class="col-md-12 col-6 pb-3">
-              <a href="/blogs/review/<%= post_eat[2]._id %>">
-                <div class="card">
-                  <img src="/images/posts/<%= post_eat[2].imgurl %>" alt="" style="height: 150px;" class="img-crop">
-                  <div class="p-2">
-                    <h5><%= post_eat[2].name %></h5>
-                    <div class="mt-auto">
-                      <i class="fas fa-eye eye-view"> 0 </i>
-                    </div>
-                  </div>
+              </div>
+            </div>
+          </a>     
+        </article>
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
+          <a href="">
+            <div class="card">
+              <img src="/images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
                 </div>
-              </a>     
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    </div>
-    <div class="col-lg-3 mt-4 p-3" style="background-color: whitesmoke;">
-      <div class="bg-light mt-3">
-        <div class="p-2 bg-success text-white">หมวดหมู่</div>
-        <div class="p-1">
-            <ul>
-                <% for(var i=0; i<(Category.length); i++) { %>
-                    <li><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
-                <% } %>
-            </ul>
-        </div>
+              </div>
+            </div>
+          </a>     
+        </article>
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
+          <a href="">
+            <div class="card">
+              <img src="/images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
+                </div>
+              </div>
+            </div>
+          </a>     
+        </article>
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
+          <a href="">
+            <div class="card">
+              <img src="/images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
+                </div>
+              </div>
+            </div>
+          </a>     
+        </article>
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
+          <a href="">
+            <div class="card">
+              <img src="/images/no-image.png" alt="">
+              <div class="p-2">
+                <h5>One Day Trip</h5>
+                <div class="mt-auto">
+                  <i class="fas fa-eye eye-view"> 10 </i>
+                </div>
+              </div>
+            </div>
+          </a>     
+        </article>
       </div>
     </div>
   </div>
-  
-  
-  <div class="blog-group-contect">
-    <div class="mt-5 mb-2">
-      <a href="">
-        <h2>เที่ยวแบบไทยๆ <i class="fas fa-angle-right"></i></h2>
-      </a>
-    </div>
-    <div class="row">
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-3">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-      <article class="col-xl-3 col-lg-4 col-md-6 col-6 pb-4">
-        <a href="">
-          <div class="card">
-            <img src="/images/no-image.png" alt="">
-            <div class="p-2">
-              <h5>One Day Trip</h5>
-              <div class="mt-auto">
-                <i class="fas fa-eye eye-view"> 10 </i>
-              </div>
-            </div>
-          </div>
-        </a>     
-      </article>
-    </div>
-  </div>
-</div>  
+ 
 <%- include("layout/footer") %>
 

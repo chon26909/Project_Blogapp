@@ -66,9 +66,10 @@ footer a:hover
 }
 .img-profile
 {
-  margin: 1px autos;
-  width: 280px;
-	height: 280px;
+  margin: 1px auto;
+  width: 250px;
+  height: 250px;
+  text-align: center;
 }
 /* profile */
 /* .background-profile
@@ -168,10 +169,24 @@ footer a:hover
   border-color:white;
 }
 
+.main-content-section3
+{
+  background-image: url("https://sites.google.com/site/filmpyada1999/_/rsrc/1486370404660/sthan-thi-na-theiyw-kil-krungthephmhankhr/bangkracea/%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2.JPG");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding: 20px;
+}
+.main-content-section3 img
+{
+  opacity: 0.5;
+}
+
+
 /* display image fullscreen */
 #myImg {
   width: 100%;
-  height: 280px;
+  height: 250px;
   object-fit: cover; /* Do not scale the image */
   object-position: center ; /* Center the image within the element */
   border-radius: 50%;
