@@ -248,7 +248,7 @@ router.get("/review/:id", async function(req, res)
         {
           $lookup:
           {
-            from: 'users', //join กับ collection users
+            from: 'users', //join กับ collection ชื่อ users
             localField: 'userid', //ฟิลล์ใน posts
             foreignField: '_id', //ฟิลล์ใน users
             as: "postby" //เปลี่ยนชื่อ array ที่เก็บผลลัพธ์
@@ -258,7 +258,6 @@ router.get("/review/:id", async function(req, res)
       );
 
       const cat = await conCatelog.find();
-
       res.render("review",{ Blogs : postreview , Category : cat, moment : moment});
 });
 
