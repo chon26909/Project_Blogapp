@@ -267,7 +267,7 @@ router.get("/edit/:postid",async function(req, res){
   const Editpost = await conPost.findById(postid);
   const cat = await conCatelog.find();
   res.render("Editpost", { post : Editpost, categories : cat });
-})
+});
 
 router.post("/edit/:postid", upload_imgpost.single('img_title'), async function(req,res){
 
@@ -294,6 +294,12 @@ router.post("/edit/:postid", upload_imgpost.single('img_title'), async function(
     let data = await conPost.updateMany({_id : postid},{$set: {name:n_name, category:n_category, content:n_content, date:n_date}});
     res.redirect("/blogs/review/" + postid);
   }  
+});
+
+router.get("/delete/:postid",async function(req, res){
+  const { postid } = req.params;
+  console.log(postid);
+  await conPost.remove({ _id:postid });
 });
 
 router.get("/profile/id=:id", async function(req, res){
