@@ -36,7 +36,7 @@ var passport = require('passport');
 var User = require('../model/usermodel');
 //ตรวจข้อมูลและการแจ้งข้อผิดพลาด ใช้ในการหน้า register
 var { check, validationResult } = require('express-validator');
-//login
+//login 
 var LocalStrategy = require('passport-local').Strategy;
 //connect DB
 var mongoose = require('mongoose');
