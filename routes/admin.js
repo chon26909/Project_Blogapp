@@ -10,4 +10,6 @@ router.get("/",function(req,res)
     res.send("Wellcome Admin");
 });
 
+//จุ เพิ่มตรงนี้นะ
+
 module.exports = router;
