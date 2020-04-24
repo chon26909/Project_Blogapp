@@ -75,12 +75,18 @@ let conCatelog = mongoose.model("categories", CatelogSchema);
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/',checkAuthentication, async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
-    const post = await conPost.find({category : "เที่ยวสงกรานต์"});
+    const songkran_post = await conPost.find({category : "เที่ยวสงกรานต์"});
+
+    const market_post = await conPost.find({category:"ตลาดกลางคืน"});
+    
+    const marketfloat_post = await conPost.find({category : "ตลาดน้ำ"});
     
     const cat = await conCatelog.find();
 
-    res.render("index",{ post_eat : post, Category : cat});
+    res.render("index",{ post_eat : songkran_post, Marketfloat : marketfloat_post, Category : cat});
   });
+
+
   function checkAuthentication(req,res,next){
     //ตรวจสอบว่า login แล้วหรือยัง
     if(req.isAuthenticated())

@@ -10,7 +10,15 @@ h1,h2,h3,h4,h5,h6
 body
 {
   background-color: white;
+  margin: 0;
+  padding: 0;
 }
+
+/* navbar */
+
+
+
+
 .content p
 {
   font-family: Arial, Helvetica, sans-serif;
@@ -132,7 +140,6 @@ footer a:hover
 {
 	width: 80px;
 	height: auto;
-	float: left;
 }
 
 .img-crop
@@ -171,15 +178,12 @@ footer a:hover
 
 .main-content-section3
 {
-  background-image: url("https://sites.google.com/site/filmpyada1999/_/rsrc/1486370404660/sthan-thi-na-theiyw-kil-krungthephmhankhr/bangkracea/%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2.JPG");
+  background-image: url("https://static.posttoday.com/media/content/2018/10/21/5386B8CF77344E088E5EF9BC6913F993.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   padding: 20px;
-}
-.main-content-section3 img
-{
-  opacity: 0.5;
+  transition: 5s;
 }
 
 

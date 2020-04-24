@@ -1,9 +1,9 @@
 <%- include("layout/header") %>
 <%- include("layout/layoutnavbar") %>
 <% if(locals.user){ %>
-    <div class="container mt-5 mb-5 p-3" style="background-color: whitesmoke;">
+    <div class="container mt-5 mb-5" style="background-color: whitesmoke;">
         <h3 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">Edit profile</h3>
-        <form method="POST" action="/blogs/profile/edit/id=<%= user._id %>" style=" padding: 10px;" enctype="multipart/form-data">
+        <form method="POST" action="/blogs/profile/edit/id=<%= user._id %>" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 col-12 p-md-5">
                     <div class="btn-edit">
@@ -89,7 +89,8 @@
                 var file = filename.files[0];
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = function(){
+                reader.onload = function()
+                {
                     var result = reader.result;
                     document.getElementById("img_show").src = result;
                 };

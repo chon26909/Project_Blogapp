@@ -10,12 +10,10 @@
       <li>Italy</li>
     </ul>
   </div> -->
- 
-  
   <!-- main article list group -->
-  <div class="container mt-lg-5 mt-3 mb-3">
+  <!-- <div class="container mt-lg-5 mt-3 mb-3">
     <h1>รวมอันดับที่สุดของที่เที่ยว อัพเดททุกเทรนด์ของการท่องเที่ยว</h1>
-  </div>  
+  </div>   -->
   <!-- slide header -->
   <div id="carouselExampleControls" class="container carousel slide mt-4 mb-3" data-ride="carousel">
     <div class="carousel-inner">
@@ -103,37 +101,11 @@
             <div class="blog-group-contect">
               <div class="mt-5 mb-2">
                 <a href="">
-                  <h2>เดินกินแบบชิวๆริมน้ำ<i class="fas fa-angle-right"></i></h2>
+                  <h2>เอาใจคนชอบเที่ยวกลางคืน<i class="fas fa-angle-right"></i></h2>
                 </a>
               </div>
               <div class="row">
                 <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-3">
-                  <a href="">
-                    <div class="card">
-                      <img src="/images/no-image.png" alt="">
-                      <div class="p-2">
-                        <h5>One Day Trip</h5>
-                        <div class="mt-auto">
-                          <i class="fas fa-eye eye-view"> 10 </i>
-                        </div>
-                      </div>
-                    </div>
-                  </a>     
-                </article>
-                <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-4">
-                  <a href="">
-                    <div class="card">
-                      <img src="/images/no-image.png" alt="">
-                      <div class="p-2">
-                        <h5>One Day Trip</h5>
-                        <div class="mt-auto">
-                          <i class="fas fa-eye eye-view"> 10 </i>
-                        </div>
-                      </div>
-                    </div>
-                  </a>     
-                </article>
-                <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-4">
                   <a href="">
                     <div class="card">
                       <img src="/images/no-image.png" alt="">
@@ -168,96 +140,34 @@
   </div>
   
   
-
+<% if(Marketfloat.length > 0) {%> 
   <div class="main-content-section3 bg-success">
     <div class="container">
       <div class="mt-3 mb-3">
-        <a href="">
-          <h2 class="text-white">เดินกินแบบชิวๆริมน้ำ<i class="fas fa-angle-right"></i></h2>
+        <a href="/blogs/showmore/<%= Marketfloat[0].category %>">
+          <h2>เดินกินของอร่อยริมน้ำ แบบชิวๆ<i class="fas fa-angle-right"></i></h2>
         </a>
       </div>
       <div class="row">
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
-          <a href="">
+        <% for(var i=0; i<(Marketfloat.length); i++) { %> 
+        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-md-3 p-1">
+          <a href="/blogs/review/<%= Marketfloat[i]._id %>">
             <div class="card">
-              <img src="/images/no-image.png" alt="">
+              <img src="/images/posts/<%= Marketfloat[i].imgurl %> " alt="">
               <div class="p-2">
-                <h5>One Day Trip</h5>
+                <h6><%= Marketfloat[i].name %></h6>
                 <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 10 </i>
+                  <i class="fas fa-eye eye-view"> 0 </i>
                 </div>
               </div>
             </div>
           </a>     
         </article>
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
-          <a href="">
-            <div class="card">
-              <img src="/images/no-image.png" alt="">
-              <div class="p-2">
-                <h5>One Day Trip</h5>
-                <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 10 </i>
-                </div>
-              </div>
-            </div>
-          </a>     
-        </article>
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
-          <a href="">
-            <div class="card">
-              <img src="/images/no-image.png" alt="">
-              <div class="p-2">
-                <h5>One Day Trip</h5>
-                <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 10 </i>
-                </div>
-              </div>
-            </div>
-          </a>     
-        </article>
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
-          <a href="">
-            <div class="card">
-              <img src="/images/no-image.png" alt="">
-              <div class="p-2">
-                <h5>One Day Trip</h5>
-                <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 10 </i>
-                </div>
-              </div>
-            </div>
-          </a>     
-        </article>
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
-          <a href="">
-            <div class="card">
-              <img src="/images/no-image.png" alt="">
-              <div class="p-2">
-                <h5>One Day Trip</h5>
-                <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 10 </i>
-                </div>
-              </div>
-            </div>
-          </a>     
-        </article>
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-3">
-          <a href="">
-            <div class="card">
-              <img src="/images/no-image.png" alt="">
-              <div class="p-2">
-                <h5>One Day Trip</h5>
-                <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 10 </i>
-                </div>
-              </div>
-            </div>
-          </a>     
-        </article>
+        <% } %> 
       </div>
     </div>
   </div>
+<% } %> 
  
 <%- include("layout/footer") %>
 
