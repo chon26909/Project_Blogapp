@@ -1,6 +1,8 @@
 *
 {
   font-family: 'Mitr', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 h1,h2,h3,h4,h5,h6
 {
@@ -10,11 +12,43 @@ h1,h2,h3,h4,h5,h6
 body
 {
   background-color: white;
-  margin: 0;
-  padding: 0;
+  
 }
 
 /* navbar */
+header
+{
+  padding: 10px 30px;
+  background-color: #009ee7;
+}
+nav
+{
+  padding: 1px 10px;
+}
+.navbar-brand
+{
+  display: flex;
+  position: relative;
+}
+.navbar-brand a
+{
+  float: right;
+}
+nav ul
+{
+  margin: 0;
+  display: flex;
+  list-style-type: none;
+}
+nav ul li
+{
+  padding: 1px 10px;
+}
+nav ul li a
+{
+  color: white;
+}
+
 
 
 

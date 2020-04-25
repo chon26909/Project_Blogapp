@@ -148,6 +148,10 @@ router.post("/register",[
     }
   });
 
+router.get("/blogs1", function(req, res){
+  res.render("index1");
+});
+
 router.get("/login", function(_req, res)
 {
   res.render("login");
