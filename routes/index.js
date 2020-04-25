@@ -4,7 +4,7 @@ var passport = require('passport');
 
 /* GET landing page. */
 router.get("/",function(req, res){
-  res.render("landing");
+  res.render("land");
 })
 
 // //ถ้า login แบ้วจะแสดงอีกหน้านึ่ง
