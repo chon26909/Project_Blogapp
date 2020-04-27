@@ -1,58 +1,63 @@
 <%- include("layout/header") %>
 <%- include("layout/layoutnavbar") %>
 
-  <!-- path list -->
-  <!-- <div class="mt-3">
-    <ul class="breadcrumb">
-      <li>Home</li>
-      <li><a href="#">Pictures</a></li>
-      <li><a href="#">Summer 15</a></li>
-      <li>Italy</li>
-    </ul>
-  </div> -->
-  <!-- main article list group -->
-  <!-- <div class="container mt-lg-5 mt-3 mb-3">
-    <h1>รวมอันดับที่สุดของที่เที่ยว อัพเดททุกเทรนด์ของการท่องเที่ยว</h1>
-  </div>   -->
   <!-- slide header -->
-  <div id="carouselExampleControls" class="container carousel slide mt-4 mb-3" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/images/slidebar1.jpg" class="d-block w-100" alt="...">
+  <section class="mt-2 mt-lg-4">
+    <div id="demo" class="container carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+      
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/images/slideshow/slide1.jpg" alt="Los Angeles" height="600">
+        </div>
+        <div class="carousel-item">
+          <img src="/images/slideshow/slide1.jpg" alt="Chicago" height="600">
+        </div>
+        <div class="carousel-item">
+          <img src="/images/slideshow/slide1.jpg" alt="New York" height="600">
+        </div>
       </div>
-      <div class="carousel-item">
-        <img src="/images/slidebar2.jpg" class="d-block w-100" alt="...">
-      </div>
+      
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div> 
-  <div class="">
+  </section>
+  
+  <section>
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-md-9">
           <!-- content section 1-->
-          <section class=" ">
-            <div class=" blog-group-contect mt-4 p-4" style="background-color: whitesmoke; border-radius: 5px;">
-              <div class="">
-                <a href="/blogs/showmore/<%= post_eat[0].category %>">
-                  <h2>สงกรานต์นี้เที่ยวไหนดี <i class="fas fa-angle-right"></i></h2>
-                </a>
+          <section class="section-content1">
+            <div class=" blog-group-contect mt-3 p-md-3 p-2">
+              <div class="title-section">
+                <h3>
+                  <i class="far fa-newspaper"></i>
+                  <a href="/blogs/showmore/<%= section1[0].category %>">
+                    สงกรานต์นี้เที่ยวไหนดี&nbsp;<i class="fas fa-angle-right"></i>
+                  </a>
+                </h3>
               </div>
+              <hr>
               <div class="row">
-                <div class="col-xl-8 col-lg-6 col-md-6 col-12 pb-3">
-                  <article>
-                    <a href="/blogs/review/<%= post_eat[0]._id %>">
+                <% for(let i=0; i<4; i++) { %> 
+                  <article class="col-xl-6 col-lg-6 col-md-6 col-6 p-1 p-lg-2">
+                    <a href="/blogs/review/<%= section1[i]._id %>">
                       <div class="card">
-                        <img src="/images/posts/<%= post_eat[0].imgurl %>" alt="" class="img-crop">
-                        <div class="p-2">
-                          <h5><%= post_eat[0].name %></h5>
+                        <img src="/images/posts/<%= section1[i].imgurl %>" alt="" class="img-crop-index">
+                        <div class="desc-card">
+                          <h5><%= section1[i].name %></h5>
                           <div class="mt-auto">
                             <span>
                               <i class="fas fa-eye eye-view"> 0</i>
@@ -62,74 +67,20 @@
                       </div>
                     </a>     
                   </article>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-12 pb-3">
-                  <div class="row">
-                    <article class="col-md-12 col-6 pb-3">
-                      <a href="/blogs/review/<%= post_eat[1]._id %>">
-                        <div class="card">
-                          <img src="/images/posts/<%= post_eat[1].imgurl %>" alt="" style="height: 150px;" class="img-crop">
-                          <div class="p-2">
-                            <h5><%= post_eat[1].name %></h5>
-                            <div class="mt-auto">
-                              <i class="fas fa-eye eye-view"> 0</i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>     
-                    </article>
-                    <article class="col-md-12 col-6 pb-3">
-                      <a href="/blogs/review/<%= post_eat[2]._id %>">
-                        <div class="card">
-                          <img src="/images/posts/<%= post_eat[2].imgurl %>" alt="" style="height: 150px;" class="img-crop">
-                          <div class="p-2">
-                            <h5><%= post_eat[2].name %></h5>
-                            <div class="mt-auto">
-                              <i class="fas fa-eye eye-view"> 0 </i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>     
-                    </article>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- content section 2-->
-          <section>
-            <div class="blog-group-contect">
-              <div class="mt-5 mb-2">
-                <a href="">
-                  <h2>เอาใจคนชอบเที่ยวกลางคืน<i class="fas fa-angle-right"></i></h2>
-                </a>
-              </div>
-              <div class="row">
-                <article class="col-xl-4 col-lg-4 col-md-6 col-6 pb-3">
-                  <a href="">
-                    <div class="card">
-                      <img src="/images/no-image.png" alt="">
-                      <div class="p-2">
-                        <h5>One Day Trip</h5>
-                        <div class="mt-auto">
-                          <i class="fas fa-eye eye-view"> 10 </i>
-                        </div>
-                      </div>
-                    </div>
-                  </a>     
-                </article>
+                <% } %> 
               </div>
             </div>
           </section>
         </div>
+        
         <!-- sidebar right-->
-        <div class="col-lg-3 mt-4 p-3">
-          <div class="bg-light mt-3">
-            <div class="p-2 bg-success text-white">หมวดหมู่</div>
-            <div class="p-1">
-                <ul>
+        <div class="col-md-3">
+          <div class="category">
+            <div class="category-title">หมวดหมู่</div>
+            <div>
+                <ul class="category-list">
                     <% for(var i=0; i<(Category.length); i++) { %>
-                        <li><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
+                        <li class="category-items"><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
                     <% } %>
                 </ul>
             </div>
@@ -137,20 +88,25 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
   
   
-<% if(Marketfloat.length > 0) {%> 
+<% if(Marketfloat.length > 0) {%>
   <div class="main-content-section3 bg-success">
     <div class="container">
-      <div class="mt-3 mb-3">
-        <a href="/blogs/showmore/<%= Marketfloat[0].category %>">
-          <h2>เดินกินของอร่อยริมน้ำ แบบชิวๆ<i class="fas fa-angle-right"></i></h2>
-        </a>
-      </div>
+      <div class="blog-group-contect mt-3 p-md-3 p-2">
+        <div class="title-section">
+          <h3 class="text-white">
+            <i class="far fa-newspaper"></i>
+            <a href="/blogs/showmore/<%= Marketfloat[0].category %>" class="text-white">
+              เดินกินของอร่อยริมน้ำ <i class="fas fa-angle-right"></i>
+            </a>
+          </h3>
+        </div>
+        <hr>
       <div class="row">
         <% for(var i=0; i<(Marketfloat.length); i++) { %> 
-        <article class="col-xl-3 col-lg-4 col-md-6 col-12 p-md-3 p-1">
+        <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-md-3 p-1">
           <a href="/blogs/review/<%= Marketfloat[i]._id %>">
             <div class="card">
               <img src="/images/posts/<%= Marketfloat[i].imgurl %> " alt="">

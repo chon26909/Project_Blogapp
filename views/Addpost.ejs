@@ -1,22 +1,22 @@
 <%- include("layout/header") %>
 <%- include("layout/layoutnavbar") %>
 <% if(locals.user){ %>
-<div class="container mt-5 mb-5 p-3" style="background-color: whitesmoke;">
+<div class="container mt-lg-3 mb-5 mt-0 p-3" style="background-color: whitesmoke;">
     <form method="POST" action="/blogs/new/id=<%= user._id %>" class="p-2" enctype="multipart/form-data">
-        <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">Write article</h3>
+        <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">สร้างบทความ</h3>
         <div class="form-group">
-              <label for="text">Title :</label>
-              <input type="text" class="form-control" placeholder="ชื่อหัวเรื่อง" name="name" required>
+              <label for="text">หัวเรื่อง :</label>
+              <input type="text" class="form-control" name="name" required>
         </div>
-        <p>Image title:</p>
-        <div class=" mb-3">
-            <input type="file" name="img_title" id="img_preview">
+        <p>ภาพหน้าปก :</p>
+        <div class=" mb-3" >
+            <input type="file" name="img_title" id="img_preview" class="form-control-file">
             <div style=" padding: 10px;">
                 <img src="" id="img_show" alt="">
             </div>
         </div>
         <div class="form-group">
-            <label for="Catelog">Catelog :</label>
+            <label for="Catelog">ประเภทของบทความ :</label>
             <select class="form-control" id="catelog" name="category">
                 <% categories.forEach(function(catelog){ %>
                     <option name="<%= catelog.name %>"><%=catelog.name %></option>
@@ -24,7 +24,7 @@
             </select>
           </div>
         <div class="form-group">
-            <label for="text">Articel :</label>
+            <label for="text">เนื้อหา :</label>
             <textarea name="editor"></textarea>
         </div>
         <div class="mt-2">

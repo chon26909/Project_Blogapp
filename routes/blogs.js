@@ -6,9 +6,10 @@ var moment = require('moment');
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
 var multer = require('multer');
-var StorageOfimageprofile = multer.diskStorage({
+var StorageOfimageprofile = multer.diskStorage(
+  {
   destination:function(req,file,cb){
-    cb(null,"./public/images/img-profile/")
+    cb(null,"./public/images/img-profile/");
   },
   filename:function(req,file,cb){
     //เก็บชื่อรูปต้นฉบับลงโฟลเดอร์
@@ -75,15 +76,15 @@ let conCatelog = mongoose.model("categories", CatelogSchema);
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/',checkAuthentication, async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
-    const songkran_post = await conPost.find({category : "เที่ยวสงกรานต์"});
+    const songkran_post = await conPost.find({category : "เที่ยวสงกรานต์"}).limit(4);
 
-    const market_post = await conPost.find({category:"ตลาดกลางคืน"});
+    const market_post = await conPost.find({category: "ตลาดกลางคืน"});
     
     const marketfloat_post = await conPost.find({category : "ตลาดน้ำ"});
     
     const cat = await conCatelog.find();
 
-    res.render("index",{ post_eat : songkran_post, Marketfloat : marketfloat_post, Category : cat});
+    res.render("index",{ section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat});
   });
 
 
@@ -189,7 +190,8 @@ passport.deserializeUser(function(id,done)
   })
 });
 
-passport.use(new LocalStrategy(function(email,password,done){
+passport.use(new LocalStrategy(function(email,password,done)
+{
   //ค้นหาด้วย email 
   User.getUserByEmail(email,function(err,user){
     //ส่งข้อมูล user กลับมา
@@ -221,7 +223,7 @@ passport.use(new LocalStrategy(function(email,password,done){
   });
 }));
 
-router.get("/new",async function(req, res)
+router.get("/new",checkAuthentication,async function(req, res)
 {
   const cat = await conCatelog.find();
   res.render("Addpost",{ categories : cat });
