@@ -37,7 +37,7 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-xl-9 col-lg-8 col-md-8 pr-0">
           <!-- content section 1-->
           <section class="section-content1">
             <div class=" blog-group-contect mt-3 p-md-3 p-2">
@@ -51,11 +51,11 @@
               </div>
               <hr>
               <div class="row">
-                <% for(let i=0; i<4; i++) { %> 
+                <% for(let i=0; i<3; i++) { %> 
                   <article class="col-xl-6 col-lg-6 col-md-6 col-6 p-1 p-lg-2">
                     <a href="/blogs/review/<%= section1[i]._id %>">
                       <div class="card">
-                        <img src="/images/posts/<%= section1[i].imgurl %>" alt="" class="img-crop-index">
+                        <img src="/images/posts/<%= section1[i].imgurl %>" alt="">
                         <div class="desc-card">
                           <h5><%= section1[i].name %></h5>
                           <div class="mt-auto">
@@ -74,7 +74,7 @@
         </div>
         
         <!-- sidebar right-->
-        <div class="col-md-3">
+        <div class="col-xl-3 col-lg-4 col-md-4">
           <div class="category">
             <div class="category-title">หมวดหมู่</div>
             <div>
@@ -92,13 +92,14 @@
   
   
 <% if(Marketfloat.length > 0) {%>
-  <div class="main-content-section3 bg-success">
+  <div class="main-content-section3">
+    <div class="background-section3" style="background-image: url(images/background-section3.jpg);"></div>
     <div class="container">
-      <div class="blog-group-contect mt-3 p-md-3 p-2">
-        <div class="title-section">
-          <h3 class="text-white">
+      <div class="blog-group-contect mt-3 p-md-3">
+        <div class="title-section3">
+          <h3>
             <i class="far fa-newspaper"></i>
-            <a href="/blogs/showmore/<%= Marketfloat[0].category %>" class="text-white">
+            <a href="/blogs/showmore/<%= Marketfloat[0].category %>">
               เดินกินของอร่อยริมน้ำ <i class="fas fa-angle-right"></i>
             </a>
           </h3>
@@ -106,7 +107,7 @@
         <hr>
       <div class="row">
         <% for(var i=0; i<(Marketfloat.length); i++) { %> 
-        <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-md-3 p-1">
+        <article class="col-xl-3 col-lg-4 col-md-4 col-6 p-md-3 p-1">
           <a href="/blogs/review/<%= Marketfloat[i]._id %>">
             <div class="card">
               <img src="/images/posts/<%= Marketfloat[i].imgurl %> " alt="">
@@ -122,6 +123,7 @@
         <% } %> 
       </div>
     </div>
+  </div>
   </div>
 <% } %> 
  

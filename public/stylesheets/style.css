@@ -123,25 +123,26 @@ img
 
 footer
 {
+  margin-top: 10px;
+  bottom: 0;
   position: relative;
-	bottom: 0%;
-	width: 100%;
+  background-color: dodgerblue;
+  width: 100% auto;
+  display: grid;
 }
 .contact
 {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	background-color: dodgerblue;
-	width: 100% auto;
-	height: 160px;
-	padding: 0px 50px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 5px 10px 5px 10px;
+	height: 140px;
 	color: white
 }
 .contact-information:nth-child(1)
 {
-	padding: 10px 40px 0px 0px; 
-	font-size: 16px;
-	align-self: center
+	padding: 30px 30px 0px 10px; 
+	font-size: 14px;
+	justify-self: center;
 }
 .contact-information:nth-child(2)
 {
@@ -160,14 +161,14 @@ footer
 }
 .contact-information:nth-child(2) i
 {
-	font-size: 30px;
+	font-size: 20px;
 
 }
 .contact-information:nth-child(2) a
 {
 	cursor: pointer;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 15px;
 }
 .contact-information:nth-child(2) a:hover
 {
@@ -176,34 +177,29 @@ footer
 .copyright
 {
 	background-color: #2b2b2b;
-	width: 100% auto;
-	height: 60px;
-	padding: 10px 50px;
+	width: 100%;
+	height: 30px;
 }
 .copyright-grid
 {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr;
 	color: white;
 	font-size: 14px;
 	align-self: center;
 }
 .copyright-grid p
 {
-	padding: 10px;
+	padding: 3px;
 	margin: 0px;
 }
 .copytext
 {
-	justify-self: center;
+  justify-self: center;
 }
 .projectname
 {
-	justify-self: flex-start; 
-}
-.credits
-{
-	justify-self: flex-end;
+  justify-self: center; 
 }
 footer a
 {
@@ -227,7 +223,10 @@ footer a:hover
 	height: 50px;
 	border-radius: 50%;
 	border: 1px solid ;
-	float: left;
+  float: left;
+  object-fit: cover;
+  object-position: center ; 
+  border-color:white;
 }
 .img-user-navbar
 {
@@ -265,7 +264,7 @@ footer a:hover
 {
   display: grid;
   grid-template-columns: 100px auto;
-  margin: 7px 0px 0px 5px;
+  margin: 7px 0px 0px 7px;
   justify-self: center;
 }
 .sidebar-recommend:hover
@@ -347,16 +346,43 @@ footer a:hover
   background-color: rgba(240, 240, 240, 0.616);
   border-radius: 2px;
 }
+
 .main-content-section3
 {
-  margin: 10px 0px 0px 0px ;
-  background-image: url("https://static.posttoday.com/media/content/2018/10/21/5386B8CF77344E088E5EF9BC6913F993.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  padding: 5px;
-  transition: 3s;
+  position: relative;
+  margin: 10px 0px 2px 0px ;
+  padding-top: 10px;
 }
+
+.background-section3
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+/* .background-section3:after
+{
+  columns: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+} */
+.title-section3 h3
+{
+  position: absolute;
+  color: black;
+  text-shadow: 5px 5px 7px whitesmoke;
+}
+.title-section3 a
+{
+  color: black;
+}
+
+
+/* category-side */
 .category
 {
   background-color: blanchedalmond;
@@ -401,94 +427,6 @@ footer a:hover
   background-color: dodgerblue;
 }
 
-
-
-/* display image fullscreen */
-#myImg {
-  width: 100%;
-  height: 250px;
-  object-fit: cover; /* Do not scale the image */
-  object-position: center ; /* Center the image within the element */
-  border-radius: 50%;
-  border: 8px solid;
-  border-color:white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#myImg:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-/* Caption of Modal Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/* Add Animation */
-.modal-content, #caption {  
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@keyframes zoom {
-  from {transform: scale(0.1)} 
-  to {transform: scale(1)}
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-  
-}
 @media (max-width: 700px)
 {
   .img-crop-index
@@ -501,10 +439,27 @@ footer a:hover
   }
   h5
   {
-    font-size: 18px;
+    font-size: 16px;
   }
   p 
   {
     font-size: 14px;
+  }
+  .contact
+  {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .copyright
+  {
+     height: auto;
+  }
+  .copyright-grid
+  {
+    grid-template-columns: 1fr;
+  }
+  .copyright-grid div
+  {
+    justify-self: center;
   }
 }
