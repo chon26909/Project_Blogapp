@@ -17,17 +17,17 @@
                 <li class="nav-item"><a class="nav-link" href="/blogs/mygallery/id=<%= user._id %>"><i class="fas fa-image"></i> แกลอรี่</a></li>
             </ul>
             <div class="btn-group">
-                <a href="/blogs/profile/id=<%= user._id %>">
+                <a href="/blogs/profile/id=<%= user._id %>"> 
                     <button type="button" class="btn btn-primary"><img src="/images/img-profile/<%= user.image %>" alt="" class="img-user-navbar"> <%= user.username %></img></button>
-                </a>
+                </a> 
                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"></button> -->
-                <div class="dropdown-menu">
+                <div class="dropdown-menu"> 
                   <a class="dropdown-item" href="/blogs/profile/edit/id=<%= user._id %>"><i class="fas fa-user-edit"></i> แก้ไขโปรโฟล์</a>
                   <a class="dropdown-item" href="/blogs/profile/id=<%= user._id %>"><i class="far fa-list-alt"></i> แก้ไขบทความ</a>
                   <a class="dropdown-item" href=""><i class="far fa-bookmark"></i> ที่บันทึกไว้</a>
                   <a class="dropdown-item" href="/blogs/logout"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
-                </div>
+                </div> 
               </div>
         <% } %> 
         <% if(!locals.user){ %>
@@ -39,7 +39,7 @@
                     <button type="button" class="btn btn-primary"><i class="fas fa-user"></i> ลงชื่อเข้าใช้</button>
                 </a>
             </span>
-        <% } %>     
-        </div> 
+        <% } %>
+        </div>
     </div>
 </nav>
