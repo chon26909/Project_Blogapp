@@ -26,10 +26,10 @@
             <div class="col-md-9 col-12">
                       <div class="row">
                         <% for(var i=0; i < (profile[0].post.length); i++) { %>
-                        <article class="col-md-6 col-6 pb-3">
+                        <article class="col-lg-4 col-md-6 col-6 pb-3">
                           <a href="/blogs/review/<%= profile[0].post[i]._id %>">
                             <div class="card">
-                              <img src="/images/posts/<%= profile[0].post[i].imgurl %>" alt="" style="height: 230px;" id="imgpageprofile" class="img-crop" >
+                              <img src="/images/posts/<%= profile[0].post[i].imgurl %>" alt="" class="img-crop-pageprofile" >
                               <div class="p-2">
                                 <h5><%= profile[0].post[i].name %></h5>
                                 <div class="mt-auto">
@@ -57,18 +57,21 @@
                   <h2>No timeline</h2>
               </div>
             <% } %>
-            <div class="col-md-3 col-12 pt-3" style="background-color: whitesmoke;">
-                <div class="bg-light mt-3">
-                  <div class="p-2 bg-success text-white">หมวดหมู่</div>
-                  <div class="p-1">
-                      <ul>
-                          <% for(var i=0; i<(Category.length); i++) { %>
-                              <li><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
-                          <% } %>
-                      </ul>
-                  </div>
+            
+
+            <!-- sidebar right-->
+            <aside class="col-xl-3 col-lg-4 col-md-4">
+              <div class="category">
+                <div class="category-title">หมวดหมู่</div>
+                <div>
+                    <ul class="category-list">
+                        <% for(var i=0; i<(Category.length); i++) { %>
+                            <li class="category-items"><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
+                        <% } %>
+                    </ul>
+                </div>
               </div>
-            </div>
+            </aside>
 
       </div>
   </div>

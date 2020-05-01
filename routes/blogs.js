@@ -3,7 +3,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       moment = require('moment'),
       middleware = require('../middleware')
-      User = require('../model/user');
+      User = require('../models/user');
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
 var multer = require('multer');
