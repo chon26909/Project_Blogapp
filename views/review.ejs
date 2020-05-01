@@ -34,48 +34,58 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 bg-white" style="margin: 120px auto;">
-            <div class="mt-3 bg-light">
-                <div class="pl-3 mt-2 p-1">
-                    <h6 class="">แนะนำ</h6>
+        <div class="col-lg-4">
+            <aside class="mt-3 bg-light p-2">
+                <div class="pl-3 mt-2 sidebar-recommend-title">
+                    <h5>ยอดนิยม</h5>
                 </div>
-                
-                <div class="media">
+                <div class="sidebar-recommend">
                     <a href="">
-                        <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
-                        <div class="media-body p-1">
+                        <img src="/images/posts/สงกรานต์-โคราช.jpg" alt="" class="image-sidebar-recommend">
+                    </a>
+                    <a href="">
+                        <div class="p-1">
+                            <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p> 
+                        </div>
+                    </a>
+                </div>
+                <div class="sidebar-recommend">
+                    <a href="">
+                        <img src="/images/posts/สงกรานต์-โคราช.jpg" alt="" class="image-sidebar-recommend">
+                    </a>
+                    <a href="">
+                        <div class="p-1">
                             <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p>
                         </div>
                     </a>
                 </div>
-                <div class="media">
+                <div class="sidebar-recommend">
                     <a href="">
-                        <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
-                        <div class="media-body p-1">
+                        <img src="/images/posts/สงกรานต์-โคราช.jpg" alt="" class="image-sidebar-recommend">
+                    </a>
+                    <a href="">
+                        <div class="p-1">
                             <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p>
                         </div>
                     </a>
                 </div>
-                <div class="media">
-                    <a href="">
-                        <img src="/images/no-image.png" alt="" class="m-3 image-sidebar-recommend">
-                        <div class="media-body p-1">
-                            <p>สถานที่ท่องเทียวยอดนิยม ที่คุณต้องไป</p>
-                        </div>
-                    </a>
+            </aside>
+            <aside class="bg-light mt-3">
+                <!-- sidebar right-->
+                <div>
+                    <div class="mt-3 p-2 category">
+                    <div class="category-title"> <h5>หมวดหมู่</h5> </div>
+                    <div>
+                        <ul class="category-list">
+                            <% for(var i=0; i<(Category.length); i++) { %>
+                                <li class="category-items"><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    </div>
                 </div>
-            </div>
-            <div class="bg-light mt-3">
-                <div class="p-2 bg-success text-white">หมวดหมู่</div>
-                <div class="p-1">
-                    <ul>
-                        <% for(var i=0; i<(Category.length); i++) { %>
-                            <li><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
-                        <% } %>
-                    </ul>
-                </div>
-            </div>
+            </aside>
         </div>
     </div>
 </div>
-<%- include("layout/footer") %> 
+<%- include("layout/footer") %>

@@ -1,40 +1,42 @@
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top mb-1">
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top mb-0 p-1">
     <divs class="container">
-        <a class="navbar-brand textlogo" href="/blogs"><i class="fas fa-map-marked-alt"></i> เที่ยวไทย</a>
+        <a class="navbar-brand textlogo" href="/blogs">&nbsp;<i class="fas fa-map-marked-alt"></i>&nbsp;ไปเที่ยวมั้ย</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
+            <span><i class="far fa-user" style="font-size: 28px;"></i></span> 
         </button>
         <div class="collapse navbar-collapse text-center" id="collapsibleNavbar">
 <!--			 ml-auto ชิดขวา-->
         <% if(locals.user){ %>
-            <div>
-                <input class="form-control" type="text" placeholder="Search">
+            <div class="box-search">
+                <input  type="search" placeholder="ค้นหา">
             </div>
             <ul class="navbar-nav ml-auto" style="font-size: large;">
-                <li class="nav-item active"><a class="nav-link" href="/blogs">Home</a></li>  
-                <li class="nav-item"><a class="nav-link" href="/blogs/profile/id=<%= user._id %>">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="/blogs/new">Post</a></li>
-                <li class="nav-item"><a class="nav-link" href="/blogs/mygallery/id=<%= user._id %>">My Gallery</a></li>
+                <!-- <li class="nav-item active"><a class="nav-link" href="/blogs"><i class="fas fa-home"></i> หน้าแรก</a></li>   -->
+                <li class="nav-item"><a class="nav-link" href="/blogs/profile/id=<%= user._id %>"></a></li>
+                <li class="nav-item"><a class="nav-link" href="/blogs/new"><i class="fas fa-pencil-alt"></i> สร้าง</a></li>
+                <li class="nav-item"><a class="nav-link" href="/blogs/mygallery/id=<%= user._id %>"><i class="fas fa-image"></i> แกลอรี่</a></li>
             </ul>
             <div class="btn-group">
                 <a href="/blogs/profile/id=<%= user._id %>">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-user"></i> <%= user.username %></button>
+                    <button type="button" class="btn btn-primary"><img src="/images/img-profile/<%= user.image %>" alt="" class="img-user-navbar"> <%= user.username %></img></button>
                 </a>
                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"></button> -->
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/blogs/profile/edit/id=<%= user._id %>">Edit profile</a>
-                  <a class="dropdown-item" href="/blogs/logout">Logout</a>
+                  <a class="dropdown-item" href="/blogs/profile/edit/id=<%= user._id %>"><i class="fas fa-user-edit"></i> แก้ไขโปรโฟล์</a>
+                  <a class="dropdown-item" href="/blogs/profile/id=<%= user._id %>"><i class="far fa-list-alt"></i> แก้ไขบทความ</a>
+                  <a class="dropdown-item" href=""><i class="far fa-bookmark"></i> ที่บันทึกไว้</a>
+                  <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
                 </div>
               </div>
         <% } %> 
         <% if(!locals.user){ %>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a class="nav-link" href="">Home</a></li>
+                <li class="nav-item active"><a class="nav-link" href="">หน้าแรก</a></li>
             </ul>
             <span>
-                <a href="/blogs/login">
-                    <button type="button" class="btn btn-primary"><i class="fas fa-user"></i> Login</button>
+                <a href="/login">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-user"></i> ลงชื่อเข้าใช้</button>
                 </a>
             </span>
         <% } %>     
