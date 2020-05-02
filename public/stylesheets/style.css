@@ -122,9 +122,11 @@ img
 
 footer
 {
+  margin-top: 10px;
   bottom: 0;
   background-color: dodgerblue;
   width: 100% auto;
+  display: grid;
 }
 .contact
 {

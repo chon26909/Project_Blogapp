@@ -46,8 +46,8 @@
         <div class="col-xl-9 col-lg-8 col-md-8 pr-0">
           <!-- content section 1-->
           <section class="section-content1">
-            <div class=" blog-group-contect mt-3 p-md-3 p-2">
-              <div class="title-section">
+            <div class=" blog-group-contect mt-3 p-md-3 ">
+              <div class="title-section p-2">
                 <h3>
                   <i class="far fa-newspaper"></i>
                   <a href="/blogs/showmore/<%= section1[0].category %>">
@@ -56,7 +56,7 @@
                 </h3>
               </div>
               <hr>
-              <div class="row">
+              <div class="row m-0">
                 <% for(let i=0; i<3; i++) { %> 
                   <article class="col-xl-6 col-lg-6 col-md-6 col-6 p-1 p-lg-2">
                     <a href="/blogs/review/<%= section1[i]._id %>">
