@@ -18,7 +18,6 @@ var userSchema = mongoose.Schema({
 //export model ไปใช้ router ชื่อ users
 var User = module.exports = mongoose.model('User',userSchema);
 
-
 //หน้า register ก่อนที่บันทึก password ต้อง bcrypt ซะก่อน 
 module.exports.createUser = function(newUser, callback)
 {

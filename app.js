@@ -12,6 +12,7 @@ var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var methodOverride = require('method-override');
 
+const port = process.env.port || 3000;
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
