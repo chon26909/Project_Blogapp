@@ -6,13 +6,14 @@ const { check, validationResult } = require('express-validator');
 
 /* GET landing page. */
 router.get("/",function(req, res){
-  res.render("land");
+  res.render("landing");
 });
 
 router.get("/login", function(_req, res)
 {
-  res.render("login");
+  res.render("users/login");
 });
+
 router.post("/login", passport.authenticate('local',{
   failureRedirect:'/login',
   failureFlash:false
@@ -33,7 +34,7 @@ router.get("/logout", function(req, res)
 
 router.get("/register", function(_req, res)
 {
-  res.render("register");
+  res.render("users/register");
 });
 
 router.post("/register",[

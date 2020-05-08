@@ -1,13 +1,90 @@
-<%- include("layout/header") %>
-<div>
-    <div class="container mt-4">
-        <h2 class="text-center m-3">เว็บไซด์ที่รวบรวมสถานที่ท่องเที่ยว และการรีวิวของผู้ใช้งาน</h2>
-        <img src="images\Th2Th_Banner (1).jpg" alt="" class="img-fluid card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <div class="mt-2">
-            <a href="/blogs">
-                <!-- <h5 class="text-center text-success" style="font-family: 'Mitr', sans-serif;">เข้าสู่หน้าหลัก</h5> -->
-                <button type="button" class="btn btn-success btn-block">เข้าสู่หน้าหลัก</button>
-            </a>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
+    <title>landing</title>
+    <style>
+        *
+        {
+            font-family: 'Mitr', sans-serif;
+        }
+        html, body
+        {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .img-intro
+        {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("https://demo-cv.com/demoweb/krabi/files/com_travel/2016-10_e3bf4662fbe9eb5.jpg");
+        }
+        .content 
+        {
+            position: relative;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }
+        .content h1
+        {
+            color: white;
+            font-size: 42px;
+            text-shadow: 7px 4px 10px black;
+        }
+        .btn
+        {
+            position: relative;
+            top: 60%;
+            background-color: #109927d8;
+            padding: 7px 14px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 15px;
+            border: 1.5px solid;
+            box-shadow: 7px 4px 10px black;
+        }
+        .btn:hover
+        {
+            background-color: #2ea823;
+        }
+        @media (max-width: 900px)
+        {
+            .content h1
+            {
+                font-size: 24px;
+            }
+        }
+        @media (max-width: 400px)
+        {
+            .content h1
+            {
+                font-size: 22px;
+            }
+            .btn
+            {
+                padding: 5px 10px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="img-intro">
+        <div class="content">
+            <h1>เว็บไซด์ที่รวมรวมการรีวิวสถานที่ท่องเที่ยวจากผู้ใช้งาน</h1>
+            <a href="/blogs" class="btn">เข้าสู่หน้าหลัก</a>
         </div>
     </div>
-</div>
+</body>
+</html>

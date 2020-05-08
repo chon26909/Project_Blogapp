@@ -1,5 +1,5 @@
-<%- include("layout/header") %>
-<%- include("layout/layoutnavbar") %>
+<%- include("../layout/header") %>
+<%- include("../layout/layoutnavbar") %>
 <% if(locals.user){ %>
 <div style="background-color: whitesmoke">
     <div class="container pt-lg-2 pb-lg-2 pt-2 pb-2">
@@ -111,4 +111,4 @@
 <% if(!locals.user){ %>
     <div class="text-center p-5"><h2>Please Login!</h2></div>
 <% } %> 
-<%- include("layout/footer") %>  
+<%- include("../layout/footer") %>  

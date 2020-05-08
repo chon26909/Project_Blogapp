@@ -2,8 +2,14 @@ const express = require('express'),
       router = express.Router(),
       bodyParser = require('body-parser'),
       moment = require('moment'),
-      middleware = require('../middleware')
-      User = require('../models/user');
+      middleware = require('../middleware'),
+      conUser = require('../models/user'),
+      conPost = require('../models/posts'),
+      conCatelog = require('../models/categories');
+
+//connect DB
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
 var multer = require('multer');
@@ -31,42 +37,6 @@ var StorageOfimagepost = multer.diskStorage({
 });
 var upload_imgpost = multer({storage : StorageOfimagepost});
 
-
-
-//connect DB
-var mongoose = require('mongoose');
-var ObjectId = require('mongodb').ObjectId;
-//URL Mongo Cloud
-mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
-//รูปแบบ schema ของ posts
-let PostSchema = new mongoose.Schema({
-    userid: ObjectId,
-    name: String,
-    category: String,
-    imgurl: String,
-    content: String,
-    date: Date,
-    comment: String,
-    view: String,
-})
-let conPost = mongoose.model("post",PostSchema);
-
-//รูปแบบ schema ของ users
-let UserSchema = new mongoose.Schema({
-    username: String ,
-    email: String ,
-    password: String ,
-    birthdate: Date ,
-    image: String
-})
-let conUser = mongoose.model("users", UserSchema);
-
-//รูปแบบ schema ของ categories
-let CatelogSchema = new mongoose.Schema({
-    name: String,
-})
-let conCatelog = mongoose.model("categories", CatelogSchema);
-
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/', async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
@@ -78,21 +48,13 @@ router.get('/', async function(req, res,) {
     
     const cat = await conCatelog.find();
 
-    res.render("index",{ section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat});
+    res.render("blogs/index",{ section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat});
 });
-
-
-router.get("/blogs1", function(req, res){
-  res.render("index1");
-});
-
-
-
 
 router.get("/new",middleware.checkAuthentication,async function(req, res)
 {
   const cat = await conCatelog.find();
-  res.render("Addpost",{ categories : cat });
+  res.render("blogs/Addpost",{ categories : cat });
 })
 
 router.post("/new/id=:userid", upload_imgpost.single('img_title') , async function(req, res){
@@ -136,14 +98,14 @@ router.get("/review/:id", async function(req, res)
       );
 
       const cat = await conCatelog.find();
-      res.render("review",{ Blogs : postreview , Category : cat, moment : moment});
+      res.render("blogs/review",{ Blogs : postreview , Category : cat, moment : moment});
 });
 
 router.get("/edit/:postid",middleware.checkAuthentication,async function(req, res){
   const { postid } = req.params;
   const Editpost = await conPost.findById(postid);
   const cat = await conCatelog.find();
-  res.render("Editpost", { post : Editpost, categories : cat });
+  res.render("blogs/Editpost", { post : Editpost, categories : cat });
 });
 
 router.post("/edit/:postid", upload_imgpost.single('img_title'), async function(req,res){
@@ -211,7 +173,7 @@ router.get("/mygallery/id=:id", async function(req, res)
 {
   const { id } = req.params;
   const result = await conPost.find({userid : id});
-  res.render("mygallery",{ photogallery : result});
+  res.render("blogs/mygallery",{ photogallery : result});
 });
 
 router.post("/profile/edit/id=:userid", upload_profile.single('imgprofile'), async function(req, res){
@@ -243,7 +205,7 @@ router.get("/showmore/:name", async function(req, res){
   let { name } = req.params;
   const post = await conPost.find({ category : name });
 
-  res.render("showmore",{ posts : post});
+  res.render("blogs/showmore",{ posts : post});
 })
 
 

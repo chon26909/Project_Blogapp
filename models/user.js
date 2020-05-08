@@ -13,7 +13,15 @@ var userSchema = mongoose.Schema({
     email: String ,
     password: String ,
     birthdate: Date ,
-    image: String
+    image: String, 
+    post : 
+    [
+      {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'post'
+      }
+  ]
+  
 });
 //export model ไปใช้ router ชื่อ users
 var User = module.exports = mongoose.model('User',userSchema);
