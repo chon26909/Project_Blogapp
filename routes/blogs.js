@@ -5,10 +5,12 @@ const express = require('express'),
       middleware = require('../middleware'),
       conUser = require('../models/user'),
       conPost = require('../models/posts'),
-      conCatelog = require('../models/categories');
+      conCatelog = require('../models/categories'),
+      comment = require('../models/comment');
 
 //connect DB
 const mongoose = require('mongoose');
+const ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
@@ -70,18 +72,18 @@ router.post("/new/id=:userid", upload_imgpost.single('img_title') , async functi
     res.redirect("/blogs");
 });
 
-router.get("/review/:id", async function(req, res)
+router.get("/review/:postid", async function(req, res)
 {
     //การ join ระหว่าง collection 
     //userid ใน posts join กับ _id ใน users
-    const { id } = req.params;
+    const { postid } = req.params;
     const postreview = await conPost.aggregate(
       [
         {
           //select with condition
           $match: 
           { 
-            _id : ObjectId(id)
+            _id : ObjectId(postid)
           } 
         }
         , 
@@ -94,11 +96,21 @@ router.get("/review/:id", async function(req, res)
             as: "postby" //เปลี่ยนชื่อ array ที่เก็บผลลัพธ์
           }
         }
-      ]
+      ],
       );
 
       const cat = await conCatelog.find();
-      res.render("blogs/review",{ Blogs : postreview , Category : cat, moment : moment});
+
+      conPost.findById(postid).populate('comments').exec(function(error, All){
+        if(error){
+            console.log("Error");
+        } 
+        else 
+        {
+          res.render("blogs/review",{ Blogs : postreview , Category : cat, moment : moment, commentPost: All});
+        }
+      });
+      
 });
 
 router.get("/edit/:postid",middleware.checkAuthentication,async function(req, res){
@@ -208,5 +220,32 @@ router.get("/showmore/:name", async function(req, res){
   res.render("blogs/showmore",{ posts : post});
 })
 
+router.post('/comment/:postid', middleware.checkAuthentication, function(req,res)
+{
+  let { postid } = req.params;
+  conPost.findById(postid, function(err, thispost)
+  {
+    if(err)
+    {
+      console.log(err);
+    } 
+    else 
+    {
+      comment.create({text : req.body.comment, comment_by: req.user.username} , function(err,comment)
+      {
+        if(err)
+        {
+          console.log(err);
+        } 
+        else 
+        {
+          thispost.comments.push(comment);
+          thispost.save();
+          res.redirect('/blogs/review/' + thispost._id);
+        }
+      });
+    }
+  });
+});
 
 module.exports = router;
