@@ -23,6 +23,7 @@ var db = mongoose.Connection;
 var indexRouter = require('./routes/index');
 var blogRouter = require('./routes/blogs');
 var adminRouter = require('./routes/admin');
+var userRouter = require('./routes/user');
 
 var app = express();
 app.set('trust proxy', 1) // trust first proxy
@@ -68,5 +69,6 @@ app.locals.description = function(text,lenght){
 
 app.use('/', indexRouter);
 app.use('/blogs', blogRouter);
+app.use('/user', userRouter);
 app.use('/admin',adminRouter);
 module.exports = app;

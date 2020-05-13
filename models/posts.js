@@ -1,8 +1,10 @@
 
-const mongoose = require('mongoose');
+const   mongoose = require('mongoose'),
+        ObjectId = require('mongodb').ObjectId;
 
 //รูปแบบ schema ของ posts
 let PostSchema = new mongoose.Schema({
+    userid : ObjectId,
     name: String,
     category: String,
     imgurl: String,

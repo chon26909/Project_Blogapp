@@ -47,6 +47,12 @@ module.exports.getUserByEmail = function(email,callback)
     var query = { email : email };
     User.findOne(query,callback);
 }
+
+// module.exports.resetPassword = function(email, result)
+// {
+//   const result = User.find({email: email});
+// }
+
 module.exports.comparePassword = function(password,hash,callback)
 {
     bcrypt.compare(password,hash,function(err,isMatch){

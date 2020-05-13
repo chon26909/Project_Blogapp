@@ -2,6 +2,7 @@ const express = require('express'),
       router = express.Router(),
       bodyParser = require('body-parser'),
       moment = require('moment'),
+      multer = require('multer'),
       middleware = require('../middleware'),
       conUser = require('../models/user'),
       conPost = require('../models/posts'),
@@ -13,19 +14,7 @@ const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
-//ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
-var multer = require('multer');
-var StorageOfimageprofile = multer.diskStorage(
-  {
-  destination:function(req,file,cb){
-    cb(null,"./public/images/img-profile/");
-  },
-  filename:function(req,file,cb){
-    //เก็บชื่อรูปต้นฉบับลงโฟลเดอร์
-    cb(null,file.originalname);
-  }
-});
-var upload_profile = multer({storage : StorageOfimageprofile});
+
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/posts
 var StorageOfimagepost = multer.diskStorage({
@@ -59,17 +48,20 @@ router.get("/new",middleware.checkAuthentication,async function(req, res)
   res.render("blogs/Addpost",{ categories : cat });
 })
 
-router.post("/new/id=:userid", upload_imgpost.single('img_title') , async function(req, res){
+router.post("/new", upload_imgpost.single('img_title') , async function(req, res){
     //ส่ง img_title 
-    let { userid } = req.params;
     let n_name = req.body.name;
     let n_category = req.body.category;
     let n_imgurl = req.file.originalname;
     let n_desc = req.body.desc;
     let n_content = req.body.editor;
     let n_date = new Date();
-    await conPost.create({userid:userid ,name:n_name, category:n_category , imgurl:n_imgurl, desc:n_desc, content:n_content, date:n_date});
-    res.redirect("/blogs");
+    await conPost.create({userid : req.user ,name:n_name, category:n_category , imgurl:n_imgurl, desc:n_desc, content:n_content, date:n_date},function(err, result)
+    {
+      console.log("success post id : " + result._id);
+      res.redirect("/blogs/review/" + result._id);
+    });
+    
 });
 
 router.get("/review/:postid", async function(req, res)
@@ -153,65 +145,7 @@ router.get("/delete/:postid",async function(req, res){
   await conPost.remove({ _id:postid });
 });
 
-router.get("/profile/id=:id",middleware.checkAuthentication, async function(req, res){
-  const { id } = req.params;
-  const result = await conUser.aggregate(
-  [
-    {
-      //select 
-      $match: 
-      { 
-        _id : ObjectId(id)
-      } 
-    }
-    , 
-    {
-      $lookup:
-      {
-        from: 'posts', //join กับ collection users 
-        localField: '_id', 
-        foreignField: 'userid',
-        as: "post"
-      }
-    }
-  ]
-    );
-  const cat = await conCatelog.find();
-  res.render("profile",{ profile : result, Category : cat, moment : moment});
-});
 
-
-router.get("/mygallery/id=:id", async function(req, res)
-{
-  const { id } = req.params;
-  const result = await conPost.find({userid : id});
-  res.render("blogs/mygallery",{ photogallery : result});
-});
-
-router.post("/profile/edit/id=:userid", upload_profile.single('imgprofile'), async function(req, res){
-  let { userid } = req.params;
-
-  if(req.file)
-  {
-    let n_name = req.body.username;
-    let n_email = req.body.email;
-    let n_imageprofile = req.file.filename;
-    await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image :n_imageprofile } });
-    res.redirect("/blogs/profile/id=" + userid);
-  }
-  else
-  {
-    let n_name = req.body.username;
-    let n_email = req.body.email;
-    await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email } });
-    res.redirect("/blogs/profile/id=" + userid);
-  }
-});
-
-router.get("/profile/edit/id=:id",middleware.checkAuthentication, async function(req, res)
-{
-  res.render("Editprofile");
-});
 
 router.get("/showmore/:name", async function(req, res){
   let { name } = req.params;
