@@ -5,11 +5,18 @@
             <span><i class="far fa-user" style="font-size: 28px;"></i></span> 
         </button>
         <div class="collapse navbar-collapse text-center" id="collapsibleNavbar">
-<!--			 ml-auto ชิดขวา-->
+
+        
+        <div class="box-search">
+            <form action="/blogs/search" method="GET">
+                <input type="search" name="keyword" placeholder="ค้นหา">
+            </form>
+        </div>  
+        
+        
+        <!--ml-auto ชิดขวา-->
         <% if(locals.user){ %>
-            <div class="box-search">
-                <input  type="search" placeholder="ค้นหา">
-            </div>
+            
             <ul class="navbar-nav ml-auto" style="font-size: medium;">
                 <!-- <li class="nav-item active"><a class="nav-link" href="/blogs"><i class="fas fa-home"></i> หน้าแรก</a></li>   -->
                 <li class="nav-item"><a class="nav-link" href="/user/profile/id=<%= user._id %>"></a></li>

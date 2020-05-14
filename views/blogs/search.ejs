@@ -1,0 +1,27 @@
+<%- include("../layout/header") %>
+<%- include("../layout/layoutnavbar") %>
+<div class="container page-search">
+    <section>
+        <h2 class="mt-5 mb-3">ค้นหา "<%= key %>" พบ <%= ItemSearch.length %> บทความ</h2>
+        <% ItemSearch.forEach(function(item) { %>        
+        <article class="item-article-search">
+            <div class="items-search">
+                <figure class="image-search-page">
+                    <a href="/blogs/review/<%= item._id %>">
+                        <img src="/images/posts/<%= item.imgurl %>" class="image-search-page-crop" alt="<%= item.imgurl %>"> 
+                    </a>
+                </figure>
+                <div class="detail-search">
+                    <a href="/blogs/review/<%= item._id %>">
+                        <h4><%= description(item.name,50)%></h4>
+                    </a>
+                    <p><%- description(item.content,300) %>...</p>
+                </div>
+            </div>
+        </article>
+        <% }); %> 
+    </section>
+    <aside>
+
+    </aside>
+</div>

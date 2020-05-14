@@ -92,16 +92,33 @@ router.get("/review/:postid", async function(req, res)
       );
 
       const cat = await conCatelog.find();
+  //     Project.find(query)
+  //   .populate({ 
+  //     path: 'pages',
+  //     populate: [{
+  //      path: 'components',
+  //      model: 'Component'
+  //     },{
+  //       path: 'AnotherRef',
+  //       model: 'AnotherRef',
+  //       select: 'firstname lastname'
+  //     }] 
+  //  })
 
-      conPost.findById(postid).populate('comments').exec(function(error, All){
-        if(error){
-            console.log("Error");
-        } 
-        else 
+      conPost.findById(postid)
+        .populate('comments')
+        .exec(function(error, All)
         {
-          res.render("blogs/review",{ Blogs : postreview , Category : cat, moment : moment, commentPost: All});
-        }
-      });
+          if(error)
+          {
+              console.log("Error");
+          } 
+          else 
+          {
+            console.log(All);
+            res.render("blogs/review",{ Blogs : postreview , Category : cat, moment : moment, commentPost: All});
+          }
+        });
       
 });
 
@@ -180,6 +197,22 @@ router.post('/comment/:postid', middleware.checkAuthentication, function(req,res
       });
     }
   });
+});
+
+router.get("/search", function(req, res)
+{
+  let key  = req.query.keyword;
+  conPost.find({name:{ $regex: key }},
+    function(err, result)
+    {
+      if(err) console.log(err)
+      else
+      {
+        console.log(result);
+        res.render("blogs/search",{ ItemSearch : result, key : key})
+      }
+    });
+
 });
 
 module.exports = router;
