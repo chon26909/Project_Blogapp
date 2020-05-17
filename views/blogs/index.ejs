@@ -2,8 +2,8 @@
 <%- include("../layout/layoutnavbar") %>
 
   <!-- slide header -->
-  <section class="mt-3">
-    <div id="demo" class="container carousel slide" data-ride="carousel">
+  <section class="p-0">
+    <div id="demo" class="container carousel slide shadow" data-ride="carousel">
       <!-- Indicators -->
       <ul class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -39,22 +39,13 @@
       </a>
     </div>
   </section>
-  <!-- nav-category -->
-  <nav class="container navbar-category">
-    <ul>
-      <li>ที่เที่ยว</li>
-      <li>ที่กิน</li>
-      <li>ที่พัก</li>
-      <li>ที่ดิน</li>
-    </ul>
-  </nav>
   
   <section>
     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 col-lg-8 col-md-8">
+      <div class="row m-0">
+        <div class="col-xl-9 col-lg-8 col-md-8 p-0">
           <!-- content section 1-->
-          <section class="section-content1">
+          <section class="section-content1 shadow">
             <div class=" blog-group-contect mt-3 p-md-3 ">
               <div class="title-section p-2">
                 <h3>
@@ -107,25 +98,26 @@
   
   
 <% if(Marketfloat.length > 0) {%>
-  <div class="main-content-section3">
+  <div class="main-content-section3 container mt-3">
     <div class="background-section3" style="background-image: url(images/background-section3.jpg);"></div>
     <div class="container">
-      <div class="blog-group-contect mt-3 p-md-3">
+      <div class="blog-group-contect mt-3 p-3">
         <div class="title-section3">
           <h3>
             <i class="far fa-newspaper"></i>
             <a href="/blogs/showmore/<%= Marketfloat[0].category %>">
-              เดินกินของอร่อยริมน้ำ <i class="fas fa-angle-right"></i>
+              เดินกินของอร่อยริมน้ำ <i class="fa fa-angle-right"></i>
             </a>
           </h3>
         </div>
         <hr>
-      <div class="row">
+        <br>
+      <div class="row p-2">
         <% for(var i=0; i<(Marketfloat.length); i++) { %> 
-        <article class="col-xl-3 col-lg-4 col-md-4 col-6 p-md-3 p-1">
+        <article class="col-xl-3 col-lg-4 col-md-4 col-6 p-2">
           <a href="/blogs/review/<%= Marketfloat[i]._id %>">
             <div class="card">
-              <img src="/images/posts/<%= Marketfloat[i].imgurl %> " alt="">
+              <img src="/images/posts/<%= Marketfloat[i].imgurl %>" alt="">
               <div class="p-2">
                 <h6><%= Marketfloat[i].name %></h6>
                 <div class="mt-auto">

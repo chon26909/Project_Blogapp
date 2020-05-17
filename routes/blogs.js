@@ -39,13 +39,13 @@ router.get('/', async function(req, res,) {
     
     const cat = await conCatelog.find();
 
-    res.render("blogs/index",{ section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat});
+    res.render("blogs/index",{ moment: moment, section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat });
 });
 
 router.get("/new",middleware.checkAuthentication,async function(req, res)
 {
   const cat = await conCatelog.find();
-  res.render("blogs/Addpost",{ categories : cat });
+  res.render("blogs/Addpost",{ moment: moment, categories : cat });
 })
 
 router.post("/new", upload_imgpost.single('img_title') , async function(req, res){
@@ -92,6 +92,8 @@ router.get("/review/:postid", async function(req, res)
       );
 
       const cat = await conCatelog.find();
+
+      const recommend = await conPost.find({category : "ตลาดน้ำ"}).limit(5);
   //     Project.find(query)
   //   .populate({ 
   //     path: 'pages',
@@ -115,18 +117,17 @@ router.get("/review/:postid", async function(req, res)
           } 
           else 
           {
-            console.log(All);
-            res.render("blogs/review",{ Blogs : postreview , Category : cat, moment : moment, commentPost: All});
+            res.render("blogs/review",{moment: moment, Blogs : postreview , Category : cat, recommend : recommend, moment : moment, commentPost: All});
           }
         });
       
 });
 
-router.get("/edit/:postid",middleware.checkAuthentication,async function(req, res){
+router.get("/edit/:postid", middleware.checkAuthentication, async function(req, res){
   const { postid } = req.params;
   const Editpost = await conPost.findById(postid);
   const cat = await conCatelog.find();
-  res.render("blogs/Editpost", { post : Editpost, categories : cat });
+  res.render("blogs/Editpost", { moment: moment, post : Editpost, categories : cat });
 });
 
 router.post("/edit/:postid", upload_imgpost.single('img_title'), async function(req,res){
@@ -160,6 +161,7 @@ router.get("/delete/:postid",async function(req, res){
   const { postid } = req.params;
   console.log(postid);
   await conPost.remove({ _id:postid });
+  res.redirect("/user/me");
 });
 
 
@@ -168,7 +170,7 @@ router.get("/showmore/:name", async function(req, res){
   let { name } = req.params;
   const post = await conPost.find({ category : name });
 
-  res.render("blogs/showmore",{ posts : post});
+  res.render("blogs/showmore",{ moment: moment, posts : post});
 })
 
 router.post('/comment/:postid', middleware.checkAuthentication, function(req,res)
@@ -199,20 +201,41 @@ router.post('/comment/:postid', middleware.checkAuthentication, function(req,res
   });
 });
 
-router.get("/search", function(req, res)
+router.get("/search",async function(req, res)
 {
-  let key  = req.query.keyword;
-  conPost.find({name:{ $regex: key }},
-    function(err, result)
-    {
-      if(err) console.log(err)
-      else
-      {
-        console.log(result);
-        res.render("blogs/search",{ ItemSearch : result, key : key})
-      }
-    });
-
+  let key = req.query.keyword;
+  const result = await conPost.find({name:{ $regex: key }});
+  res.render("blogs/search",{moment: moment, ItemSearch : result, key : key});
 });
+
+router.get("/author/:authorid", async function(req, res)
+{
+  let { authorid } = req.params;
+  console.log(authorid)
+  const result = await conUser.aggregate(
+    [
+      {
+        //select 
+        $match: 
+        { 
+          _id : ObjectId(authorid)
+        } 
+      }
+      , 
+      {
+        $lookup:
+        {
+          from: 'posts', //join กับ collection users 
+          localField: '_id', 
+          foreignField: 'userid',
+          as: "post"
+        }
+      }
+    ]
+    );
+
+
+  res.render("blogs/author",{moment: moment, profile : result});
+})
 
 module.exports = router;

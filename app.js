@@ -50,6 +50,7 @@ app.use(methodOverride('_method'));
 
 app.get("*",function(req,res,next){
   res.locals.user = req.user || null;
+  res.locals.MomentDate = Date.now();
   next();
 })
 

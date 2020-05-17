@@ -2,7 +2,8 @@ const express = require('express'),
       router = express.Router(),
       passport = require('passport'),
       conUser = require('../models/user'),
-      bcrypt = require('bcryptjs');
+      bcrypt = require('bcryptjs'),
+      bodyParser = require('body-parser');
 
 const { check, validationResult } = require('express-validator');
 
@@ -60,20 +61,23 @@ router.post("/register",[
       let password = req.body.password;
       let password2 = req.body.password2;
 
+      console.log(username);
+      console.log(email);
+
       //ค่าเริ่มต้นในการ register แล้วค่อยไปเพิ่มข้อมูลอื่นๆ ในภายหลัง
-      var newUser = new User
+      const newUser = new conUser
       ({
-        username:username,
-        email:email,
-        password:password,
+        username : username,
+        email : email,
+        password : password,
         image: "no-imgprofile.png"
       })
-      User.createUser(newUser,function(err){
+
+      conUser.createUser(newUser,function(err){
         if(err) console.log(err);
         else
         {
-          res.location('/blogs/');
-          res.redirect('/blogs/login');
+          res.redirect('/login');
         }
       });
       

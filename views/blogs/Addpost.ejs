@@ -1,7 +1,7 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
 <% if(locals.user){ %>
-<div class="container mt-lg-3 mb-5 mt-0 p-3" style="background-color: whitesmoke;">
+<div class="container p-3 shadow" style="background-color: whitesmoke;">
     <form method="POST" action="/blogs/new" class="p-2" enctype="multipart/form-data">
         <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">สร้างบทความ</h3>
         <div class="form-group">

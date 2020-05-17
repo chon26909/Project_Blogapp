@@ -1,9 +1,9 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
 <% if(locals.user){ %>
-    <div class="container mt-5 mb-5" style="background-color: whitesmoke;">
-        <h3 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">แก้ไขข้อมูลผู้ใช้</h3>
-        <form method="POST" action="/blogs/profile/edit/id=<%= user._id %>" enctype="multipart/form-data">
+    <div class="container p-4 mb-5 shadow" style="background-color: whitesmoke;">
+        <h3 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">แก้ไขข้อมูลส่วนตัว</h3>
+        <form method="POST" action="/user/edit" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 col-12 p-md-5">
                     <div class="btn-edit">

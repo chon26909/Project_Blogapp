@@ -31,7 +31,7 @@
 		}
 		.background-login
 		{
-			background-image: url("/images/เที่ยวเชียงใหม่.jpg");
+			background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(80, 80, 80, 0.2)), url("/images/เที่ยวเชียงใหม่.jpg");
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: center center;
@@ -48,17 +48,17 @@
 	<div >	
 		<div class="container">
 			<form class="form-group form-login" method="POST" action="/login"> 
-				<h1 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">Login</h1>
+				<h1 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">ลงชื่อเข้าใช้</h1>
 				<div class="form-group">
-      				<label for="Email">Email:</label>
-			  		<input type="email" class="form-control" placeholder="Enter email" name="username">
+      				<label for="Email">Email :</label>
+			  		<input type="email" class="form-control" placeholder="อีเมล" name="username">
 				</div>
 				<div class="form-group">
-					<label for="pwd">Password:</label>
-					<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+					<label for="pwd">Password :</label>
+					<input type="password" class="form-control" id="pwd" placeholder="รหัสผ่าน" name="password">
 				</div>
-                <button type="submit" class="btn btn-success btn-block ">Submit</button>
-                <a href="/blogs/register"><p class="text-center pt-2" id="notaccount">I don't have my account</p></a>
+                <button type="submit" class="btn btn-success btn-block ">ยืนยัน</button>
+                <a href="/register"><p class="text-center pt-2" id="notaccount">ฉันยังไม่บัญชีผู้ใช้งาน</p></a>
 			</form>
 		</div>
 	</div>

@@ -14,6 +14,7 @@ mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryW
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
 var multer = require('multer');
+
 var StorageOfimageprofile = multer.diskStorage(
   {
   destination:function(req,file,cb){
@@ -25,6 +26,8 @@ var StorageOfimageprofile = multer.diskStorage(
   }
 });
 var upload_profile = multer({storage : StorageOfimageprofile});
+
+
 
 router.get("/me",middleware.checkAuthentication, async function(req, res){
     const { id }  = req.user;
@@ -54,7 +57,7 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
     const cat = await conCatelog.find();
 
     
-    res.render("users/profile",{ profile : result, Category : cat, moment : moment});
+    res.render("users/profile",{moment: moment, profile : result, Category : cat, moment : moment});
   });
   
   
@@ -62,32 +65,33 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
   {
     const { userid } = req.user;
     const result = await conPost.find({userid : userid});
-    res.render("users/mygallery",{ photogallery : result});
+    res.render("users/mygallery",{ moment: moment, photogallery : result});
   });
   
   router.post("/edit", upload_profile.single('imgprofile'), async function(req, res){
-    let { userid } = req.user;
-  
+    let userid = req.user;
+    console.log(req.file);
+
     if(req.file)
     {
       let n_name = req.body.username;
       let n_email = req.body.email;
       let n_imageprofile = req.file.filename;
       await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image :n_imageprofile } });
-      res.redirect("/user/profile/id=" + userid);
+      res.redirect("/user/me");
     }
     else
     {
       let n_name = req.body.username;
       let n_email = req.body.email;
       await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email } });
-      res.redirect("/user/profile/id=" + userid);
+      res.redirect("/user/me");
     }
   });
   
   router.get("/edit",middleware.checkAuthentication, async function(req, res)
   {
-    res.render("users/Editprofile");
+    res.render("users/Editprofile",{moment: moment});
   });
 
   module.exports = router;
