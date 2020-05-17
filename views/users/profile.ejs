@@ -11,9 +11,9 @@
             <div>
                 <div class="card bg-white p-4">
                     <h3><%= description(profile[0].username,20) %></h3>
-                    <h6><i class="fab fa-facebook-square"></i>&nbsp;Facebook&nbsp;<a href="">คลิก</a></h6>
-                    <h6><i class="fab fa-line"></i>&nbsp;chon1234</h6>
-                    <h6><i class="fas fa-phone"></i> 095-555-5555 </h6>
+                    <h6><i class="fab fa-facebook-square"></i>&nbsp;Facebook : <% if(profile[0].facebook == "ไม่มีข้อมูล" || "") {%> ไม่มีข้อมูล <% }else{ %> <a href="<%= profile[0].facebook %>" target="_blank">คลิกที่นี่</a><% } %> </h6>
+                    <h6><i class="fab fa-line"></i>&nbsp;ID Line : <%= profile[0].line %></h6>
+                    <h6><i class="fas fa-phone"></i>&nbsp;Phone : <%= profile[0].phone %> </h6>
                 </div>
             </div>
         </div>

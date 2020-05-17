@@ -46,13 +46,19 @@
                     <div class="form-group mt-3">
                         <label for="">เบอร์โทร</label>
                         <div class="mt-2">
-                            <input type="text" class="form-control" name="" id="">
+                            <input type="text" class="form-control" name="phone" id="" value="<%= user.phone %>">
                         </div>
                     </div>
                     <div class="form-group mt-3">
                         <label for="">Facebook</label>
                         <div class="mt-2">
-                            <input type="url" class="form-control" name="" placeholder="url หน้า profile facebook ของคุณ" id="">
+                            <input type="url" class="form-control" name="facebook" placeholder="url หน้า profile facebook ของคุณ" id="" value="<%= user.facebook %>">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="">ID Line</label>
+                        <div class="mt-2">
+                            <input type="text" class="form-control" name="line" value="<%= user.line %>">
                         </div>
                     </div>
                 </div>

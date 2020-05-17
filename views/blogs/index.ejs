@@ -57,11 +57,11 @@
               </div>
               <hr>
               <div class="row m-0">
-                <% for(let i=0; i<3; i++) { %> 
+                <% for(let i=0; i<4; i++) { %> 
                   <article class="col-xl-6 col-lg-6 col-md-6 col-6 p-1 p-lg-2">
                     <a href="/blogs/review/<%= section1[i]._id %>">
                       <div class="card">
-                        <img src="/images/posts/<%= section1[i].imgurl %>" alt="">
+                        <img src="/images/posts/<%= section1[i].imgurl %>" alt="" class="img-crop-section1">
                         <div class="desc-card">
                           <h5><%= section1[i].name %></h5>
                           <div class="mt-auto">

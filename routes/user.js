@@ -70,21 +70,23 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
   
   router.post("/edit", upload_profile.single('imgprofile'), async function(req, res){
     let userid = req.user;
-    console.log(req.file);
+    let n_name = req.body.username;
+    let n_email = req.body.email;
+    let n_facebook = req.body.facebook;
+    let n_line = req.body.line;
+    let n_phone = req.body.phone;
+
+    // console.log(req.file);
 
     if(req.file)
     {
-      let n_name = req.body.username;
-      let n_email = req.body.email;
       let n_imageprofile = req.file.filename;
-      await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image :n_imageprofile } });
+      await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image :n_imageprofile, facebook:n_facebook, line:n_line , phone:n_phone } });
       res.redirect("/user/me");
     }
     else
     {
-      let n_name = req.body.username;
-      let n_email = req.body.email;
-      await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email } });
+      await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email ,facebook : n_facebook, line:n_line , phone:n_phone} });
       res.redirect("/user/me");
     }
   });

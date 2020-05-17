@@ -44,7 +44,7 @@ router.post("/register",[
   check("username","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
   check("email","กรุณาป้อนอีเมล").isEmail(),
   check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
-  check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty()
+  check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   ] ,function(req, res)
   {
     const result = validationResult(req);
@@ -52,7 +52,7 @@ router.post("/register",[
     if(!result.isEmpty())
     {
       //return to page
-      res.render("register", { errors : errors });
+      res.render("users/register", { errors : errors });
     }
     else
     {
@@ -70,7 +70,10 @@ router.post("/register",[
         username : username,
         email : email,
         password : password,
-        image: "no-imgprofile.png"
+        image: "no-imgprofile.png",
+        facebook: "ไม่มีข้อมูล",
+        line : "ไม่มีข้อมูล",
+        phone : "ไม่มีข้อมูล"
       })
 
       conUser.createUser(newUser,function(err){

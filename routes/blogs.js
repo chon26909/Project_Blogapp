@@ -208,17 +208,17 @@ router.get("/search",async function(req, res)
   res.render("blogs/search",{moment: moment, ItemSearch : result, key : key});
 });
 
-router.get("/author/:authorid", async function(req, res)
+router.get("/author/:authorname", async function(req, res)
 {
-  let { authorid } = req.params;
-  console.log(authorid)
+  let {authorname} = req.params;
+  console.log(authorname);
   const result = await conUser.aggregate(
     [
       {
         //select 
         $match: 
         { 
-          _id : ObjectId(authorid)
+          username : authorname
         } 
       }
       , 
