@@ -11,61 +11,142 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
 	<script src="https://kit.fontawesome.com/a076d05399.js" defer></script>
 	<style>
-		*
-		{
-			font-family: 'Mitr', sans-serif;
-		}
-		body
-		{
-			background-color:whitesmoke;
-		}
+			html,body,h1{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Hind',sans-serif;
+}
+a{
+  text-decoration: none;
+  color: #e0d7d7;
+  margin: 0em;
+}
+h1{
+  font-size:45px;
+  color: #fff;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: center;
+  padding: 2em 0 0 0.4em;
+}
+@keyframes slideleft {
+  form{
+    background-position: 0%;
+  }
+  to{
+    background-position: 90000%;
+  }
+}
+.my-main{
+  background-image: url(/images/เที่ยวเชียงใหม่.jpg);
+  background-repeat: repeat-x;
+  animation: slideleft 5000s infinite linear;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+}
+.bg-layer{
+  background: rgba(31, 30, 30, 0.7);
+  min-height: 100vh;
+
+}
+.icon1{
+  margin: 0 0 2em;
+  padding: .8em 1em;
+  background: rgba(216, 214, 214, 0.94);
+
+}
+
+.bottom{
+  margin: 1em 0 0;
+}
+.header-main{
+  max-width: 310px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 999;
+  padding: 3em 2em;
+  background: rgba(161, 44, 44, 0.04);
+  box-shadow: -1px 4px 28px 0px rgba(7, 7, 7, 0.75);
+}
+.header-left-bottom input[type="email"]
+{
+    outline: none;
+    font-size: 15px;
+    color: #222;
+    border: none;
+    width: 90%;
+    display: inline-block;
+    background: transparent;
+    letter-spacing: 1px;
+}
+.header-left-bottom input[type="password"]
+{
+    outline: none;
+    font-size: 15px;
+    color: #222;
+    border: none;
+    width: 90%;
+    display: inline-block;
+    background: transparent;
+    letter-spacing: 1px;
+}
+.header-left-bottom button.btn{
+    background: #dace73;
+    color: rgb(8, 8, 8);
+    font-size: 18px;
+    letter-spacing: 1px;
+    transform: 0.5s all;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 50%;
+}
 	</style>
 </head>
 <body >
-<div class="container mt-lg-5 mt-2">
-	<h1 class="text-center">Create Account</h1>
-	<div class="row mt-lg-5 mt-0">
-		<div class="col-lg-7">
-			<div class="card text-center p-1">
-				<img src="/images/เที่ยวเชียงใหม่.jpg" style="width: 100%; height: auto;">
-			</div>
-		</div>
-		<div class="col-lg-5">
-			<% if(locals.errors){ %>
-				<div class="alert alert-warning mt-md-0 mt-3 p-2">
-					<strong>Warning!</strong>
-					<ul style="font-size: 18px;">
-					<% Object.values(errors).forEach(function(error){ %>
-						<li><%= error.msg %></li>
-					<% }) %>
-					</ul>
-				</div>	
-			<% } %>
+	<div class="my-main">
+		<div class="bg-layer">
+		  <h1>Create Account</h1>
+		  <div class="header-main">
+		  <div class="header-left-bottom">
+			<form action="/login"  method="post" >
+			  
+				<div class="icon1">
 			
-			<form class="form-group"  method="POST" action="/blogs/register">
-                <div class="form-group">
-                    <label>Username:</label>
-                    <input type="text" class="form-control" id="Username" placeholder="Enter Username" name="username">
-                </div>
-                <div class="form-group">
-      				<label for="email">Email:</label>
-			  		<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+					<input type="name" placeholder="Username"name="username">
+				  </div>
+				  
+				<div class="icon1">
+			
+					<input type="email" placeholder="Email Address"name="email">
+				  </div>
+				  
+				<div class="icon1">
+			
+					<input type="password" placeholder="Password"name="password">
+				  </div>
+
+				<div class="icon1">
+			
+				  <input type="password" placeholder="Confirm password"name="password">
 				</div>
-				<div class="form-group">
-					<label for="pwd">Password:</label>
-					<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-				</div>
-				<div class="form-group">
-					<label for="pwd">Confirm Password:</label>
-					<input type="password" class="form-control" id="pwd" placeholder="Comfirm password" name="password2">
-				</div>
-				<button type="submit" class="btn btn-success btn-block">Register</button>
-				<a href="/blogs/login">
-					<p class="text-center text-primary pt-2"> I have my account </p>
-				</a>
+
+		
+				<button type="submit" class="btn btn-success btn-block ">Register</button>
+			
+				<a href="/login"><p class="text-center pt-2" id="notaccount">I have my account</p></a>
+			
+			  </div>
 			</form>
+		  </div>
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
