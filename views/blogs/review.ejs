@@ -1,0 +1,97 @@
+<%- include("../layout/header") %>
+<%- include("../layout/layoutnavbar") %>
+<section>
+    <div class="row container  shadow">
+        <div class="col-lg-8 bg-white pr-3 pt-4">
+            <h2><%= Blogs[0].name %></h2>
+            <div class="mt-3">
+                <img src="/images/img-profile/<%= Blogs[0].postby[0].image %>" alt="" class="author-img mr-2">
+                <div>
+                    <p><a href="/blogs/author/<%= Blogs[0].postby[0].username %>"><%= Blogs[0].postby[0].username %> </a><br><i class="fa fa-clock"> <%= moment(Blogs[0].date).format("DD-MM-YYYY HH:mm") %> </i></p>
+                </div>
+            </div>
+            <article class="mt-3">
+                <img src="/images/posts/<%= Blogs[0].imgurl%>" alt="">
+                <div class="mt-2 mb-2 pt-2 content">
+                    <%- Blogs[0].content%>
+                </div>
+            </article>
+            
+            <div class="comment-box">
+                <h6>ความคิดเห็น <%= commentPost.comments.length %> รายการ</h6>
+                <div class="p-1 m-1">
+                    <% commentPost.comments.forEach(function(comment){ %>
+                        <div class="comment-item">
+                            <figure>
+                                <img src="/images/img-profile/no-imgprofile.png" alt="" class="usercomment-img mr-2">
+                            </figure>
+                            <div class="comment-by">
+                                <p class=""><a href=""><%= comment.comment_by %></a> <%= comment.text %></p>
+                            </div>
+                        </div>
+                        
+                        
+                    <% }) %>
+
+                    <% if(locals.user){ %>
+                    <form action="/blogs/comment/<%= Blogs[0]._id %>" method="POST">
+                        <textarea name="comment" id="" rows="3" style="width: 100%;" placeholder="แสดงความคิดเห็น"></textarea>
+                        <input type="submit">
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <aside class="col-lg-4 bg-white">
+            <section class="about-this-blog">
+                <div class="about-this-blog-title">
+                    <h5><i class="fa fa-info-circle"></i> ข้อมูลสถานที่ท่องเที่ยว</h5>
+                </div>
+                <div class="about-this-blog-information">
+                    <p>ที่ตั้ง : </p>
+                    <p>เวลาเปิด-ปิด : </p>
+                    <p>วันที่เปิดทำการ : </p>
+                    
+                    
+                </div>
+                <div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.622794390887!2d100.90280781482087!3d12.867622490924166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310295905714b48f%3A0x63218b030a8654d8!2z4LiV4Lil4Liy4LiU4LiZ4LmJ4LizIDQg4Lig4Liy4LiELCDguJ7guLHguJfguKLguLI!5e0!3m2!1sth!2sth!4v1589558995558!5m2!1sth!2sth" width="auto"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </section>
+            <section class="mt-3 bg-light p-2">
+                <div class="pl-3 mt-2 sidebar-recommend-title">
+                    <h5>แนะนำ</h5>
+                </div>
+                <% recommend.forEach(function(rec){ %>       
+                <div class="sidebar-recommend">
+                    <a href="/blogs/review/<%= rec._id %>">
+                        <img src="/images/posts/<%= rec.imgurl %>" alt="<%= rec.imgurl %>" class="image-sidebar-recommend">
+                    </a>
+                    <a href="">
+                        <div class="p-1">
+                            <p><%= rec.name %></p> 
+                        </div>
+                    </a>
+                </div>
+                <% }) %> 
+            </section>
+            <section class="bg-light mt-3">
+                <!-- sidebar right-->
+                <div>
+                    <div class="mt-3 p-2 category">
+                    <div class="category-title"> <h5>หมวดหมู่</h5> </div>
+                    <div>
+                        <ul class="category-list">
+                            <% for(var i=0; i<(Category.length); i++) { %>
+                                <li class="category-items"><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+</section>
+<%- include("../layout/footer") %>

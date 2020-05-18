@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" defer></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
+	<style>
+	*
+	{
+		font-family: 'Mitr', sans-serif;
+	}
+	html,body,h1{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	}
+	a{
+	text-decoration: none;
+	color: #e0d7d7;
+	margin: 0em;
+	}
+	h1{
+	font-size:45px;
+	color: #fff;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	text-align: center;
+	padding: 2em 0 0 0.4em;
+	margin-bottom: 10px;
+	}
+	@keyframes slideleft 
+	{
+	form
+	{
+				background-position: 0%;
+			}
+			to{
+				background-position: 90000%;
+			}
+		}
+
+		.my-main{
+		background-image: url(/images/เที่ยวเชียงใหม่.jpg);
+		background-repeat: repeat-x;
+		animation: slideleft 5000s infinite linear;
+		background-size: cover;
+		background-attachment: fixed;
+		position: relative;
+		min-height: 100vh;
+		}
+		.bg-layer{
+		background: rgba(31, 30, 30, 0.7);
+		min-height: 100vh;
+	}
+	.icon1{
+	margin: 0 0 2em;
+	padding: 5px 10px;
+	background: rgba(216, 214, 214, 0.94);
+	}
+	.bottom{
+	margin: 1em 0 0;
+	}
+	.header-main{
+	max-width: 400px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 999;
+	padding: 3em 2em;
+	background: rgba(161, 44, 44, 0.04);
+	box-shadow: -1px 4px 28px 0px rgba(7, 7, 7, 0.75);
+	}
+	.header-left-bottom input[type="email"]
+	{
+		outline: none;
+		font-size: 15px;
+		color: #222;
+		border: none;
+		width: 90%;
+		display: inline-block;
+		background: transparent;
+		letter-spacing: 1px;
+	}
+	.header-left-bottom input[type="password"]
+	{
+		outline: none;
+		font-size: 15px;
+		color: #222;
+		border: none;
+		width: 90%;
+		display: inline-block;
+		background: transparent;
+		letter-spacing: 1px;
+	}
+	.header-left-bottom button.btn{
+		background: #dace73;
+		color: rgb(8, 8, 8);
+		font-size: 18px;
+		letter-spacing: 1px;
+		transform: 0.5s all;
+		display: inline-block;
+		cursor: pointer;
+		outline: none;
+		border: none;
+		width: 50%;
+	}
+	</style>
+</head>
+<body>
+	<div class="my-main">
+		<div class="bg-layer">
+		  <h1> ลงชื่อเข้าใช้</h1>
+		  <div class="header-main">
+		  <div class="header-left-bottom">
+			<form action="/login"  method="post" >
+	
+				<div class="icon1">
+	
+				  <input type="email" placeholder="Email"name="username">
+				</div>
+	
+				<div class="icon1">
+	
+				  <input type="password" placeholder="Password"name="password">
+				</div>
+	
+	
+				<button type="submit" class="btn btn-success btn-block ">ยืนยัน</button>
+	
+				<a href="/register"><p class="text-center pt-2" id="notaccount">ฉันยังไม่มีบัญชีผู้ใช้งาน</p></a>
+	
+			  </div>
+			</form>
+		  </div>
+		</div>
+	</div>
+	
+</body>
+</html>

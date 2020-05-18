@@ -1,16 +1,21 @@
 
-var mongoose = require('mongoose');
-var ObjectId = require('mongodb').ObjectId;
-mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
+const   mongoose = require('mongoose'),
+        ObjectId = require('mongodb').ObjectId;
+
 //รูปแบบ schema ของ posts
 let PostSchema = new mongoose.Schema({
-    userid: ObjectId,
+    userid : ObjectId,
     name: String,
     category: String,
     imgurl: String,
     content: String,
     date: Date,
-    comment: String,
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ],
     view: String,
 })
-let conPost = mongoose.model("post",PostSchema);
+module.exports = mongoose.model('Post', PostSchema);

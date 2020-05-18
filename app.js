@@ -12,6 +12,7 @@ var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var methodOverride = require('method-override');
 
+const port = process.env.port || 3000;
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
@@ -22,6 +23,7 @@ var db = mongoose.Connection;
 var indexRouter = require('./routes/index');
 var blogRouter = require('./routes/blogs');
 var adminRouter = require('./routes/admin');
+var userRouter = require('./routes/user');
 
 var app = express();
 app.set('trust proxy', 1) // trust first proxy
@@ -48,6 +50,7 @@ app.use(methodOverride('_method'));
 
 app.get("*",function(req,res,next){
   res.locals.user = req.user || null;
+  res.locals.MomentDate = Date.now();
   next();
 })
 
@@ -67,5 +70,6 @@ app.locals.description = function(text,lenght){
 
 app.use('/', indexRouter);
 app.use('/blogs', blogRouter);
+app.use('/user', userRouter);
 app.use('/admin',adminRouter);
 module.exports = app;

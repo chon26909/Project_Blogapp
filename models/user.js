@@ -13,11 +13,21 @@ var userSchema = mongoose.Schema({
     email: String ,
     password: String ,
     birthdate: Date ,
-    image: String
+    image: String, 
+    facebook: String,
+    line: String,
+    phone: String,
+    post : 
+    [
+      {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'post'
+      }
+  ]
+  
 });
 //export model ไปใช้ router ชื่อ users
 var User = module.exports = mongoose.model('User',userSchema);
-
 
 //หน้า register ก่อนที่บันทึก password ต้อง bcrypt ซะก่อน 
 module.exports.createUser = function(newUser, callback)
@@ -40,6 +50,12 @@ module.exports.getUserByEmail = function(email,callback)
     var query = { email : email };
     User.findOne(query,callback);
 }
+
+// module.exports.resetPassword = function(email, result)
+// {
+//   const result = User.find({email: email});
+// }
+
 module.exports.comparePassword = function(password,hash,callback)
 {
     bcrypt.compare(password,hash,function(err,isMatch){

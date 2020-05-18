@@ -12,7 +12,7 @@ module.exports =
         {
             //กรณีถ้ายังไม่ login จะ redirect ไปหน้าไหนก่อน
             //next() -> เข้าหน้าแรกได้เลย ไม่loginก็ได้
-            res.redirect("/blogs/login");
+            res.redirect("/login");
         }
     }
 };

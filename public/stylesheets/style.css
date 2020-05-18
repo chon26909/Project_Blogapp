@@ -4,6 +4,10 @@
   margin: 0;
   padding: 0;
 }
+html
+{
+  height: 100%;
+}
 h1,h2,h3,h4,h5,h6
 {
   font-family: 'Mitr', sans-serif;
@@ -11,7 +15,15 @@ h1,h2,h3,h4,h5,h6
 }
 body
 {
-  background-color: white;
+  display:flex; 
+  flex-direction:column; 
+  height:100%;
+  background-image: url("https://blog.bangkokair.com/wp-content/uploads/2018/08/%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88.jpg");
+
+  /* background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0,0,0,0.1)), url("https://ภาพวิว.com/wp-content/uploads/2018/09/JPHU-7-1070x535.jpg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 /* navbar */
@@ -19,10 +31,7 @@ header
 {
   padding: 10px 30px;
   background-color: #009ee7;
-}
-nav
-{
-  padding: 1px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
 }
 .navbar-brand
 {
@@ -48,10 +57,31 @@ nav ul li a
   color: white;
 }
 
+
+/* logo website */
+.logo-website
+{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+}
+.logo-website div
+{
+  justify-self: center;
+}
+.logo-website div div
+{
+  background-color: lightgoldenrodyellow;
+  padding: 5px 20px;
+  justify-self: center;
+  height: 100px;
+}
+
+
 .content p
 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 17px;
 }
 .content img
 {
@@ -106,9 +136,9 @@ img
 }
 .box-search input
 {
+  padding: 2px 10px;
 	width: 300px;
-	height: 35px;
-	padding: 2px 10px;
+	height: 30px;
 	font-size: 16px;
 	color: black;
 	border: 2px solid #1E90FF;
@@ -122,15 +152,16 @@ img
 
 footer
 {
-  bottom: 0;
+  margin-top:10px; 
   background-color: dodgerblue;
   width: 100% auto;
+  display: grid;
 }
 .contact
 {
 	display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding: 5px 10px 5px 10px;
+  padding: 15px 0px 5px 15px;
 	height: 140px;
 	color: white
 }
@@ -213,6 +244,27 @@ footer a:hover
   text-align: center;
 }
 
+.profile-section
+{
+  margin: 3px 0;
+  background-color: whitesmoke;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+.profile-section div:nth-child(1)
+{
+  align-self: center;
+  justify-self: center;
+}
+.profile-section div:nth-child(2)
+{
+  padding: 10px 40px 10px 0px;
+  width: 100%;
+  align-self: center;
+  justify-self: start;
+}
+
 .author-img
 {
 	width: 50px;
@@ -259,14 +311,13 @@ footer a:hover
 .sidebar-recommend
 {
   display: grid;
-  grid-template-columns: 100px auto;
+  grid-template-columns: 110px auto;
   margin: 7px 0px 0px 7px;
   justify-self: center;
 }
 .sidebar-recommend:hover
 {
-  opacity: 0.85;
-  box-shadow: 0px 0px 10px #aaaaaa;
+  opacity: 0.7;
 }
 .sidebar-recommend p
 {
@@ -308,6 +359,19 @@ footer a:hover
   cursor: pointer;
   
 }
+
+.img-crop-section1
+{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top ; 
+  border: 1px solid;
+  border-color:white;
+  cursor: pointer;
+}
+
+
 .card:hover
 {
   opacity: 0.85;
@@ -339,7 +403,7 @@ footer a:hover
 }
 .section-content1
 {
-  background-color: rgba(240, 240, 240, 0.616);
+  background-color: rgba(240, 240, 240, 0.8);
   border-radius: 2px;
 }
 
@@ -377,6 +441,66 @@ footer a:hover
   color: black;
 }
 
+
+.about-this-blog
+{
+  margin: 120px 0 0 0;
+  background-color: white;
+  border: 1px solid ;
+  border-style: dashed;
+  border-radius: 3px;
+  padding: 10px;
+}
+.about-this-blog-title
+{
+  background-color: #ffffff;
+  border-left: 6px solid #353535;
+  padding: 2px 0px 1px 17px;
+  font-size: 20px;
+  border-radius: 1px;
+}
+.about-this-blog-title h5
+{
+  color: black;
+  margin: 4px 0;
+}
+.about-this-blog-information
+{
+  margin: 5px 0;
+  padding: 10px;
+}
+.about-this-blog-information p
+{
+  line-height: 0.8em;
+  font-size: 14px;
+}
+
+.comment-item
+{
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px 0;
+  width: 100%;
+  height: auto;
+}
+.comment-box
+{
+  background-color: rgb(238, 238, 238);
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 3px;
+  
+}
+.comment-by p
+{
+  padding: 5px;
+  margin: 1px;
+  align-self: center;
+  justify-self: center;
+}
 
 /* category-side */
 .category
@@ -433,6 +557,61 @@ footer a:hover
   background-color: dodgerblue;
 }
 
+
+/* search items */
+.page-search
+{
+  height: inherit;
+  min-height: 700px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.item-article-search
+{
+  margin: 12px 0px;
+  padding: 1px;
+  border-radius: 3px;
+  background-color: whitesmoke;
+  
+}
+.item-article-search:hover
+{
+  border-style: initial;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.items-search
+{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+  height: 150px;
+}
+.image-search-page
+{
+  height: 150px;
+  padding: 7px;
+  border-radius: 2px;
+}
+.detail-search
+{
+  height: 150px;
+  padding: 14px;
+  font-size: 14px;
+  color: #5f5f5f;
+}
+.image-search-page-crop
+{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center ; 
+  border: 1px solid;
+  border-color:white;
+  cursor: pointer;
+}
+
+
+
 @media (max-width: 700px)
 {
   .img-crop-index
@@ -446,6 +625,10 @@ footer a:hover
   .title-section h3
   {
     font-size: 22px;
+  }
+  h4
+  {
+    font-size: 18px;
   }
   h5
   {
@@ -472,4 +655,298 @@ footer a:hover
   {
     justify-self: center;
   }
+  .items-search
+  {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 100%;
+    height: 100px;
+  }
+  .image-search-page,.detail-search
+  {
+  height: 100px;
+  }
+}
+
+
+
+
+
+/* *
+{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+body
+{
+    background-color: whitesmoke;
+} */
+/* img
+{
+    width: 100%;
+    height: auto;
+} */
+.container
+{
+    max-width: 1200px;
+    width: 100%;
+    padding: 1px;
+    margin: 0 auto;
+}
+.shadow
+{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
+  /* box-shadow: 0px 8px 8px 0px rgb(255, 255, 255); */
+}
+.menu-toggle
+{
+    display: none;
+}
+header
+{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.navbar-top
+{
+    padding:1px 20px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 120px 180px;
+    background-color: #005ae0;
+    color: black;
+    border-bottom: 1px solid;
+    align-items: center;
+}
+.navbar-top .login-button
+{
+    align-self: center;
+    justify-self: end;
+}
+.navbar-top a
+{
+    font-size: 16px;
+    color: black;
+}
+.navbar-top .tool a
+{
+  text-decoration: none;
+  color: white;
+}
+.logo-web
+{
+    height: 135px;
+    background-color: rgba(139, 209, 255, 0.904);
+    color: white;
+    padding: 40px 20px;
+    border-bottom: 1px solid;
+    font-size: 26px;
+}
+.logo-web a
+{
+  text-decoration: none;
+}
+.navbar-category
+{
+    height: 40px;
+    padding: 2px 10px;
+    background-color:#2188f5;
+}
+.navbar-category ul 
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+.navbar-category ul li
+{
+    padding: 5px 0;
+    
+}
+.navbar-category ul li a{
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 2px;
+}
+.navbar-category ul li a:hover
+{
+    background-color: white;
+    color: black;
+    transition: 0.5s ease-in-out;
+}
+
+
+
+
+/* button user */
+
+.button-userlogin
+{
+	align-self: center;
+	justify-self: flex-end;
+	padding-left: 5px;
+	
+}
+.username
+{
+	padding: 4px 8px;
+	background-color: white;
+	border-radius: 3px;
+	font-size: 15px;
+	border: 1px solid gray;
+  align-self: center;
+  cursor: pointer;
+}
+.username a
+{
+  text-decoration: none;
+}
+.submenu-user
+{
+  position: absolute;
+	margin: 5px 0px;
+	list-style-type: none;
+	background-color: white;
+	padding: 0;
+	display: none;
+	border-radius: 3px;
+}
+.submenu-user.active
+{
+	display: block;
+  transition: 1s ease-in-out;
+  float: left;
+}
+.submenu-user li
+{
+	width: 170px;
+	padding: 8px 10px;
+	cursor: pointer;
+	border-radius: 1px;
+	border-bottom: 1px solid hsl(0, 0%, 41%);
+	
+}
+.submenu-user li a
+{
+  padding: 3px 7px;
+  text-decoration: none;
+}
+.submenu-user li:hover
+{
+	background-color: darkgray;
+}
+
+/* ***** */
+
+
+
+.carousel
+{
+    padding: 5px;
+    background-color: white;
+}
+
+
+
+
+@media (max-width: 768px)
+{
+    .menu-toggle
+    {
+        padding: 0px 13px;
+        height: 50px;
+        align-items: center;
+        justify-items: center;
+        display: grid;
+        grid-template-columns: 40px 1fr 40px;
+        font-size: 26px;
+        border-bottom: 1px;
+        background-color: #007bff;
+        color: white;
+    }
+    .menu-toggle .logo-for-moblie
+    {
+        justify-self: center;
+    }
+    .navbar-top, .navbar-category, .logo-web
+    {
+        display: none;
+    }
+    .navbar-top.active
+    {
+        display: block;
+        height: auto;
+    }
+    .navbar-top
+    {
+        text-align: center;
+        background-color: gray;
+    }
+    .navbar-top div 
+    {
+        padding: 12px 0;
+        border-bottom: 1px solid;
+    }
+    .navbar-top div a
+    {
+        font-size: 16px;
+        text-decoration: none;
+        color: white;
+    }
+    .navbar-category.active
+    {
+        background-color: grey;
+        display: block;
+        height: auto;
+        padding: 2px 0;
+    }
+    .navbar-category ul
+    {
+        display: block;
+        
+    }
+    .navbar-category ul li
+    {
+        padding: 10px 2px;
+        text-align: center;
+        border-bottom: 1px whitesmoke;
+    }
+    .username a
+    {
+      color: black;
+    }
+    .page-search
+    {
+      grid-template-columns: 1fr;
+    }
+    .profile-section
+    {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .profile-section div:nth-child(1)
+    {
+      align-self: center;
+      justify-self: center;
+      padding: 10px;
+    }
+    .profile-section div:nth-child(2)
+    {
+      width: 100%;
+      align-self: center;
+      justify-self: center;
+      padding: 10px;
+    }
 }

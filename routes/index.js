@@ -1,18 +1,22 @@
 const express = require('express'),
       router = express.Router(),
-      passport = require('passport');
+      passport = require('passport'),
+      conUser = require('../models/user'),
+      bcrypt = require('bcryptjs'),
+      bodyParser = require('body-parser');
 
 const { check, validationResult } = require('express-validator');
 
 /* GET landing page. */
 router.get("/",function(req, res){
-  res.render("land");
+  res.render("landing");
 });
 
 router.get("/login", function(_req, res)
 {
-  res.render("login");
+  res.render("users/login");
 });
+
 router.post("/login", passport.authenticate('local',{
   failureRedirect:'/login',
   failureFlash:false
@@ -33,14 +37,14 @@ router.get("/logout", function(req, res)
 
 router.get("/register", function(_req, res)
 {
-  res.render("register");
+  res.render("users/register");
 });
 
 router.post("/register",[
   check("username","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
   check("email","กรุณาป้อนอีเมล").isEmail(),
   check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
-  check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty()
+  check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   ] ,function(req, res)
   {
     const result = validationResult(req);
@@ -48,7 +52,7 @@ router.post("/register",[
     if(!result.isEmpty())
     {
       //return to page
-      res.render("register", { errors : errors });
+      res.render("users/register", { errors : errors });
     }
     else
     {
@@ -57,24 +61,67 @@ router.post("/register",[
       let password = req.body.password;
       let password2 = req.body.password2;
 
+      console.log(username);
+      console.log(email);
+
       //ค่าเริ่มต้นในการ register แล้วค่อยไปเพิ่มข้อมูลอื่นๆ ในภายหลัง
-      var newUser = new User
+      const newUser = new conUser
       ({
-        username:username,
-        email:email,
-        password:password,
-        image: "no-imgprofile.png"
+        username : username,
+        email : email,
+        password : password,
+        image: "no-imgprofile.png",
+        facebook: "ไม่มีข้อมูล",
+        line : "ไม่มีข้อมูล",
+        phone : "ไม่มีข้อมูล"
       })
-      User.createUser(newUser,function(err){
+
+      conUser.createUser(newUser,function(err){
         if(err) console.log(err);
         else
         {
-          res.location('/blogs/');
-          res.redirect('/blogs/login');
+          res.redirect('/login');
         }
       });
       
     }
 });
+
+router.get("/reset",function(req, res)
+{
+  res.render("users/resetPassword");
+});
+
+router.post("/resetByEmail",async function(req, res)
+{
+  const email = req.body.email;
+  console.log(email);
+  const result = await conUser.find({email: email});
+  console.log(result[0]._id);
+  res.render("users/changePassword",{user_reset:result[0]});
+});
+
+router.post("/changePassword:userid", function(req, res)
+{
+  const { userid } = req.params;
+  const password = req.body.password1;
+  console.log(password);
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password , salt, function(err, hash) 
+      {
+        console.log(hash);
+        conUser.update({_id : userid},{$set: {password : hash}},function(err,result)
+        {
+          if(err) throw err
+          else
+          {
+            res.redirect("/login");
+          }
+        });
+        
+      })
+  });
+});
+
 
 module.exports = router;
