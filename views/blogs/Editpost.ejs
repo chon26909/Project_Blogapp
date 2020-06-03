@@ -2,17 +2,17 @@
 <%- include("../layout/layoutnavbar") %>
 <% if(locals.user){ %>
 <div class="container p-3 shadow" style="background-color: whitesmoke;">
-    <form method="POST" action="/blogs/edit/<%= post._id %>" class="p-2" enctype="multipart/form-data">
-        <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">แก้ไขบทความ</h3>
+    <form action="/travel/<%= post._id %>/?_method=PUT" method="POST" class="p-2" enctype="multipart/form-data">
+        <h2 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">แก้ไขบทความ</h2>
         <div class="form-group">
             <label for="text">Title :</label>
-            <input type="text" class="form-control" value="<%= post.name %>" placeholder="ชื่อหัวเรื่อง" name="name" required>
+            <input type="text" class="form-control" value="<%= post.title %>" placeholder="ชื่อหัวเรื่อง" name="title" required>
         </div>
         <p>Image title:</p>
         <div class=" mb-3">
-            <input type="file" name="img_title" id="img_preview">
+            <input type="file" name="img_title" id="img_preview" style="width: 100%;">
             <div style=" padding: 10px;">
-                <img src="/images/posts/<%= post.imgurl %>" id="img_show" alt="">
+                <img src="/images/posts/<%= post.image %>" id="img_show" alt="">
             </div>
         </div>
         <div class="form-group">

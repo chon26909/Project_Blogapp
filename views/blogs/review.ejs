@@ -1,49 +1,67 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
 <section>
-    <div class="row container  shadow">
-        <div class="col-lg-8 bg-white pr-3 pt-4">
-            <h2><%= Blogs[0].name %></h2>
-            <div class="mt-3">
-                <img src="/images/img-profile/<%= Blogs[0].postby[0].image %>" alt="" class="author-img mr-2">
+    <div class="row container">
+        <div class="col-lg-8 p-3">
+            <h1><%= post.title %></h1>
+            <div class="author_post">
                 <div>
-                    <p><a href="/blogs/author/<%= Blogs[0].postby[0].username %>"><%= Blogs[0].postby[0].username %> </a><br><i class="fa fa-clock"> <%= moment(Blogs[0].date).format("DD-MM-YYYY HH:mm") %> </i></p>
+                    <img src="/images/img-profile/<%= post.author_by.image %>" alt="" class="author-img mr-2">
+                    <div>
+                        <a href="/blogs/author/<%= post.author_by.username %>" id="AuthorName"><%= description(post.author_by.username,15) %></a><br><span id="dateOfPost"><i class="fa fa-clock"></i>&nbsp;<%= moment(post.date).format("DD-MMMM-YYYY HH:mm") %></span>
+                    </div>
+                </div>
+                <div class="bookmark-post">
+                    <span><i class="far fa-bookmark"></i></span>
+                    <span>บันทึกแล้ว</span>
                 </div>
             </div>
             <article class="mt-3">
-                <img src="/images/posts/<%= Blogs[0].imgurl%>" alt="">
+                <img src="/images/posts/<%= post.image %>" alt="<%= post.image %>" class="shadow">
                 <div class="mt-2 mb-2 pt-2 content">
-                    <%- Blogs[0].content%>
+                    <%- post.content%>
                 </div>
             </article>
-            
+            <hr>
             <div class="comment-box">
-                <h6>ความคิดเห็น <%= commentPost.comments.length %> รายการ</h6>
+                <h5>ความคิดเห็น <%= post.comments.length %> รายการ</h5>
                 <div class="p-1 m-1">
-                    <% commentPost.comments.forEach(function(comment){ %>
+                    <% post.comments.forEach(function(comment){ %>
                         <div class="comment-item">
-                            <figure>
-                                <img src="/images/img-profile/no-imgprofile.png" alt="" class="usercomment-img mr-2">
+                            <figure class="comment-by-img">
+                                <img src="/images/img-profile/<%= comment.comment_by.image %>" alt="" class="usercomment-img mr-2">
                             </figure>
-                            <div class="comment-by">
-                                <p class=""><a href=""><%= comment.comment_by %></a> <%= comment.text %></p>
+                            <div class="comment-by" id="<%= comment._id %>">
+                                <p><a href=""><%= comment.comment_by.username %></a>&nbsp;<span id=""><%= comment.text %></span></p>
+                                <% if(user && comment.comment_by.equals(user._id)){ %> 
+                                <div class="edit-comment">
+                                    
+                                    <span id="editComment" data-id="<%= comment._id %>" data-text="<%= comment.text %>"><i class="fa fa-pencil-alt"></i>&nbsp;แก้ไข</span> 
+                                    <span id="deleteComment" data-id="<%= comment._id %>"><i class="fas fa-trash"></i>&nbsp;ลบ</span>
+                                </div>
+                                <% } %> 
                             </div>
                         </div>
-                        
-                        
                     <% }) %>
 
                     <% if(locals.user){ %>
-                    <form action="/blogs/comment/<%= Blogs[0]._id %>" method="POST">
-                        <textarea name="comment" id="" rows="3" style="width: 100%;" placeholder="แสดงความคิดเห็น"></textarea>
-                        <input type="submit">
-                    </form>
+                        <div class="comment-item">
+                            <figure class="comment-by-img">
+                                <img src="/images/img-profile/<%= user.image %>" alt="" class="usercomment-img mr-2">
+                            </figure>
+                            <form>
+                                <textarea name="comment" class="box-for-comment" data-postIdOfCommment="<%= post._id %>" id="textInputComment" rows="3" placeholder="แสดงความคิดเห็น"></textarea>
+                                <div>
+                                    <button id="btnPostcomment"> โพสต์ </button>
+                                </div>
+                            </form>
+                        </div>
                     <% } %>
                 </div>
             </div>
         </div>
 
-        <aside class="col-lg-4 bg-white">
+        <aside class="col-lg-4">
             <section class="about-this-blog">
                 <div class="about-this-blog-title">
                     <h5><i class="fa fa-info-circle"></i> ข้อมูลสถานที่ท่องเที่ยว</h5>
@@ -56,7 +74,7 @@
                     
                 </div>
                 <div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.622794390887!2d100.90280781482087!3d12.867622490924166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310295905714b48f%3A0x63218b030a8654d8!2z4LiV4Lil4Liy4LiU4LiZ4LmJ4LizIDQg4Lig4Liy4LiELCDguJ7guLHguJfguKLguLI!5e0!3m2!1sth!2sth!4v1589558995558!5m2!1sth!2sth" width="auto"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.622794390887!2d100.90280781482087!3d12.867622490924166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310295905714b48f%3A0x63218b030a8654d8!2z4LiV4Lil4Liy4LiU4LiZ4LmJ4LizIDQg4Lig4Liy4LiELCDguJ7guLHguJfguKLguLI!5e0!3m2!1sth!2sth!4v1589558995558!5m2!1sth!2sth" width="100%" height="250px"  frameborder="1" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 </div>
             </section>
             <section class="mt-3 bg-light p-2">
@@ -76,22 +94,44 @@
                 </div>
                 <% }) %> 
             </section>
-            <section class="bg-light mt-3">
+            <section class="mt-3">
                 <!-- sidebar right-->
-                <div>
-                    <div class="mt-3 p-2 category">
+                <div class="p-2 category">
                     <div class="category-title"> <h5>หมวดหมู่</h5> </div>
-                    <div>
-                        <ul class="category-list">
-                            <% for(var i=0; i<(Category.length); i++) { %>
-                                <li class="category-items"><a href="/blogs/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
-                            <% } %>
-                        </ul>
-                    </div>
+                        <div>
+                            <ul class="category-list">
+                                <% for(var i=0; i<(category.length); i++) { %>
+                                    <li class="category-items"><a href="/blogs/showmore/<%= category[i].name %>"><%= category[i].name %></a></li>
+                                <% } %>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
         </aside>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" role="dialog" id="updatecomment">
+    <div class="modal-dialog modal-md">
+      <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">แก้ไขความคิดเห็น</h4>  
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/travel/comment/<%= post._id %>/?_method=PUT" method="POST">
+                    <input type="hidden" id="IdEditcomment">
+                    <textarea name="EditTextComment" class="box-for-comment" rows="5" data-IdUpdateComment="<%= post._id %>" id="textEditcomment"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" id="btnupdatecomment" data-dismiss="modal">อัพเดต</button>
+                <button class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+  </div>
 <%- include("../layout/footer") %>

@@ -9,13 +9,13 @@
     <div class="row">
         <% for(var i=0; i < (posts.length); i++) { %>
             <article class="col-md-4 col-12 pb-3">
-              <a href="/blogs/review/<%= posts[i]._id %>">
+              <a href="/travel/review/<%= posts[i]._id %>">
                 <div class="card">
-                  <img src="/images/posts/<%= posts[i].imgurl %>" alt="" style="height: 200px;" id="imgpageprofile" class="img-crop" >
+                  <img src="/images/posts/<%= posts[i].image %>" alt="" style="height: 200px;" id="imgpageprofile" class="img-crop" >
                   <div class="p-2">
-                    <h5><%= posts[i].name %></h5>
+                    <h5><%= posts[i].title %></h5>
                     <div class="mt-auto">
-                      <i class="fa fa-eye eye-view"> 0 </i>
+                      <i class="fa fa-eye"> <%= posts[i].views.length %> </i>
                     </div>
                   </div>
                 </div>

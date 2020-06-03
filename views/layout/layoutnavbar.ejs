@@ -1,5 +1,5 @@
 
-<div class="container p-0 shadow">
+<div class="header-navbar p-0 shadow">
     
     <div class="menu-toggle">
         <div class="btn-toggle-category"><i class="fa fa-bars"></i></div>
@@ -8,55 +8,63 @@
     </div>
     
     <nav class="navbar-top">
-        <div style="color: white; font-size: small;">
-            <span><i class="fa fa-calendar-alt"></i>&nbsp;<%= moment(MomentDate).format("DD MMMM YYYY") %></span>         
-        </div>
-        <% if(locals.user){ %>
-        <div class="tool">
-            <a href="/blogs/new"><i class="fa fa-pencil-alt"></i>เขียนบทความ</a>
-        </div>
-        <div class="button-userlogin">
-            <div class="username">
-                <img src="/images/img-profile/<%= user.image %>" alt="" class="img-user-navbar"> <%= description(user.username,10) %></img> <i class="fa fa-sort-down fa-1x" style="padding-bottom: 3px;"></i>
-                <ul class="submenu-user">
-                    <li><a href="/user/me"><i class="fa fa-list-alt"></i> บทความของฉัน</a></li>	
-                    <li><a href=""><i class="fa fa-bookmark"></i> ที่บันทึกไว้</a></li>
-                    <li><a href="/user/edit"><i class="fa fa-user-edit"></i> ตั้งค่าโปรไฟล์</a></li>
-                    <li><a href="/logout"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a></li>
-                </ul>
+        <div class="container">
+            <div style="color: white; font-size: small;">
+                <span><i class="fa fa-calendar-alt"></i>&nbsp;<%= moment(MomentDate).format("DD MMMM YYYY") %></span>         
             </div>
+            <% if(locals.user){ %>
+            <div class="tool">
+                <a href="/travel/new"><i class="fa fa-pencil-alt"></i>เขียนบทความ</a>
+            </div>
+            <div class="button-userlogin">
+                <div class="username">
+                    <img src="/images/img-profile/<%= user.image %>" alt="" class="img-user-navbar"> <%= description(user.username,10) %></img> <i class="fa fa-sort-down fa-1x" style="padding-bottom: 3px;"></i>
+                        <ul class="submenu-user">
+                            <li><a href="/user/me"><i class="fa fa-list-alt"></i> บทความของฉัน</a></li>	
+                            <li><a href=""><i class="fa fa-bookmark"></i> ที่บันทึกไว้</a></li>
+                            <li><a href="/user/edit"><i class="fa fa-user-edit"></i> ตั้งค่าโปรไฟล์</a></li>
+                            <li><a href="/logout"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a></li>
+                        </ul>
+                </div>
+            </div>
+            
+            <% } %>
+            <% if(!locals.user){ %>
+            &nbsp;
+            <div style="justify-self: end;">
+                <a href="/login" style="color: white; text-decoration: none;"><i class="fa fa-user"></i> ลงชื่อเข้าใช้</a>
+            </div>
+            <% } %>
         </div>
-        <% } %>
-        <% if(!locals.user){ %>
-        &nbsp;
-        <div style="justify-self: end;">
-            <a href="/login" style="color: white; text-decoration: none;"><i class="fa fa-user"></i> ลงชื่อเข้าใช้</a>
-        </div>
-        <% } %>
     </nav>
 
         
     <div class="logo-web">
-        <a href="/blogs">
-            <div>
-                <h1><i class="fa fa-route"></i> เที่ยวพาเพลิน</h1>
-            </div> 
-        </a>
-        
+        <div class="container">
+            <a href="/travel">
+                <figure class="logo-web-image">
+                    <img src="/images/logo.png" class="logo-website-img">
+                </figure>
+            </a>
+        </div>
     </div>
+
     <nav class="navbar-category">
-        <ul>
-            <li><a href="/blogs"><i class="fa fa-home"></i> หน้าแรก</a></li>
-            <li><a href=""><i class="fa fa-utensils"></i> ที่กิน</a></li>
-            <li><a href=""><i class="fa fa-umbrella-beach"></i> ที่เที่ยว</a></li>
-            <li><a href=""><i class="fa fa-hotel"></i> ที่พัก</a></li>
-            <li style="justify-items: end;">
-                <div class="box-search">
-                    <form action="/blogs/search" method="GET">
-                        <input type="search" name="keyword" placeholder="ค้นหา">
-                    </form>
-                </div> 
-            </li>
-        </ul>
+        <div class="container">
+            <ul>
+                <li><a href="/travel"><i class="fa fa-home"></i> หน้าแรก</a></li>
+                <li><a href=""><i class="fa fa-utensils"></i> ที่กิน</a></li>
+                <li><a href=""><i class="fa fa-umbrella-beach"></i> ที่เที่ยว</a></li>
+                <li><a href=""><i class="fa fa-hotel"></i> ที่พัก</a></li>
+                <li style="justify-items: end;">
+                    <div class="box-search">
+                        <form action="/travel/search" method="GET">
+                            <input type="search" name="keyword" placeholder="ค้นหา">
+                        </form>
+                    </div> 
+                </li>
+            </ul>
+        </div>
+        
     </nav>
 </div>

@@ -1,11 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var moment = require('moment');
+const express = require('express'),
+      router = express.Router(),
+      bodyParser = require('body-parser'),
+      moment = require('moment'),
+      multer = require('multer'),
+      middleware = require('../middleware'),
+      conUser = require('../models/user'),
+      conPost = require('../models/posts'),
+      conCatelog = require('../models/categories'),
+      comment = require('../models/comment');
 
-router.get("/",function(req,res)
+//connect DB
+const mongoose = require('mongoose');
+const ObjectId = require('mongodb').ObjectId;
+mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
+
+router.get("/",middleware.checkPermissionAdmin,function(req,res)
 {
     res.send("Wellcome Admin");
 });

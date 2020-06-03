@@ -1,21 +1,41 @@
+const   mongoose = require('mongoose');
 
-const   mongoose = require('mongoose'),
-        ObjectId = require('mongodb').ObjectId;
-
-//รูปแบบ schema ของ posts
 let PostSchema = new mongoose.Schema({
-    userid : ObjectId,
-    name: String,
+    author_by:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    title: String,
     category: String,
-    imgurl: String,
+    image: String,
     content: String,
     date: Date,
-    comments: [
+    comments: 
+    [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }
     ],
-    view: String,
+    tags:
+    [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tag'
+        }
+    ],
+    views:
+    [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
+    length_price:
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Cost'
+        }
 })
+
 module.exports = mongoose.model('Post', PostSchema);

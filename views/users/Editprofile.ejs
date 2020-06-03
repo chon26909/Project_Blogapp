@@ -28,17 +28,6 @@
                                 <p>รูปภาพตัวอย่าง</p>
                             </div> 
                         </div>     
-                        <!-- <hr>
-                        <div class="form-group mt-3">
-                            <label for="">Password <i class="fas fa-user-edit" onclick="ClickEnableEditpassword()" style="cursor: pointer;">Edit</i></label>
-                            <div class="mt-2">
-                                <input type="password" class="form-control" name="password" id="edit_password" required>
-                            </div>
-                            <label for="">Comfirm password</label>
-                            <div class="mt-2">
-                                <input type="password" class="form-control" name="password" id="edit_password1" required>
-                            </div>
-                        </div>       -->
                     </div>
                     
                 </div>
@@ -46,19 +35,19 @@
                     <div class="form-group mt-3">
                         <label for="">เบอร์โทร</label>
                         <div class="mt-2">
-                            <input type="text" class="form-control" name="phone" id="" value="<%= user.phone %>">
+                            <input type="text" class="form-control" name="phone" id="" value="<%= user.contact.phone %>">
                         </div>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="">Facebook</label>
+                        <label for="facebook">Facebook (url หน้า profile facebook ของคุณ)</label>
                         <div class="mt-2">
-                            <input type="url" class="form-control" name="facebook" placeholder="url หน้า profile facebook ของคุณ" id="" value="<%= user.facebook %>">
+                            <input type="url" class="form-control" name="facebook" value="<%= user.contact.facebook %>">
                         </div>
                     </div>
                     <div class="form-group mt-3">
                         <label for="">ID Line</label>
                         <div class="mt-2">
-                            <input type="text" class="form-control" name="line" value="<%= user.line %>">
+                            <input type="text" class="form-control" name="line" value="<%= user.contact.line %>">
                         </div>
                     </div>
                 </div>

@@ -30,34 +30,34 @@ var upload_profile = multer({storage : StorageOfimageprofile});
 
 
 router.get("/me",middleware.checkAuthentication, async function(req, res){
-    const { id }  = req.user;
-    const result = await conUser.aggregate(
-    [
-      {
-        //select 
-        $match: 
-        { 
-          _id : ObjectId(id)
-        } 
-      }
-      , 
-      {
-        $lookup:
-        {
-          from: 'posts', //join กับ collection users 
-          localField: '_id', 
-          foreignField: 'userid',
-          as: "post"
-        }
-      }
-    ]
-      );
 
+  const post = await conPost.find({ author_by :req.user});
+  const category = await conCatelog.find();
 
-    const cat = await conCatelog.find();
-
-    
-    res.render("users/profile",{moment: moment, profile : result, Category : cat, moment : moment});
+    // const { id }  = req.user;
+    // const result = await conUser.aggregate(
+    // [
+    //   {
+    //     //select 
+    //     $match: 
+    //     { 
+    //       _id : ObjectId(id)
+    //     } 
+    //   }
+    //   , 
+    //   {
+    //     $lookup:
+    //     {
+    //       from: 'posts', //join กับ collection users 
+    //       localField: '_id', 
+    //       foreignField: 'userid',
+    //       as: "post"
+    //     }
+    //   }
+    // ]
+    //   );
+    console.log(post);
+    res.render("users/profile",{moment: moment, post : post, category : category });
   });
   
   
@@ -69,24 +69,28 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
   });
   
   router.post("/edit", upload_profile.single('imgprofile'), async function(req, res){
-    let userid = req.user;
     let n_name = req.body.username;
     let n_email = req.body.email;
-    let n_facebook = req.body.facebook;
-    let n_line = req.body.line;
-    let n_phone = req.body.phone;
-
-    // console.log(req.file);
+    let n_contact = 
+    {
+        facebook : req.body.facebook,
+        line : req.body.line,
+        phone : req.body.phone,
+    };
+    
+    
 
     if(req.file)
     {
       let n_imageprofile = req.file.filename;
-      await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email, image :n_imageprofile, facebook:n_facebook, line:n_line , phone:n_phone } });
+      let updateDataProfile = { username:n_name, email:n_email, image :n_imageprofile, contact:n_contact } 
+      await conUser.findByIdAndUpdate(req.user,updateDataProfile);
       res.redirect("/user/me");
     }
     else
     {
-      await conUser.updateMany({_id : userid},{$set: { username:n_name, email:n_email ,facebook : n_facebook, line:n_line , phone:n_phone} });
+      let updateDataProfile = { username:n_name, email:n_email, contact:n_contact } 
+      await conUser.findByIdAndUpdate(req.user,updateDataProfile);
       res.redirect("/user/me");
     }
   });

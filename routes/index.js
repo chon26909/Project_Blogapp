@@ -24,14 +24,22 @@ router.post("/login", passport.authenticate('local',{
 function(req, res)
 {
   // สำเร็จ
-  res.redirect('/blogs');
+  if(req.user.permission === "admin")
+  {
+    res.redirect('/admin');
+  }
+  else
+  {
+    res.redirect('/travel');
+  }
+  
 });
 
 router.get("/logout", function(req, res)
 {
   //ทำลาย session ทิ้ง
   req.logout();
-  res.redirect("/blogs");
+  res.redirect("/travel");
 });
 
 
@@ -80,7 +88,7 @@ router.post("/register",[
         if(err) console.log(err);
         else
         {
-          res.redirect('/login');
+          res.redirect('/travel');
         }
       });
       
