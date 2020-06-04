@@ -8,12 +8,12 @@
             <div class="items-search">
                 <figure class="image-search-page">
                     <a href="/blogs/review/<%= item._id %>">
-                        <img src="/images/posts/<%= item.imgurl %>" class="image-search-page-crop" alt="<%= item.imgurl %>"> 
+                        <img src="/images/posts/<%= item.image %>" class="image-search-page-crop" alt="<%= item.image %>"> 
                     </a>
                 </figure>
                 <div class="detail-search">
                     <a href="/blogs/review/<%= item._id %>">
-                        <h4><%= description(item.name,50)%></h4>
+                        <h4><%= description(item.title,50)%></h4>
                     </a>
                     <p class="content"><%- description(item.content,200) %>...</p>
                 </div>

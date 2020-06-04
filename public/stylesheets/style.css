@@ -1,6 +1,6 @@
 *
 {
-  font-family: 'Mitr', sans-serif;
+  font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -10,7 +10,7 @@ html
 }
 h1,h2,h3,h4,h5,h6
 {
-  font-family: 'Mitr', sans-serif;
+  font-family: 'Kanit', sans-serif;
   color: #272727;
 }
 body
@@ -18,7 +18,8 @@ body
   display:flex; 
   flex-direction:column; 
   height:100%;
-  background-image: url("https://blog.bangkokair.com/wp-content/uploads/2018/08/%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88.jpg");
+  background-color: white;
+  /* background-image: url("https://blog.bangkokair.com/wp-content/uploads/2018/08/%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88.jpg"); */
 
   /* background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0,0,0,0.1)), url("https://ภาพวิว.com/wp-content/uploads/2018/09/JPHU-7-1070x535.jpg"); */
   background-repeat: no-repeat;
@@ -30,7 +31,6 @@ body
 header
 {
   padding: 10px 30px;
-  background-color: #009ee7;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
 }
 .navbar-brand
@@ -59,29 +59,27 @@ nav ul li a
 
 
 /* logo website */
-.logo-website
+.logo-web
 {
   width: 100%;
+  height: 180px;
+  background-color: bisque;
+}
+.logo-web-image
+{
   display: grid;
   grid-template-columns: 100%;
 }
-.logo-website div
+.logo-web img
 {
-  justify-self: center;
+  justify-items: center;
+  width: auto;
+  height: 180px;
 }
-.logo-website div div
-{
-  background-color: lightgoldenrodyellow;
-  padding: 5px 20px;
-  justify-self: center;
-  height: 100px;
-}
-
 
 .content p
 {
-  font-family: 'Sarabun', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
 }
 .content img
 {
@@ -243,11 +241,19 @@ footer a:hover
   height: 250px;
   text-align: center;
 }
-
+#AuthorName
+{
+  font-size: 18px;
+}
+#dateOfPost
+{
+  font-size: 14px;
+  color: #aaaaaa;
+}
 .profile-section
 {
   margin: 3px 0;
-  background-color: whitesmoke;
+  background-color: white;
   padding: 10px;
   display: grid;
   grid-template-columns: 35% 65%;
@@ -445,9 +451,7 @@ footer a:hover
 .about-this-blog
 {
   margin: 120px 0 0 0;
-  background-color: white;
-  border: 1px solid ;
-  border-style: dashed;
+  background-color: whitesmoke;
   border-radius: 3px;
   padding: 10px;
 }
@@ -475,37 +479,68 @@ footer a:hover
   font-size: 14px;
 }
 
+
+
+.comment-box
+{
+  background-color:white;
+  border-radius: 5px;
+  margin: 20px 0px;
+  
+}
 .comment-item
 {
   display: grid;
   grid-template-columns: 50px 1fr;
-  background-color: white;
-  border-radius: 10px;
   margin: 10px 0;
+  align-items: center;
   width: 100%;
   height: auto;
+  font-size: 15px;
 }
-.comment-box
+.comment-by-img
 {
-  background-color: rgb(238, 238, 238);
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 3px;
-  
+  align-self: start;
 }
-.comment-by p
+.comment-by
 {
-  padding: 5px;
-  margin: 1px;
-  align-self: center;
-  justify-self: center;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 7px;
+  border: 1px rgb(136, 136, 136) solid;
 }
+
+.edit-comment
+{
+  text-align: right;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+#editComment:hover
+{
+  cursor: pointer;
+  color: #353535;
+}
+#deleteComment:hover
+{
+  cursor: pointer;
+  color: #353535;
+}
+
+.box-for-comment
+{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  padding: 7px;
+  border: 1px rgb(136, 136, 136) solid;
+}
+
 
 /* category-side */
 .category
 {
-  background-color: blanchedalmond;
+  background-color: whitesmoke;
   border-radius: 5px;
   margin-top: 20px;
   padding: 12px;
@@ -612,6 +647,49 @@ footer a:hover
 
 
 
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+/* autocompleteTAG */
+.autocomplete {
+  position: relative;
+}
+.autocomplete-items
+{
+  position: inherit;
+  margin: 15px 0;
+}
+.autocomplete-items span {
+  padding: 7px 5px;
+  display: inline-block;
+  margin: 3px 2px;
+  border: 1px solid #aaaaaa;
+  border-radius: 10%;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items span:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
 @media (max-width: 700px)
 {
   .img-crop-index
@@ -698,29 +776,31 @@ body
 }
 .shadow
 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0); */
   /* box-shadow: 0px 8px 8px 0px rgb(255, 255, 255); */
+  box-shadow: 1px 1px 5px #aaaaaa;
 }
 .menu-toggle
 {
     display: none;
 }
-header
+
+.header-navbar
 {
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
-    display: grid;
-    grid-template-columns: 1fr;
+  margin-bottom: 30px;
 }
 .navbar-top
+{
+    background-color: rgb(0, 85, 243);
+    /* background-color: #272727; */
+}
+.navbar-top .container
 {
     padding:1px 20px;
     height: 50px;
     display: grid;
     grid-template-columns: 1fr 120px 180px;
-    background-color: #005ae0;
     color: black;
-    border-bottom: 1px solid;
     align-items: center;
 }
 .navbar-top .login-button
@@ -738,24 +818,11 @@ header
   text-decoration: none;
   color: white;
 }
-.logo-web
-{
-    height: 135px;
-    background-color: rgba(139, 209, 255, 0.904);
-    color: white;
-    padding: 40px 20px;
-    border-bottom: 1px solid;
-    font-size: 26px;
-}
-.logo-web a
-{
-  text-decoration: none;
-}
 .navbar-category
 {
     height: 40px;
     padding: 2px 10px;
-    background-color:#2188f5;
+    background-color:#248eff;
 }
 .navbar-category ul 
 {
@@ -793,7 +860,7 @@ header
 .button-userlogin
 {
 	align-self: center;
-	justify-self: flex-end;
+	justify-self: end;
 	padding-left: 5px;
 	
 }
@@ -848,7 +915,26 @@ header
 
 /* ***** */
 
-
+.author_post
+{
+  margin: 10px 0 0 0;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+.bookmark-post
+{
+  justify-content: center;
+  color: #aaaaaa;
+  cursor: pointer;
+}
+.bookmark-post span:nth-child(1)
+{
+  font-size: 32px;
+}
+.bookmark-post span:nth-child(2)
+{
+  font-size: 16px;
+}
 
 .carousel
 {
@@ -858,9 +944,12 @@ header
 
 
 
-
 @media (max-width: 768px)
 {
+    h1
+    {
+      font-size: 26px;
+    }
     .menu-toggle
     {
         padding: 0px 13px;
@@ -882,6 +971,7 @@ header
     {
         display: none;
     }
+
     .navbar-top.active
     {
         display: block;
@@ -891,6 +981,7 @@ header
     {
         text-align: center;
         background-color: gray;
+        width: 100%;
     }
     .navbar-top div 
     {
@@ -903,6 +994,31 @@ header
         text-decoration: none;
         color: white;
     }
+    .username
+    {
+      width: 100%;
+      height: auto;
+
+    }
+    .username a, .username ul li a
+    {
+      color: black;
+    }
+    .submenu-user 
+    {
+      width: 100%;
+      position: static;
+      border: 1px grey;
+    }
+    .submenu-user li
+    {
+      padding: 10px;
+      width: 100%;
+    }
+
+
+
+
     .navbar-category.active
     {
         background-color: grey;
@@ -912,8 +1028,8 @@ header
     }
     .navbar-category ul
     {
+        width: 100%;
         display: block;
-        
     }
     .navbar-category ul li
     {
@@ -921,10 +1037,10 @@ header
         text-align: center;
         border-bottom: 1px whitesmoke;
     }
-    .username a
-    {
-      color: black;
-    }
+    
+
+    
+
     .page-search
     {
       grid-template-columns: 1fr;

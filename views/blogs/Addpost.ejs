@@ -1,18 +1,18 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
-<% if(locals.user){ %>
+
 <div class="container p-3 shadow" style="background-color: whitesmoke;">
-    <form method="POST" action="/blogs/new" class="p-2" enctype="multipart/form-data">
+    <form method="POST" action="/travel" class="p-2" enctype="multipart/form-data">
         <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">สร้างบทความ</h3>
         <div class="form-group">
               <label for="text">หัวเรื่อง :</label>
-              <input type="text" class="form-control" name="name" required>
+              <input type="text" class="form-control" name="title" required>
         </div>
         <p>ภาพหน้าปก :</p>
         <div class=" mb-3" >
-            <input type="file" name="img_title" id="img_preview" class="form-control-file">
+            <input type="file" name="img_title" id="img_preview" class="form-control-file" required>
             <div style=" padding: 10px;">
-                <img src="" id="img_show" alt="">
+                <img src="" id="img_show" alt="" style="width: 500px; height: auto;">
             </div>
         </div>
         <div class="form-group">
@@ -22,7 +22,11 @@
                     <option name="<%= catelog.name %>"><%=catelog.name %></option>
                 <% }); %>
             </select>
-          </div>
+        </div>
+        <div class="form-group">
+            <label for="text">แท็ก :</label>
+            <input type="text" class="form-control autocomplete" name="tag" id="tags" required>
+        </div>
         <div class="form-group">
             <label for="text">เนื้อหา :</label>
             <textarea name="editor"></textarea>
@@ -57,8 +61,5 @@
     </script>
     
 </div>
-<% } %> 
-<% if(!locals.user){ %>
-    <div class="text-center p-5"><h2>Please Login!</h2></div>
-<% } %> 
+
 <%- include("../layout/footer") %>  
