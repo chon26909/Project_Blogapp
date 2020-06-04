@@ -52,7 +52,7 @@ router.get('/', async function(req, res,) {
     res.render("blogs/index",{ moment: moment, section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat });
 });
 
-router.get("/new",middleware.checkAuthentication,async function(req, res)
+router.get("/new",async function(req, res)
 {
   const cat = await conCatelog.find();
   res.render("blogs/Addpost",{ moment: moment, categories : cat });

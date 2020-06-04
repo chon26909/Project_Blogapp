@@ -645,6 +645,51 @@ footer a:hover
   cursor: pointer;
 }
 
+
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+/* autocompleteTAG */
+.autocomplete {
+  position: relative;
+}
+.autocomplete-items
+{
+  position: inherit;
+  margin: 15px 0;
+}
+.autocomplete-items span {
+  padding: 7px 5px;
+  display: inline-block;
+  margin: 3px 2px;
+  border: 1px solid #aaaaaa;
+  border-radius: 10%;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items span:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
 @media (max-width: 700px)
 {
   .img-crop-index
