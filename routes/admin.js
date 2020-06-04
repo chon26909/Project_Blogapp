@@ -19,5 +19,10 @@ router.get("/",middleware.checkPermissionAdmin,function(req,res)
     res.send("Wellcome Admin");
 });
 
+router.get("/me",function(req, res)
+{
+    res.send("Hello You are Admin")
+})
+
 
 module.exports = router;
