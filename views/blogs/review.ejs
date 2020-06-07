@@ -8,7 +8,7 @@
                 <div>
                     <img src="/images/img-profile/<%= post.author_by.image %>" alt="" class="author-img mr-2">
                     <div>
-                        <a href="/blogs/author/<%= post.author_by.username %>" id="AuthorName"><%= description(post.author_by.username,15) %></a><br><span id="dateOfPost"><i class="fa fa-clock"></i>&nbsp;<%= moment(post.date).format("DD-MMMM-YYYY HH:mm") %></span>
+                        <a href="/travel/author/<%= post.author_by.username %>" id="AuthorName"><%= description(post.author_by.username,15) %></a><br><span id="dateOfPost"><i class="fa fa-clock"></i>&nbsp;<%= moment(post.date).format("DD-MMMM-YYYY HH:mm") %></span>
                     </div>
                 </div>
                 <% if(locals.user) {%> 
@@ -42,7 +42,7 @@
                                 <img src="/images/img-profile/<%= comment.comment_by.image %>" alt="" class="usercomment-img mr-2">
                             </figure>
                             <div class="comment-by" id="<%= comment._id %>">
-                                <p><a href=""><%= comment.comment_by.username %></a>&nbsp;<span id=""><%= comment.text %></span></p>
+                                <p><a href="/travel/author/<%= comment.comment_by.username %>"><%= comment.comment_by.username %></a>&nbsp;<span id=""><%= comment.text %></span></p>
                                 <% if(user && comment.comment_by.equals(user._id)){ %> 
                                 <div class="edit-comment">
                                     
@@ -92,28 +92,25 @@
                     <h5>แนะนำ</h5>
                 </div>
                 <% recommend.forEach(function(rec){ %>       
-                <div class="sidebar-recommend">
-                    <a href="/blogs/review/<%= rec._id %>">
-                        <img src="/images/posts/<%= rec.imgurl %>" alt="<%= rec.imgurl %>" class="image-sidebar-recommend">
+                <div class="sidebar-recommend mb-2">
+                    <a href="/travel/review/<%= rec._id %>">
+                        <img src="/images/posts/<%= rec.image %>" alt="<%= rec.imgurl %>" class="image-sidebar-recommend">
                     </a>
-                    <a href="">
+                    <a href="/travel/review/<%= rec._id %>">
                         <div class="p-1">
-                            <p><%= rec.name %></p> 
+                            <p><%= rec.title %></p> 
                         </div>
                     </a>
                 </div>
                 <% }) %> 
             </section>
             <section class="mt-3">
-                <!-- sidebar right-->
                 <div class="p-2 category">
                     <div class="category-title"> <h5>หมวดหมู่</h5> </div>
-                        <div>
-                            <ul class="category-list">
+                        <div class="mt-2">
                                 <% for(var i=0; i<(category.length); i++) { %>
-                                    <li class="category-items"><a href="/blogs/showmore/<%= category[i].name %>"><%= category[i].name %></a></li>
+                                    <span class="category-items fa fa-tags"><a href="/travel/showmore/<%= category[i].name %>"><%= category[i].name %></a></span>
                                 <% } %>
-                            </ul>
                         </div>
                     </div>
                 </div>

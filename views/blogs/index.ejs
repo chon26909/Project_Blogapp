@@ -14,7 +14,7 @@
       <!-- The slideshow -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <a href="http://localhost:3000/blogs/review/5eabdf83f7832e9b1c42efb4">
+          <a href="">
             <img src="/images/slideshow/slide1.jpg" alt="" height="300" width="auto">
           </a>
         </div>
@@ -43,30 +43,30 @@
   <section>
     <div class="container">
       <div class="row m-0">
-        <div class="col-xl-9 col-lg-8 col-md-8 p-0">
+        <div class="col-xl-8 col-lg-8 col-md-8 p-0">
           <!-- content section 1-->
           <section class="section-content1 shadow">
             <div class=" blog-group-contect mt-3 p-md-3 ">
               <div class="title-section p-2">
                 <h3>
                   <i class="far fa-newspaper"></i>
-                  <a href="/blogs/showmore/<%= section1[0].category %>">
+                  <a href="/travel/showmore/<%= section1[0].category %>">
                     สงกรานต์นี้เที่ยวไหนดี&nbsp;<i class="fas fa-angle-right"></i>
                   </a>
                 </h3>
               </div>
               <hr>
               <div class="row m-0">
-                <% for(let i=0; i < section1[i].length ; i++) { %> 
+                <% for(let i=0; i < section1.length ; i++) { %> 
                   <article class="col-xl-6 col-lg-6 col-md-6 col-6 p-1 p-lg-2">
-                    <a href="/blogs/review/<%= section1[i]._id %>">
+                    <a href="/travel/review/<%= section1[i]._id %>">
                       <div class="card">
-                        <img src="/images/posts/<%= section1[i].imgurl %>" alt="" class="img-crop-section1">
+                        <img src="/images/posts/<%= section1[i].image %>" alt="" class="img-crop-section1">
                         <div class="desc-card">
-                          <h5><%= section1[i].name %></h5>
+                          <h5><%= section1[i].title %></h5>
                           <div class="mt-auto">
-                            <span>
-                              <i class="fas fa-eye eye-view"> 0</i>
+                            <span class="viewOfPost">
+                              <i class="fa fa-eye"> <%= section1[i].views.length  %></i>
                             </span>
                           </div>
                         </div>
@@ -80,18 +80,17 @@
         </div>
         
         <!-- sidebar right-->
-        <aside class="col-xl-3 col-lg-4 col-md-4">
-          <div class="category">
-            <div class="category-title">หมวดหมู่</div>
-            <div>
-                <ul class="category-list">
-                    <% for(var i=0; i<(Category.length); i++) { %>
-                        <li class="category-items"><a href="/travel/showmore/<%= Category[i].name %>"><%= Category[i].name %></a></li>
-                    <% } %>
-                </ul>
-            </div>
+        <section class="col-xl-4 col-lg-4 col-md-4 mt-3">
+          <div class="p-2 category">
+              <div class="category-title"> <h5>หมวดหมู่</h5> </div>
+                  <div class="mt-2">
+                          <% for(var i=0; i<(category.length); i++) { %>
+                              <span class="category-items fa fa-tags"><a href="/travel/showmore/<%= category[i].name %>"><%= category[i].name %></a></span>
+                          <% } %>
+                  </div>
+              </div>
           </div>
-        </aside>
+      </section>
       </div>
     </div>
   </section>

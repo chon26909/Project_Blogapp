@@ -7,12 +7,12 @@
         <article class="item-article-search">
             <div class="items-search">
                 <figure class="image-search-page">
-                    <a href="/blogs/review/<%= item._id %>">
+                    <a href="/travel/review/<%= item._id %>">
                         <img src="/images/posts/<%= item.image %>" class="image-search-page-crop" alt="<%= item.image %>"> 
                     </a>
                 </figure>
                 <div class="detail-search">
-                    <a href="/blogs/review/<%= item._id %>">
+                    <a href="/travel/review/<%= item._id %>">
                         <h4><%= description(item.title,50)%></h4>
                     </a>
                     <p class="content"><%- description(item.content,200) %>...</p>
@@ -25,4 +25,3 @@
 
     </aside>
 </div>
-<%- include("../layout/footer") %>

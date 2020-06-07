@@ -1,6 +1,6 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>  
-<div class="container p-4 bg-white" style="height: 100%;">
+<div class="container p-4 bg-white" style="min-height: 1500px;">
     <% if(posts.length > 0) {%> 
     <div class="mt-3 mb-3">
         <h3>บทความ : <%= posts[0].category %></h3>
@@ -14,7 +14,7 @@
                   <img src="/images/posts/<%= posts[i].image %>" alt="" style="height: 200px;" id="imgpageprofile" class="img-crop" >
                   <div class="p-2">
                     <h5><%= posts[i].title %></h5>
-                    <div class="mt-auto">
+                    <div class="mt-auto viewOfPost">
                       <i class="fa fa-eye"> <%= posts[i].views.length %> </i>
                     </div>
                   </div>
@@ -29,5 +29,5 @@
         <h2>ยังไม่มีบทความ</h2>
       </div>
     <% } %> 
-  </div>
+</div>
 <%- include("../layout/footer") %>  

@@ -50,7 +50,7 @@ router.get('/', async function(req, res,) {
     
     const cat = await conCatelog.find();
 
-    res.render("blogs/index",{ moment: moment, section1 : songkran_post, Marketfloat : marketfloat_post, Category : cat });
+    res.render("blogs/index",{ moment: moment, section1 : songkran_post, Marketfloat : marketfloat_post, category : cat });
 });
 
 router.get("/new",async function(req, res)
@@ -375,7 +375,7 @@ router.delete("/comment/:commentid",async function(req,res)
 router.get("/search",async function(req, res)
 {
   let key = req.query.keyword;
-  const result = await conPost.find({content:{ $regex: key }});
+  const result = await conPost.find({title:{ $regex: key }});
   res.render("blogs/search",{moment: moment, ItemSearch : result, key : key});
 });
 
