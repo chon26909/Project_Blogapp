@@ -232,6 +232,7 @@ router.post("/favorite/:postid",function(req, res)
 {
   conPost.findById(req.params.postid,function(err,post)
   {
+    let thisfav = false;
     if(err)
     {
       return res.send(err);
@@ -246,16 +247,80 @@ router.post("/favorite/:postid",function(req, res)
         }
         else
         {
-          thisUser.favourite.push(post._id);
-          thisUser.save()
-          return res.send(post);
+          // loop favouritePost in user ดูว่าเคย เพิ่มรายการนี้ไปแล้วหรือยัง
+          for(let i=0; i < thisUser.favourite.length ;i++)
+          {
+            if(thisUser.favourite[i].equals(post._id))
+            {
+              console.log("User favourited is " + thisUser.favourite[i]);
+              thisfav = true;
+              break;
+            }
+            else
+            {
+              continue;
+            }
+          };
+
+          if(thisfav == false)
+          {
+            thisUser.favourite.push(post._id);
+            thisUser.save()
+            return res.send(post);
+          }
+          
         }
       })
     }
   })
-  
-})
+});
 
+router.delete("/favorite/:postid",function(req, res)
+{
+  conPost.findById(req.params.postid,function(err,post)
+  {
+    let thisfav = false;
+    if(err)
+    {
+      return res.send(err);
+    }
+    else
+    {
+      conUser.findById(req.user._id,function(err,thisUser)
+      {
+        if(err)
+        {
+          return res.send(err);
+        }
+        else
+        {
+          // loop favouritePost in user ดูว่าเคย เพิ่มรายการนี้ไปแล้วหรือยัง
+          // for(let i=0; i < thisUser.favourite.length ;i++)
+          // {
+          //   if(thisUser.favourite[i].equals(post._id))
+          //   {
+          //     console.log("User favourited is " + thisUser.favourite[i]);
+          //     thisfav = true;
+          //     break;
+          //   }
+          //   else
+          //   {
+          //     continue;
+          //   }
+          // };
+
+          // if(thisfav == false)
+          // {
+            thisUser.favourite.pull(post._id);
+            thisUser.save()
+            return res.send(post);
+          // }
+          
+        }
+      })
+    }
+  })
+})
 
 router.get("/showmore/:name", async function(req, res){
 

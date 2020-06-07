@@ -1,13 +1,13 @@
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function clicktoDropdownUser() {
+  document.getElementById("submenuUser").classList.toggle("show");
 }
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
+  if (!event.target.matches('.dropbtn-user')) {
+    var dropdowns = document.getElementsByClassName("dropdown-itemOfUSer");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
@@ -176,14 +176,13 @@ $(document).ready(function insertFavouritePost()
             success: function(post)
             {
               Swal.fire({
-                position: 'center',
                 icon: 'success',
                 title: 'เพิ่มในรายการโปรดแล้ว',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1000
               })
-              // console.log($('#favourite_seved').html());
-              // $('#favourite').change($('#favourite_seved'));
+              setTimeout(location.reload.bind(location), 900);
+              
               
             },
             error: function(err){
@@ -198,6 +197,37 @@ $(document).ready(function insertFavouritePost()
     })
 })
 
+$(document).ready(function deleteFavouritePost()
+{
+    $(document).on('click', '#favourite_seved', function()
+    {
+        const favpostid = $('#favourite_seved').attr('data-favouritepost');
+        console.log(favpostid);
+        $.ajax({
+            url: "/travel/favorite/" + favpostid,
+            method: "delete",
+            success: function(post)
+            {
+              Swal.fire({
+                icon: 'success',
+                title: 'ลบออกจากรายการโปรดแล้ว',
+                showConfirmButton: false,
+                timer: 1000
+              })
+              setTimeout(location.reload.bind(location), 900);
+              
+            },
+            error: function(err){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'เกิดข้อผิดพลาด...',
+                    text: 'ไม่สามารถนำออกจากรายการโปรดได้!',
+                    showConfirmButton: true,
+                })
+            }
+        })
+    })
+})
 
 
 
