@@ -16,7 +16,7 @@ mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryW
 
 router.get("/",middleware.checkPermissionAdmin,function(req,res)
 {
-    res.render("adminpanel");
+    res.render("admin/adminpanel");
 });
 
 router.get("/me",function(req, res)
@@ -27,7 +27,7 @@ router.get("/me",function(req, res)
 
 router.get("/adminpanel",function(req,res)
 {
-    res.render("adminpanel");
+    res.render("admin/adminpanel");
 });
 router.get("/adminpost",function(req,res)
 {

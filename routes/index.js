@@ -23,15 +23,17 @@ router.post("/login", passport.authenticate('local',{
 }),
 function(req, res)
 {
-  // สำเร็จ
-  /*if(req.user.permission === "admin")
+  // login สำเร็จ
+
+  // ถ้าเป็น admin
+  if(req.user.permission === "admin")
   {
     res.redirect('/admin');
   }
   else
-  {*/
+  {
     res.redirect('/travel');
-  /*}*/
+  }
   
 });
 
