@@ -375,7 +375,7 @@ router.delete("/comment/:commentid",async function(req,res)
 router.get("/search",async function(req, res)
 {
   let key = req.query.keyword;
-  const result = await conPost.find({title:{ $regex: key }});
+  const result = await conPost.find({content:{ $regex: key }});
   res.render("blogs/search",{moment: moment, ItemSearch : result, key : key});
 });
 

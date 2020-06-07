@@ -60,7 +60,13 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
     res.render("users/profile",{moment: moment, post : post, category : category });
   });
   
-  
+router.get("/saved",middleware.checkAuthentication,async function(req,res)
+{
+  const savedpost = await conUser.findById(req.user._id).populate({path:'favourite',model: 'Post'});
+  console.log(savedpost.favourite.length);
+  res.render("users/favourite",{ moment: moment, favouritePosts : savedpost});
+})
+
   router.get("/mygallery", async function(req, res)
   {
     const { userid } = req.user;
