@@ -32,7 +32,14 @@ var userSchema = mongoose.Schema({
       line: String,
       phone: String
     },
-    permission: String
+    permission: String,
+    favourite:
+    [   
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Post'
+        }   
+    ]
   
 });
 //export model ไปใช้ router ชื่อ users

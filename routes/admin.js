@@ -19,6 +19,10 @@ router.get("/",middleware.checkPermissionAdmin,function(req,res)
     res.render("adminpanel");
 });
 
+router.get("/me",function(req, res)
+{
+    res.send("Hello You are Admin")
+})
 
 
 router.get("/adminpanel",function(req,res)

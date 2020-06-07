@@ -11,10 +11,20 @@
                         <a href="/blogs/author/<%= post.author_by.username %>" id="AuthorName"><%= description(post.author_by.username,15) %></a><br><span id="dateOfPost"><i class="fa fa-clock"></i>&nbsp;<%= moment(post.date).format("DD-MMMM-YYYY HH:mm") %></span>
                     </div>
                 </div>
-                <div class="bookmark-post">
-                    <span><i class="far fa-bookmark"></i></span>
-                    <span>บันทึกแล้ว</span>
-                </div>
+                <% if(locals.user) {%> 
+                    <% if(favouriteThisPost == false){ %> 
+                        <div class="bookmark-post d-flex align-items-center justify-content-end" id="favourite" data-favouritepost="<%= post._id %>">
+                            <span><i class="far fa-bookmark"></i></span>&nbsp;&nbsp;
+                            <span>เพิ่มในรายการโปรด</span>
+                        </div>
+                    <% } %> 
+                    <% if(favouriteThisPost == true){ %> 
+                        <div class="bookmark-post-saved d-flex align-items-center justify-content-end" id="favourite_seved" data-favouritepost="<%= post._id %>">
+                            <span><i class="fas fa-bookmark"></i></span>&nbsp;&nbsp;
+                            <span>บันทึกแล้ว</span>
+                        </div>
+                    <% } %> 
+                <% } %> 
             </div>
             <article class="mt-3">
                 <img src="/images/posts/<%= post.image %>" alt="<%= post.image %>" class="shadow">

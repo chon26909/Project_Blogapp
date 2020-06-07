@@ -16,15 +16,15 @@
             <div class="tool">
                 <a href="/travel/new"><i class="fa fa-pencil-alt"></i>เขียนบทความ</a>
             </div>
-            <div class="button-userlogin">
-                <div class="username">
+            <div class="dropdown">
+                <div onclick="myFunction()" class="dropbtn">
                     <img src="/images/img-profile/<%= user.image %>" alt="" class="img-user-navbar"> <%= description(user.username,10) %></img> <i class="fa fa-sort-down fa-1x" style="padding-bottom: 3px;"></i>
-                        <ul class="submenu-user">
-                            <li><a href="/user/me"><i class="fa fa-list-alt"></i> บทความของฉัน</a></li>	
-                            <li><a href=""><i class="fa fa-bookmark"></i> ที่บันทึกไว้</a></li>
-                            <li><a href="/user/edit"><i class="fa fa-user-edit"></i> ตั้งค่าโปรไฟล์</a></li>
-                            <li><a href="/logout"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a></li>
-                        </ul>
+                </div>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/user/me"><i class="fa fa-list-alt"></i> บทความของฉัน</a>
+                    <a href=""><i class="fa fa-bookmark"></i> ที่บันทึกไว้</a>
+                    <a href="/user/edit"><i class="fa fa-user-edit"></i>  ตั้งค่าโปรไฟล์</a>
+                    <a href="/logout"><i class="fa fa-sign-out-alt"></i>  ออกจากระบบ</a>
                 </div>
             </div>
             

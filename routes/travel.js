@@ -9,6 +9,7 @@ const express = require('express'),
       conUser = require('../models/user'),
       conPost = require('../models/posts'),
       conCatelog = require('../models/categories'),
+      conTag = require('../models/tag'),
       comment = require('../models/comment');
 
 //connect DB
@@ -55,7 +56,24 @@ router.get('/', async function(req, res,) {
 router.get("/new",async function(req, res)
 {
   const cat = await conCatelog.find();
-  res.render("blogs/Addpost",{ moment: moment, categories : cat });
+  const tags = await conTag.find();
+  
+  const Arraytag = [];
+  tags.forEach(function(tag)
+  {
+    Arraytag.push(tag.name);
+  });
+
+  console.log(tags);
+  console.log(Arraytag);
+
+  res.render("blogs/Addpost",{ moment: moment, categories : cat, Arraytag: Arraytag});
+})
+
+
+router.get("/tag",async function(req,res)
+{
+  await conTag.create({name: "ตลาดจตุจักร"});
 })
 
 router.post("/", upload_imgpost.single('img_title') ,function(req, res){
@@ -66,15 +84,16 @@ router.post("/", upload_imgpost.single('img_title') ,function(req, res){
   const image = req.file.filename;
   const content = req.body.editor;
   const date = new Date();
+  const Arraytag = req.body.tag.split(" ");
+  console.log(Arraytag);
 
-  const newPost = { title:title, author_by:author_by, category:category, image:image, content:content, date:date }
+  const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, date:date }
 
   conPost.create(newPost,function(err, post)
     {
       if(err) console.log(err)
       else
       {
-        
         res.redirect("/travel/review/" + post._id);
       }
       
@@ -91,6 +110,9 @@ router.get("/review/:postid",async function(req, res)
     const category = await conCatelog.find();
     const recommend = await conPost.find().limit(5);
 
+    // ตรวจสอบว่า ผู้ใช้คนนี้ บันทึกบทความนี้ไว้หรือไม่ boolean
+    let favouriteThisPost = false;
+
     if(req.user)
     {
       // await conPost.find({view:[req.user._id]})
@@ -106,10 +128,27 @@ router.get("/review/:postid",async function(req, res)
           ViewcurrentPost.save();
         }
       })
+      
+      // loop favouritePost in user 
+      console.log(req.user.favourite.length);
+      for(let i=0; i < req.user.favourite.length ;i++)
+      {
+        if(req.user.favourite[i].equals(post._id))
+        {
+          console.log("User favourite this postid = " + req.user.favourite[i]);
+          favouriteThisPost = true;
+          break;
+        }
+        else
+        {
+          continue;
+        }
+      };
     }
     
-
-    res.render("blogs/review",{ moment:moment, post:post, recommend:recommend, category:category})
+    console.log(favouriteThisPost);
+    
+    res.render("blogs/review",{ moment:moment, post:post, recommend:recommend, category:category, favouriteThisPost:favouriteThisPost})
 });
 
 router.get("/:id/edit", middleware.checkAuthor, async function(req, res){
@@ -188,6 +227,34 @@ router.delete("/:postid",async function(req, res){
   res.redirect("/user/me");
 });
 
+
+router.post("/favorite/:postid",function(req, res)
+{
+  conPost.findById(req.params.postid,function(err,post)
+  {
+    if(err)
+    {
+      return res.send(err);
+    }
+    else
+    {
+      conUser.findById(req.user._id,function(err,thisUser)
+      {
+        if(err)
+        {
+          return res.send(err);
+        }
+        else
+        {
+          thisUser.favourite.push(post._id);
+          thisUser.save()
+          return res.send(post);
+        }
+      })
+    }
+  })
+  
+})
 
 
 router.get("/showmore/:name", async function(req, res){
