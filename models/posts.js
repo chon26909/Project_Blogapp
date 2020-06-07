@@ -17,13 +17,7 @@ let PostSchema = new mongoose.Schema({
             ref: 'Comment'
         }
     ],
-    tags:
-    [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Tag'
-        }
-    ],
+    tags:[],
     views:
     [
         {
@@ -36,6 +30,7 @@ let PostSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Cost'
         }
+    
 })
 
 module.exports = mongoose.model('Post', PostSchema);

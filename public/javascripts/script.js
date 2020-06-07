@@ -1,3 +1,24 @@
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
 $(document).ready(function()
 {
 	$('.btn-toggle-user').click(function()
@@ -47,7 +68,8 @@ $(document).ready(function insertcomment()
             url: "/travel/comment/" + postid,
             method: "POST",
             data : {text:textcomment},
-            success: function(comment){
+            success: function(comment)
+            {
                 location.reload()
             },
             error: function(err){
@@ -142,6 +164,43 @@ $(document).ready(function deletecomment()
 
 
 
+$(document).ready(function insertFavouritePost()
+{
+    $(document).on('click', '#favourite', function()
+    {
+        const postid = $('#favourite').attr('data-favouritepost');
+        console.log(postid);
+        $.ajax({
+            url: "/travel/favorite/" + postid,
+            method: "POST",
+            success: function(post)
+            {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'เพิ่มในรายการโปรดแล้ว',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              // console.log($('#favourite_seved').html());
+              // $('#favourite').change($('#favourite_seved'));
+              
+            },
+            error: function(err){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'เกิดข้อผิดพลาด ไม่สามารถบันทึกได้!',
+                    showConfirmButton: true,
+                })
+            }
+        })
+    })
+})
+
+
+
+
 // Auto Complete #Tag in page addpost
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -161,7 +220,9 @@ function autocomplete(inp, arr) {
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
-      for (i = 0; i < arr.length; i++) {
+
+      for (i = 0; i < arr.length; i++) 
+      {
         /*check if the item starts with the same letters as the text field value:*/
         if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
@@ -240,7 +301,17 @@ function autocomplete(inp, arr) {
   });
 }
 
-const tags = ["ทะเล","ชายหาดบางแสน","ชายหาดพัทยา","ชายหาดหัวหิน","หาดนางรำ1","หาดนางรำ2","หาดนางรำ3","หาดนางรำ4","หาดนางรำ5","หาดนางรำ6",
-"หาดนา321งรำ","หาดนางรำ32","หาดนางรำ32","หาดนางรำ32","หาดนาง32รำ","หาด23นางรำ","หา23ดนางรำ","หาดนา23งรำ","หาดน1างรำ","หา13ดนางรำ","หา43ดนางรำ","หาดน111างรำ",];
 
-autocomplete(document.getElementById("tags"), tags);
+const tags = $("#tags").attr('data-tags');
+if(tags)
+{
+  const arrayOfTag = tags.split(',');
+  console.log(tags)
+  console.log(arrayOfTag)
+  autocomplete(document.getElementById("tags"), arrayOfTag);
+}
+
+
+
+
+
