@@ -1,12 +1,25 @@
+/*var express = require('express');
+
+var LocalStrategy = require('passport-local');
+var ConnectRoles = require('connect-roles');*/
 var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var passportLocalMongoose = require("passport-local-mongoose");
 var LocalStrategy = require('passport-local').Strategy;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'Connection Error'));
 
+/*var userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+  isAdmin: {type: Boolean, default: false}
+});*/
+
+/*userSchema.plugin(passportLocalMongoose)
+module.exports = mongoose.model("user",userSchema);*/
 //schema table ใน DB
 var userSchema = mongoose.Schema({
     username: String ,
@@ -51,6 +64,15 @@ module.exports.getUserByEmail = function(email,callback)
 // {
 //   const result = User.find({email: email});
 // }
+
+
+/*passport.deserializeUser(function(obj, done) {
+  console.log("deserializing " + obj);
+  // simulate an admin user
+  obj.role = obj.username == 'admin' ? 'admin' : 'user';
+  done(null, obj);
+});*/
+
 
 module.exports.comparePassword = function(password,hash,callback)
 {

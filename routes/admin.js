@@ -16,8 +16,18 @@ mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryW
 
 router.get("/",middleware.checkPermissionAdmin,function(req,res)
 {
-    res.send("Wellcome Admin");
+    res.render("adminpanel");
 });
 
+
+
+router.get("/adminpanel",function(req,res)
+{
+    res.render("adminpanel");
+});
+router.get("/adminpost",function(req,res)
+{
+    res.render("adminpost");
+});
 
 module.exports = router;

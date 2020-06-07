@@ -24,14 +24,14 @@ router.post("/login", passport.authenticate('local',{
 function(req, res)
 {
   // สำเร็จ
-  if(req.user.permission === "admin")
+  /*if(req.user.permission === "admin")
   {
     res.redirect('/admin');
   }
   else
-  {
+  {*/
     res.redirect('/travel');
-  }
+  /*}*/
   
 });
 
@@ -53,6 +53,7 @@ router.post("/register",[
   check("email","กรุณาป้อนอีเมล").isEmail(),
   check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
   check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
+  //check("password3","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   ] ,function(req, res)
   {
     const result = validationResult(req);
@@ -68,6 +69,7 @@ router.post("/register",[
       let email = req.body.email;
       let password = req.body.password;
       let password2 = req.body.password2;
+      //let password3 = req.body.password3;
 
       console.log(username);
       console.log(email);
@@ -88,6 +90,7 @@ router.post("/register",[
         if(err) console.log(err);
         else
         {
+          res.location('/travel/');
           res.redirect('/travel');
         }
       });
