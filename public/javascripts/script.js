@@ -181,7 +181,7 @@ $(document).ready(function insertFavouritePost()
                 showConfirmButton: false,
                 timer: 1000
               })
-              setTimeout(location.reload.bind(location), 800);
+              setTimeout(location.reload.bind(location), 950);
               
               
             },
@@ -214,7 +214,7 @@ $(document).ready(function deleteFavouritePost()
                 showConfirmButton: false,
                 timer: 1000
               })
-              setTimeout(location.reload.bind(location), 800);
+              setTimeout(location.reload.bind(location), 950);
               
             },
             error: function(err){
