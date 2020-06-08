@@ -113,9 +113,11 @@ router.get("/review/:postid",async function(req, res)
     // ตรวจสอบว่า ผู้ใช้คนนี้ บันทึกบทความนี้ไว้หรือไม่ boolean
     let favouriteThisPost = false;
 
+    // ถ้ามีผู้ใช้ login เข้ามาแล้ว
     if(req.user)
     {
       // await conPost.find({view:[req.user._id]})
+      // นับยอดผู้เข้าชม
       await conPost.findById(req.params.postid,function(err,ViewcurrentPost)
       {
         if(err)
@@ -129,16 +131,23 @@ router.get("/review/:postid",async function(req, res)
         }
       })
       
+
       // loop favouritePost in user 
       console.log(req.user.favourite.length);
+      //วนลูปหาว่า ผู้ใชคนนี้ เก็บpostidของบทความนี้ ในรายการโปรดหรือไม่
       for(let i=0; i < req.user.favourite.length ;i++)
       {
+        //ถ้าใช่
         if(req.user.favourite[i].equals(post._id))
         {
           console.log("User favourite this postid = " + req.user.favourite[i]);
+
+          //ใช่ ผู้ใช้คนนี้ชอบบทความนี้ แล้วเพิ่มไปในรายการโปรดแล้ว favouriteThisPost = true
+
           favouriteThisPost = true;
           break;
         }
+        //ไม่ใช่ วนหาต่อไป
         else
         {
           continue;
@@ -230,8 +239,10 @@ router.delete("/:postid",async function(req, res){
 
 router.post("/favorite/:postid",function(req, res)
 {
+  // ไปหาบทความว่ามีอยู่ใน DB หรือไม่
   conPost.findById(req.params.postid,function(err,post)
   {
+
     let thisfav = false;
     if(err)
     {
@@ -239,6 +250,8 @@ router.post("/favorite/:postid",function(req, res)
     }
     else
     {
+      // ถ้ามีบทความนี้อยู่ใน DB จริงๆ
+      // ต่อให้ไปค้นผู้ใช้ คนนี้ว่าเคยบันทึกบทความนี้หรือยัง
       conUser.findById(req.user._id,function(err,thisUser)
       {
         if(err)
@@ -247,7 +260,7 @@ router.post("/favorite/:postid",function(req, res)
         }
         else
         {
-          // loop favouritePost in user ดูว่าเคย เพิ่มรายการนี้ไปแล้วหรือยัง
+          // loop favouritePost in user ดูว่าเคยเพิ่มรายการนี้ไปแล้วหรือยัง
           for(let i=0; i < thisUser.favourite.length ;i++)
           {
             if(thisUser.favourite[i].equals(post._id))
