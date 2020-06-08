@@ -380,38 +380,12 @@ router.get("/search",async function(req, res)
 });
 
 
-
-
-
-
-router.get("/author/:authorname", async function(req, res)
+router.get("/author/:authorid", async function(req, res)
 {
-  let {authorname} = req.params;
-  console.log(authorname);
-  const result = await conUser.aggregate(
-    [
-      {
-        //select 
-        $match: 
-        { 
-          username : authorname
-        } 
-      }
-      , 
-      {
-        $lookup:
-        {
-          from: 'posts', //join กับ collection users 
-          localField: '_id', 
-          foreignField: 'userid',
-          as: "post"
-        }
-      }
-    ]
-    );
-
-
-  res.render("blogs/author",{moment: moment, profile : result});
+  
+  const post = await conPost.find({ author_by :req.params.authorid});
+  const author = await conUser.findById(req.params.authorid);
+  res.render("blogs/author",{moment: moment, profile : post, author:author});
 })
 
 module.exports = router;

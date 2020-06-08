@@ -25,12 +25,10 @@
           <h3><i class="fa fa-feather"></i> บทความทั้งหมด</h3>
         </div> 
         <hr>    
-        <div class="row ">
           <% if(post.length > 0){ %>
-            <div class="col-md-9 col-12">
                       <div class="row">
                         <% for(var i=0; i < (post.length); i++) { %>
-                        <article class="col-lg-4 col-md-6 col-6 pb-3">
+                        <article class="col-lg-3 col-md-6 col-6 pb-3">
                           <a href="/travel/review/<%= post[i]._id %>">
                             <div class="card">
                               <img src="/images/posts/<%= post[i].image %>" alt="" class="img-crop-pageprofile" >
@@ -54,30 +52,13 @@
                         </article>
                         <% } %>
                       </div>
-            </div>
             <% } %>   
             <% if(post.length <= 0){ %>
-              <div class="col-md-9 col-12 text-center">
+              <div class="col-12 text-center">
                   <h2>ไม่มีบทความ</h2>
               </div>
             <% } %>
-            
 
-            <!-- sidebar right-->
-            <aside class="col-xl-3 col-lg-4 col-md-4">
-              <div class="category">
-                <div class="category-title">หมวดหมู่</div>
-                <div>
-                    <ul class="category-list">
-                        <% for(var i=0; i<(category.length); i++) { %>
-                            <li class="category-items"><a href="/blogs/showmore/<%= category[i].name %>"><%= category[i].name %></a></li>
-                        <% } %>
-                    </ul>
-                </div>
-              </div>
-            </aside>
-
-      </div>
   </div>
   <!-- The Modal -->
   <div id="myModal" class="modal">
