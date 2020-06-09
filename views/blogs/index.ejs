@@ -45,15 +45,16 @@
           <!-- content section 1-->
           <section class="section-content1 shadow">
             <div class=" blog-group-contect mt-3 p-lg-3 p-1">
-              <div class="title-section mt-2 p-2">
+              <div class="title-section mt-1 p-2">
                 <h3>
                   <i class="far fa-newspaper"></i>
                   <a href="/travel/showmore/<%= section1[0].category %>">
                     สงกรานต์นี้เที่ยวไหนดี&nbsp;<i class="fas fa-angle-right"></i>
                   </a>
                 </h3>
+                <hr>
               </div>
-              <hr>
+              
               <div class="row m-0">
                 <% for(let i=0; i < section1.length ; i++) { %> 
                   <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
@@ -76,6 +77,42 @@
     </div>
   </section>
   
+  <section>
+    <div class="container">
+          <!-- content section 1-->
+          <section class="section-content2 shadow">
+            <div class=" blog-group-contect mt-3 p-lg-3 p-1">
+              <div class="title-section mt-1 p-2">
+                <h3>
+                  <i class="far fa-newspaper"></i>
+                  <a href="/travel/showmore/<%= section1[0].category %>">
+                    เที่ยวชมธรรมชาติกลางหุบเขา&nbsp;<i class="fas fa-angle-right"></i>
+                  </a>
+                </h3>
+                <hr>
+              </div>
+              
+              <div class="row m-0">
+                <% for(let i=0; i < section1.length ; i++) { %> 
+                  <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
+                    <a href="/travel/review/<%= section1[i]._id %>">
+                      <div class="card">
+                        <img src="/images/posts/<%= section1[i].image %>" alt="" class="img-crop-section1">
+                        <div class="desc-card">
+                          <h5><%= description(section1[i].title,50) %></h5>
+                          <div class="mt-auto">
+                            <span class="viewOfPost">
+                              <i class="fa fa-eye"></i><span> <%= section1[i].views.length %></span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>     
+                  </article>
+                <% } %> 
+          </section>
+    </div>
+  </section>
   
 <% if(Marketfloat.length > 0) {%>
   <div class="main-content-section3 container mt-3">

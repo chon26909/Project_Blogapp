@@ -126,10 +126,11 @@ img
 .card
 {
   background-color: whitesmoke;
+  border-radius: 5px;
 }
 .desc-card
 {
-  padding: 8px;
+  padding: 5px;
   
 }
 .desc-card h5
@@ -430,9 +431,20 @@ footer a:hover
 
 .section-content1
 {
+  margin: 15px 0;
   background-color: rgb(16, 151, 230);
-  background-image: linear-gradient(160deg, rgb(16, 151, 230) 0%,rgb(194, 222, 238) 100%);
-  border-radius: 5px;
+  background-image: linear-gradient(160deg, rgb(0, 137, 216) 0%,rgb(194, 222, 238) 100%);
+  border-radius: 7px;
+  border: 2px solid white;
+}
+.section-content2
+{
+  margin: 15px 0;
+  /* background-color: #16A085;
+  background-image: linear-gradient(132deg,  rgb(22, 160, 84) 0%,rgb(235, 212, 119) 100%); */
+  background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0,0,0,0.1)), url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Big_Nature_%28155420955%29.jpeg/1280px-Big_Nature_%28155420955%29.jpeg");
+  border-radius: 7px;
+  border: 2px solid white;
 }
 .title-section h3 a, .title-section h3 i
 {
@@ -445,6 +457,7 @@ hr
 {
   margin: 8px 0;
   color: white; 
+  background-color: white;
 }
 
 .main-content-section3
