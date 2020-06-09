@@ -14,14 +14,14 @@
                 <% if(locals.user) {%> 
                     <% if(favouriteThisPost == false){ %> 
                         <div class="bookmark-post d-flex align-items-center justify-content-end" id="favourite" data-favouritepost="<%= post._id %>">
-                            <span><i class="far fa-bookmark"></i></span>&nbsp;&nbsp;
-                            <span>เพิ่มในรายการโปรด</span>
+                            <span><i id="iconfav" class="far fa-bookmark"></i></span>&nbsp;&nbsp;
+                            <span id="text-addfavourite">เพิ่มในรายการโปรด</span>
                         </div>
                     <% } %> 
                     <% if(favouriteThisPost == true){ %> 
                         <div class="bookmark-post-saved d-flex align-items-center justify-content-end" id="favourite_seved" data-favouritepost="<%= post._id %>" >
-                            <span><i class="fas fa-bookmark"></i></span>&nbsp;&nbsp;
-                            <span>บันทึกแล้ว</span>
+                            <span><i id="iconfav" class="fas fa-bookmark"></i></span>&nbsp;&nbsp;
+                            <span id="text-addfavourite">บันทึกแล้ว</span>
                         </div>
                     <% } %> 
                 <% } %> 
@@ -35,7 +35,7 @@
             <hr>
             <div class="comment-box">
                 <h5>ความคิดเห็น <%= post.comments.length %> รายการ</h5>
-                <div class="p-1 m-1">
+                <div class="p-1">
                     <% post.comments.forEach(function(comment){ %>
                         <div class="comment-item">
                             <figure class="comment-by-img">

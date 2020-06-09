@@ -166,9 +166,9 @@ $(document).ready(function deletecomment()
 
 $(document).ready(function insertFavouritePost()
 {
-    $(document).on('click', '#favourite', function()
+    $(document).on('click', '.bookmark-post', function()
     {
-        const postid = $('#favourite').attr('data-favouritepost');
+        const postid = $('.bookmark-post').attr('data-favouritepost');
         console.log(postid);
         $.ajax({
             url: "/travel/favorite/" + postid,
@@ -181,7 +181,9 @@ $(document).ready(function insertFavouritePost()
                 showConfirmButton: false,
                 timer: 1000
               })
-              setTimeout(location.reload.bind(location), 950);
+              $('.bookmark-post').removeClass('bookmark-post').addClass('bookmark-post-saved');
+              $('#iconfav').removeClass('far fa-bookmark').addClass('fas fa-bookmark');
+              $('#text-addfavourite').text("บันทึกแล้ว");
               
               
             },
@@ -199,9 +201,9 @@ $(document).ready(function insertFavouritePost()
 
 $(document).ready(function deleteFavouritePost()
 {
-    $(document).on('click', '#favourite_seved', function()
+    $(document).on('click', '.bookmark-post-saved', function()
     {
-        const favpostid = $('#favourite_seved').attr('data-favouritepost');
+        const favpostid = $('.bookmark-post-saved').attr('data-favouritepost');
         console.log(favpostid);
         $.ajax({
             url: "/travel/favorite/" + favpostid,
@@ -214,7 +216,9 @@ $(document).ready(function deleteFavouritePost()
                 showConfirmButton: false,
                 timer: 1000
               })
-              setTimeout(location.reload.bind(location), 950);
+              $('.bookmark-post-saved').removeClass('bookmark-post-saved').addClass('bookmark-post');
+              $('#iconfav').removeClass('fas fa-bookmark').addClass('far fa-bookmark');
+              $('#text-addfavourite').text("เพิ่มในรายการโปรด");
               
             },
             error: function(err){

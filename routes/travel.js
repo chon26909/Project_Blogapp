@@ -42,7 +42,7 @@ var upload_imgpost = multer({storage : StorageOfimagepost, fileFilter: imageFilt
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/', async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
-    const songkran_post = await conPost.find({category : "เที่ยวสงกรานต์"}).limit(4);
+    const songkran_post = await conPost.find({category : "เที่ยวสงกรานต์"});
 
     const market_post = await conPost.find({category: "ตลาดกลางคืน"});
     
@@ -242,7 +242,7 @@ router.post("/favorite/:postid",function(req, res)
   // ไปหาบทความว่ามีอยู่ใน DB หรือไม่
   conPost.findById(req.params.postid,function(err,post)
   {
-
+    
     let thisfav = false;
     if(err)
     {
@@ -343,6 +343,7 @@ router.get("/showmore/:name", async function(req, res){
 
 router.post("/comment/:postid", middleware.checkAuthentication, function(req,res)
 {
+  // ค้นหาบทความว่ามีใน DB จริงๆมั้ย
   conPost.findById(req.params.postid, function(err, thispost)
   {
     if(err)
@@ -351,6 +352,8 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
     } 
     else 
     {
+      // จริง
+      // ให้เอา create comment ลงใน collection ชื่อ comments
       comment.create({text : req.body.text, comment_by : req.user._id} , function(err,comment)
       {
         if(err)
@@ -361,6 +364,7 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
         } 
         else 
         {
+          // หลังจากเอา commment ลง DB สำเร้จ ให้นำ commentid เก็บลงไปในบทความนั้นด้วย
           thispost.comments.push(comment);
           thispost.save();
 

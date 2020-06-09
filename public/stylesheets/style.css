@@ -18,7 +18,7 @@ body
   display:flex; 
   flex-direction:column; 
   height:100%;
-  background-color: white;
+  background-color: whitesmoke;
   /* background-image: url("https://blog.bangkokair.com/wp-content/uploads/2018/08/%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88.jpg"); */
 
   /* background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0,0,0,0.1)), url("https://ภาพวิว.com/wp-content/uploads/2018/09/JPHU-7-1070x535.jpg"); */
@@ -81,6 +81,13 @@ nav ul li a
 {
   font-size: 16px;
 }
+.content h1
+{
+  font-size: 20px;
+}
+.content h2 h3{
+  font-size: 18px;
+}
 .content img
 {
   width: 100%;
@@ -123,8 +130,13 @@ img
 .desc-card
 {
   padding: 8px;
+  
 }
-
+.desc-card h5
+{
+  font-size: 17px;
+  height: 35px;
+}
 /* view eye */
 .eye-view
 {
@@ -178,6 +190,10 @@ footer
 .contact-information:nth-child(2) h2
 {
 	margin: 0.7rem 0.7rem 0.7rem 0px;
+}
+.contact-information:nth-child(2) h5
+{
+  color: white;
 }
 .contact-information:nth-child(2) div
 {
@@ -372,7 +388,7 @@ footer a:hover
 .img-crop-section1
 {
   width: 100%;
-  height: 200px;
+  height: 170px;
   object-fit: cover;
   object-position: top ; 
   border: 1px solid;
@@ -383,7 +399,8 @@ footer a:hover
 
 .card:hover
 {
-  opacity: 0.85;
+  opacity: 0.8;
+  background-color: white;
   box-shadow: 1px 1px 5px #aaaaaa;
 }
 
@@ -410,10 +427,24 @@ footer a:hover
   border: 8px solid;
   border-color:white;
 }
+
 .section-content1
 {
-  background-color: rgba(240, 240, 240, 0.8);
-  border-radius: 2px;
+  background-color: rgb(16, 151, 230);
+  background-image: linear-gradient(160deg, rgb(16, 151, 230) 0%,rgb(194, 222, 238) 100%);
+  border-radius: 5px;
+}
+.title-section h3 a, .title-section h3 i
+{
+  text-shadow: 5px 5px 7px black;
+  color: white;
+  text-decoration: none;
+}
+
+hr
+{
+  margin: 8px 0;
+  color: white; 
 }
 
 .main-content-section3
@@ -439,10 +470,10 @@ footer a:hover
   width: 100%;
   height: 100%;
 } */
-.title-section3 h3
+.title-section3 h3 a
 {
   position: absolute;
-  color: black;
+  color:white;
   text-shadow: 5px 5px 7px whitesmoke;
 }
 .title-section3 a
@@ -543,7 +574,7 @@ footer a:hover
 /* category-side */
 .category
 {
-  background-color: whitesmoke;
+  background-color: white;
   border-radius: 5px;
   margin-top: 20px;
   padding: 12px;
@@ -799,10 +830,12 @@ footer a:hover
 
 .dropdown-itemOfUSer a {
   color: black;
-  padding: 12px 16px;
+  padding: 10px 14px;
   text-decoration: none;
-  text-align: start;
-  display: block;
+  align-items: center;
+  justify-items: start;
+  display: grid;
+  grid-template-columns: 30px auto;
 }
 
 .dropdown-user a:hover {background-color: #ddd;}
@@ -875,7 +908,7 @@ footer a:hover
 
 .container
 {
-    max-width: 1200px;
+    max-width: 1100px;
     width: 100%;
     padding: 1px;
     margin: 0 auto;
@@ -962,9 +995,14 @@ footer a:hover
 .viewOfPost
 {
   color: #aaaaaa;
+  font-size: 13px;
+  font-family: 'Kanit', sans-serif;
+  text-decoration: none;
 }
 
-
+article a:hover{
+  text-decoration: none;
+}
 
 .author_post
 {

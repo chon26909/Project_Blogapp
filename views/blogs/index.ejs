@@ -42,12 +42,10 @@
   
   <section>
     <div class="container">
-      <div class="row m-0">
-        <div class="col-xl-8 col-lg-8 col-md-8 p-0">
           <!-- content section 1-->
           <section class="section-content1 shadow">
-            <div class=" blog-group-contect mt-3 p-md-3 ">
-              <div class="title-section p-2">
+            <div class=" blog-group-contect mt-3 p-lg-3 p-1">
+              <div class="title-section mt-2 p-2">
                 <h3>
                   <i class="far fa-newspaper"></i>
                   <a href="/travel/showmore/<%= section1[0].category %>">
@@ -58,15 +56,15 @@
               <hr>
               <div class="row m-0">
                 <% for(let i=0; i < section1.length ; i++) { %> 
-                  <article class="col-xl-6 col-lg-6 col-md-6 col-6 p-1 p-lg-2">
+                  <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
                     <a href="/travel/review/<%= section1[i]._id %>">
                       <div class="card">
                         <img src="/images/posts/<%= section1[i].image %>" alt="" class="img-crop-section1">
                         <div class="desc-card">
-                          <h5><%= section1[i].title %></h5>
+                          <h5><%= description(section1[i].title,50) %></h5>
                           <div class="mt-auto">
                             <span class="viewOfPost">
-                              <i class="fa fa-eye"> <%= section1[i].views.length  %></i>
+                              <i class="fa fa-eye"></i><span> <%= section1[i].views.length %></span>
                             </span>
                           </div>
                         </div>
@@ -74,24 +72,7 @@
                     </a>     
                   </article>
                 <% } %> 
-              </div>
-            </div>
           </section>
-        </div>
-        
-        <!-- sidebar right-->
-        <section class="col-xl-4 col-lg-4 col-md-4 mt-3">
-          <div class="p-2 category">
-              <div class="category-title"> <h5>หมวดหมู่</h5> </div>
-                  <div class="mt-2">
-                          <% for(var i=0; i<(category.length); i++) { %>
-                              <span class="category-items fa fa-tags"><a href="/travel/showmore/<%= category[i].name %>"><%= category[i].name %></a></span>
-                          <% } %>
-                  </div>
-              </div>
-          </div>
-      </section>
-      </div>
     </div>
   </section>
   
