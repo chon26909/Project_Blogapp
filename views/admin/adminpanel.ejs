@@ -1,0 +1,14 @@
+<%- include("../layout/header") %>
+<style>
+   
+</style>
+<% showuser.forEach(function(user){ %>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Username : <%= user.username %></th>
+        <th scope="col">E-mail : <%= user.email %></th>
+      </tr>
+    </thead>
+</table>
+<% }); %>

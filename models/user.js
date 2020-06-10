@@ -102,6 +102,13 @@ passport.deserializeUser(function(id,done)
   })
 });
 
+/*let userSchema = new mongoose.Schema({
+  username: String ,
+  email: String ,
+});*/
+
+//module.exports = mongoose.model('User', userSchema);
+
 passport.use(new LocalStrategy(function(email,password,done)
 {
   //ค้นหาด้วย email 
