@@ -92,7 +92,7 @@ router.post("/register",[
         if(err) console.log(err);
         else
         {
-          res.location('/travel/');
+         /* res.location('/travel/');*/
           res.redirect('/travel');
         }
       });

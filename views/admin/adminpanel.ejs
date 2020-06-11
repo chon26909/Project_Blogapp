@@ -1,0 +1,36 @@
+<%- include("../layout/header") %>
+<style>
+   
+</style>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Users</th>
+      <th scope="col">Email</th>
+      <th scope="col">ID</th>
+      <th scope="col">Post</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
+
+<% showallusers.forEach(function(user){ %>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Username : <%= user.username %></th>
+        <th scope="col">E-mail : <%= user.email %></th>
+        <th scope="col">id user : <%= user._id %></th>
+      </tr>
+    </thead>
+</table>
+<% }); %>

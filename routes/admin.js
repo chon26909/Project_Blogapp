@@ -14,9 +14,19 @@ const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
-router.get("/",middleware.checkPermissionAdmin,function(req,res)
+router.get("/",async function(req,res)
 {
-    res.render("admin/adminpanel");
+     const showusers = await conUser.find();
+     //const users = await conUser.find();
+  // console.log(users.adminpanel.length);
+  //for (var i = 1; i <= 10; i++) 
+  //{
+   //  console.table(users,["id","name"]);
+   console.log(showusers )
+   res.render("admin/adminpanel",{ moment: moment, showallusers : showusers});
+ // }
+  // res.render("admin/adminpanel");
+  
 });
 
 router.get("/me",function(req, res)
