@@ -23,7 +23,7 @@ router.get("/",async function(req,res)
   //{
    //  console.table(users,["id","name"]);
    console.log(showusers )
-   res.render("admin/adminpanel",{ moment: moment, showallusers : showusers});
+   res.render("admin/adduser",{ moment: moment, showallusers : showusers});
  // }
   // res.render("admin/adminpanel");
   
@@ -35,9 +35,9 @@ router.get("/me",function(req, res)
 })
 
 
-router.get("/adminpanel",function(req,res)
+router.get("/adduser",function(req,res)
 {
-    res.render("admin/adminpanel");
+    res.render("admin/adduser");
 });
 router.get("/adminpost",function(req,res)
 {
