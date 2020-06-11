@@ -337,12 +337,23 @@ function autocomplete(inp, arr) {
 
 
 const tags = $("#tags").attr('data-tags');
+
 if(tags)
 {
   const arrayOfTag = tags.split(',');
   console.log(tags)
   console.log(arrayOfTag)
-  autocomplete(document.getElementById("tags"), arrayOfTag);
+
+  function getTagFromUser()
+  {
+    const keyword = $('#tags').val();
+    console.log(keyword);
+    const arrayOfkeyword = keyword.split(' ');
+    console.log(arrayOfkeyword);
+    return arrayOfkeyword[arrayOfkeyword.length-1];
+  }
+  
+  autocomplete(getTagFromUser, arrayOfTag);
 }
 
 

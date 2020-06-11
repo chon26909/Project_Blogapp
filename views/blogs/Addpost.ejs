@@ -1,40 +1,101 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
 
-<div class="container p-3 shadow" style="background-color: whitesmoke;">
+<div class="container page-addpost p-3 shadow">
     <form method="POST" action="/travel" class="p-2" enctype="multipart/form-data">
         <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">สร้างบทความ</h3>
         <div class="form-group">
               <label for="text">หัวเรื่อง :</label>
-              <input type="text" class="form-control" name="title" required>
+              <input type="text" class="form-control" name="title" autocomplete="off" required>
         </div>
-        <p>ภาพหน้าปก :</p>
-        <div class=" mb-3" >
-            <input type="file" name="img_title" id="img_preview" class="form-control-file">
-            <div style=" padding: 10px;">
-                <img src="" id="img_show" alt="" style="width: 500px; height: auto;">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <p>ภาพหน้าปก :</p>
+                <div class=" mb-3" >
+                    <input type="file" name="img_title" id="img_preview" class="form-control-file" required>
+                    <div class="pt-2">
+                        <img src="/images/no-image.png" id="img_show" alt="" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <label for="Catelog">หมวดหมู่ :</label>
+                    <select class="form-control"name="category">
+                        <option name="ที่กิน">ที่กิน</option>
+                        <option name="ที่เที่ยว">ที่เที่ยว</option>
+                        <option name="ที่พัก">ที่พัก</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="text">แท็ก :</label>
+                    <input type="text" class="form-control autocomplete" data-tags="<%= Arraytag %>" id="tags" autocomplete="off" name="tag"   required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="text">งบประมาณ :</label>
+                    <% Allprice.forEach(function(price){ %>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="length_price" value="<%= price._id%>" >
+                            <label class="form-check-label">ขั้นต่ำ <%= price.maximum_price %> บาท</label>
+                        </div>
+                    <% }) %>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="length_price" value="" checked>
+                            <label class="form-check-label">ไม่จำกัด</label>
+                        </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="provinces">จังหวัด :</label>
+                    <select class="form-control" name="provinces">
+                        <% AllProvinces.forEach(function(province){ %>
+                            <option name="<%= province.name %>"><%= province.name %></option>
+                        <% }); %>
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="Catelog">ประเภทของบทความ :</label>
-            <select class="form-control" id="catelog" name="category">
-                <% categories.forEach(function(catelog){ %>
-                    <option name="<%= catelog.name %>"><%=catelog.name %></option>
-                <% }); %>
+        <div class="">
+            <fieldset>
+                <label>วันที่เปิด :</label>
+                <div>
+                    <input type="checkbox" value="">
+                    <label for="coding">วันจันทร์</label>
                 
-            </select>
+                    <input type="checkbox" value="">
+                    <label for="music">วันอังคาร</label>
+             
+                    <input type="checkbox" value="">
+                    <label for="music">วันพุธ</label>
+             
+                    <input type="checkbox" value="">
+                    <label for="music">วันพฤหัสบดี</label>
+
+                    <input type="checkbox" value="">
+                    <label for="music">วันศุกร์</label>
+
+                    <input type="checkbox" value="">
+                    <label for="music">วันเสาร์</label>
+
+                    <input type="checkbox" value="">
+                    <label for="music">วันอาทิตย์</label>
+                </div>
+            </fieldset>
         </div>
+        
         <div class="form-group">
-            <label for="text">แท็ก :</label>
-            <input type="text" class="form-control autocomplete" data-tags="<%= Arraytag %>" id="tags" autocomplete="off" name="tag"   required>
+            <label for="text">แผนที่ : <a class="far fa-question-circle" href="" target="_blank" >วิธีการนำแผนที่เข้ามาใส่ในบทความ</a></label>
+            <input type="text" class="form-control" autocomplete="off" autocomplete="off" name="map">
         </div>
+
         <div class="form-group">
             <label for="text">เนื้อหา :</label>
             <textarea name="editor"></textarea>
         </div>
         <div class="mt-2">
             
-            <button type="submit" class="btn btn-success btn-block">Post</button>
+            <button type="submit" class="btn btn-success btn-block">โพสต์</button>
         </div>
         
     </form>

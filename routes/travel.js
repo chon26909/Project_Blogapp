@@ -10,7 +10,10 @@ const express = require('express'),
       conPost = require('../models/posts'),
       conCatelog = require('../models/categories'),
       conTag = require('../models/tag'),
-      comment = require('../models/comment');
+      comment = require('../models/comment'),
+      conPrice = require('../models/price'),
+      conProvinces = require('../models/provinces');
+
 
 //connect DB
 const mongoose = require('mongoose');
@@ -53,47 +56,63 @@ router.get('/', async function(req, res,) {
     res.render("blogs/index",{ moment: moment, section1 : songkran_post, Marketfloat : marketfloat_post, category : cat });
 });
 
-router.get("/new",async function(req, res)
+router.get("/new", async function(req, res)
 {
   const cat = await conCatelog.find();
   const tags = await conTag.find();
-  
+  const price = await conPrice.find();
+  const provinces = await conProvinces.find();
+
   const Arraytag = [];
   tags.forEach(function(tag)
   {
     Arraytag.push(tag.name);
   });
 
-  console.log(tags);
-  console.log(Arraytag);
+  // console.log(tags);
+  // console.log(Arraytag);
 
-  res.render("blogs/Addpost",{ moment: moment, categories : cat, Arraytag: Arraytag});
+  res.render("blogs/Addpost",{ moment: moment, categories : cat, Arraytag: Arraytag, Allprice:price, AllProvinces:provinces});
 })
 
 
-router.get("/tag",async function(req,res)
-{
-  await conTag.create({name: "ตลาดจตุจักร"});
-})
-
-router.post("/", upload_imgpost.single('img_title') ,function(req, res){
+router.post("/", middleware.checkAuthentication, upload_imgpost.single('img_title') ,function(req, res){
     
   const title = req.body.title;
   const author_by = req.user._id;
   const category = req.body.category;
   const image = req.file.filename;
   const content = req.body.editor;
+  const price = req.body.length_price;
+  const province = req.body.provinces;
+  const map = req.body.map;
   const date = new Date();
+
+
+  console.log("category "+category);
+  console.log("price "+price);
+  console.log("province "+province);
+  
   const Arraytag = req.body.tag.split(" ");
-  console.log(Arraytag);
 
-  const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, date:date }
+  
 
+  const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, length_price:price ,date:date ,province:province,googlemap:map }
+
+  console.log("newPost "+newPost);
   conPost.create(newPost,function(err, post)
     {
       if(err) console.log(err)
       else
       {
+
+        for(let i=0; i<(Arraytag.length-1) ;i++)
+        {
+          conTag.create({ name:Arraytag[i] },function(err,successTag)
+          {
+            console.log(successTag);
+          });
+        }
         res.redirect("/travel/review/" + post._id);
       }
       
@@ -107,7 +126,7 @@ router.get("/review/:postid",async function(req, res)
                 .populate({path: 'author_by', model: 'User'})
                 .populate({path: 'comments', model: 'Comment',populate:({path: 'comment_by', model: 'User'})})
 
-    const category = await conCatelog.find();
+    const tag = await conTag.find();
     const recommend = await conPost.find().limit(5);
 
     // ตรวจสอบว่า ผู้ใช้คนนี้ บันทึกบทความนี้ไว้หรือไม่ boolean
@@ -143,7 +162,6 @@ router.get("/review/:postid",async function(req, res)
           console.log("User favourite this postid = " + req.user.favourite[i]);
 
           //ใช่ ผู้ใช้คนนี้ชอบบทความนี้ แล้วเพิ่มไปในรายการโปรดแล้ว favouriteThisPost = true
-
           favouriteThisPost = true;
           break;
         }
@@ -157,7 +175,7 @@ router.get("/review/:postid",async function(req, res)
     
     console.log(favouriteThisPost);
     
-    res.render("blogs/review",{ moment:moment, post:post, recommend:recommend, category:category, favouriteThisPost:favouriteThisPost})
+    res.render("blogs/review",{ moment:moment, post:post, recommend:recommend, Alltag:tag, favouriteThisPost:favouriteThisPost})
 });
 
 router.get("/:id/edit", middleware.checkAuthor, async function(req, res){
@@ -307,28 +325,9 @@ router.delete("/favorite/:postid",function(req, res)
         }
         else
         {
-          // loop favouritePost in user ดูว่าเคย เพิ่มรายการนี้ไปแล้วหรือยัง
-          // for(let i=0; i < thisUser.favourite.length ;i++)
-          // {
-          //   if(thisUser.favourite[i].equals(post._id))
-          //   {
-          //     console.log("User favourited is " + thisUser.favourite[i]);
-          //     thisfav = true;
-          //     break;
-          //   }
-          //   else
-          //   {
-          //     continue;
-          //   }
-          // };
-
-          // if(thisfav == false)
-          // {
             thisUser.favourite.pull(post._id);
             thisUser.save()
-            return res.send(post);
-          // }
-          
+            return res.send(post);      
         }
       })
     }
@@ -391,11 +390,10 @@ router.delete("/comment/:commentid",async function(req,res)
 
 router.get("/search",async function(req, res)
 {
-  let key = req.query.keyword;
-  const result = await conPost.find({title:{ $regex: key }});
+  const key = req.query.keyword;
+  const result = await conPost.find({ tags:{ $regex: key } });
   res.render("blogs/search",{moment: moment, ItemSearch : result, key : key});
 });
-
 
 router.get("/author/:authorid", async function(req, res)
 {

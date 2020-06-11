@@ -1,8 +1,8 @@
 const   mongoose = require('mongoose');
 
 let priceSchema = new mongoose.Schema({
-    minimum_price: Int32,
-    maximum_price: Int32
+    minimum_price: Number,
+    maximum_price: Number
 });
 
 module.exports = mongoose.model('Price', priceSchema);

@@ -457,7 +457,6 @@ hr
 {
   margin: 8px 0;
   color: white; 
-  background-color: white;
 }
 
 .main-content-section3
@@ -497,7 +496,7 @@ hr
 
 .about-this-blog
 {
-  margin: 120px 0 0 0;
+  margin: 0;
   background-color: rgb(245, 245, 245);
   border-radius: 3px;
   padding: 10px;
@@ -654,33 +653,36 @@ hr
 /* search items */
 .page-search
 {
+  
+  border-radius: 3px;
   height: 100% auto;
   display: grid;
   grid-template-columns: 70% 30%;
 }
 .item-article-search
 {
+  background-color: white;
   margin: 12px 0px;
-  padding: 1px;
-  border-radius: 3px;
+  padding: 3px;
+  border-radius: 5px;
   background-color: white;
   
 }
-.item-article-search:hover
+/* .item-article-search:hover
 {
   border-style: initial;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+} */
 .items-search
 {
   display: grid;
   grid-template-columns: 30% 70%;
   width: 100%;
-  height: 150px;
+  height: 140px;
 }
 .image-search-page
 {
-  height: 150px;
+  height: 140px;
   padding: 7px;
   border-radius: 2px;
 }
@@ -702,6 +704,11 @@ hr
   cursor: pointer;
 }
 
+.option-search
+{
+  background-color: white;
+  border-radius: 3px;
+}
 
 
 .autocomplete-items {
@@ -746,6 +753,35 @@ hr
   background-color: DodgerBlue !important; 
   color: #ffffff; 
 }
+
+
+.form-control
+{
+  padding: 2px 8px;
+  height: 35px;
+}
+
+.page-addpost
+{
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 700px)
 {
@@ -939,7 +975,7 @@ hr
 
 .header-navbar
 {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .navbar-top
 {

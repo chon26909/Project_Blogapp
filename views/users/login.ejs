@@ -438,10 +438,13 @@
 			   </div>
 		 <div class="cont_form_login">
 		<a href="/travel" onclick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
-		   <h2>ลงชื่อเข้าใช้</h2>
-		 <input type="email" placeholder="Email" />
-		<input type="password" placeholder="Password" />
-		<button class="btn_login" onclick="cambiar_login()">ลงชื่อเข้าใช้</button>
+       <h2>ลงชื่อเข้าใช้</h2>
+        <form action="/login" method="POST">
+          <input type="email" placeholder="Email" name="username">
+          <input type="password" placeholder="Password" name="password">
+          <button type="submit" class="btn_login" onclick="cambiar_login()" >ลงชื่อเข้าใช้</button>
+        </form>
+		 
 		  </div>
 		  
 		 <div class="cont_form_sign_up">

@@ -1,8 +1,8 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
-<div class="container page-search shadow" style="background-color: whitesmoke;">
+<div class="container page-search shadow" style="background-color: white;">
     <section class="p-3">
-        <h2 class="mt-3 mb-3 pl-2">ทั้งหมด <%= favouritePosts.favourite.length %> บทความ</h2>
+        <h2 class="mt-3 mb-3 pl-2">บันทึกไว้ <%= favouritePosts.favourite.length %> บทความ</h2>
         <% favouritePosts.favourite.forEach(function(item) { %>        
         <article class="item-article-search">
             <div class="items-search">
@@ -15,7 +15,7 @@
                     <a href="/travel/review/<%= item._id %>">
                         <h4><%= description(item.title,50)%></h4>
                     </a>
-                    <p class="content"><%- description(item.content,200) %>...</p>
+                    <p class="content"><%- description(item.content,100) %>...</p>
                 </div>
             </div>
         </article>

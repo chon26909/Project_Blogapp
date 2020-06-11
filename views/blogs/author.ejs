@@ -1,9 +1,9 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
 
-<section class="container"> 
+<section class="container shadow"> 
     <div class="container profile-section">
-        <div>
+        <div class="pt-2">
             <figure class="m-auto img-profile">
                 <img src="/images/img-profile/<%= author.image %>" alt="" class="" id="myImg">
             </figure>
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-
+    <hr>
     <% if(profile.length > 0){ %>
         <div class="p-4 bg-white">
             <h3>ทั้งหมด <%= profile.length %> บทความ</h3>
