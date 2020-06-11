@@ -1,4 +1,4 @@
-<%- include("layout/header") %>
+<%- include("../layout/header") %>
 <!DOCTYPE html>
 
     <head>
@@ -81,6 +81,7 @@
             .sidenav a {font-size: 18px;}
           }
           table{
+            margin: 10px;
             margin: auto;
             width: 50%;
             border: 3px solid rgb(8, 2, 63);
@@ -94,7 +95,7 @@
           
              <body>
           
-              <% if(showuser.length > 0 ) {%> 
+  
               <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <p>ADMIN</p>
@@ -111,96 +112,29 @@
                   <h2>ADMIN PANEL</h2>
                   <h3>User</h3>
                   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-               
+                  <% showallusers.forEach(function(user){ %>
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
                       <th scope="col">Useranme</th>
-                      <th scope="col">Phone number</th>
                       <th scope="col">E-mail</th>
+                      <th scope="col">id_user</th>
                       <td></td>
-                      
+                    </tr>
+                    <tr>
+                      <th scope="col"><%= user.username %></th>
+                      <th scope="col"><%= user.email %></th>
+                      <th scope="col"><%= user._id %></th>
+                      <td>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-warning">Report</button>
+                      </td>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td><%= showuser[i]._id %></td>
-                      <td><%= showuser[i].name %></td>
-                      <td><%= showuser[i].email %></td>
-                      <p>
-                        <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-warning">Report</button>
-                      </td>
-                      </p>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <p>
-                        <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-warning">Report</button>
-                      </td>
-                      </p>
-                     
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td >Larry the Bird</td>
-                      <td>Thornton</td>
-                      <td>@twitter</td>
-                      <p>
-                        <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-warning">Report</button>
-                      </td>
-                      </p>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td >Larry the Bird</td>
-                      <td>Thornton</td>
-                      <td>@twitter</td>
-                      <p>
-                        <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-warning">Report</button>
-                      </td>
-                      </p>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td >Larry the Bird</td>
-                      <td>Thornton</td>
-                      <td>@twitter</td>
-                      <p>
-                        <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-warning">Report</button>
-                      </td>
-                      </p>
-                    </tr>
-                    <tr>
-                      <th scope="row">6</th>
-                      <td>Larry the Bird</td>
-                      <td>Thornton</td>
-                      <td>@twitter</td>
-                      <p>
-                        <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-warning">Report</button>
-                      </td>
-                      </p>
-                    </tr>
-                  </tbody>
                 </table>
+                <% }); %>
               </div>
+          
               <script>
               function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
@@ -214,6 +148,6 @@
                 document.body.style.backgroundColor = "white";
               }
               </script>
-      <% } %> 
+             
     </body>
 </html>
