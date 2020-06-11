@@ -22,8 +22,8 @@ router.get("/",async function(req,res)
   //for (var i = 1; i <= 10; i++) 
   //{
    //  console.table(users,["id","name"]);
-   console.log(users)
-   //res.render("admin/adminpanel",{ moment: moment, showuser : users});
+   console.log(showusers )
+   res.render("admin/adminpanel",{ moment: moment, showallusers : showusers});
  // }
   // res.render("admin/adminpanel");
   
