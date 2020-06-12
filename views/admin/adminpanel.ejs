@@ -1,9 +1,17 @@
 <%- include("../layout/header") %>
-<style>
-   
-</style>
+<!DOCTYPE html>
 
-
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+    
+             
+             </head> 
+          
+             <body>
+          
+  
 <% showallusers.forEach(function(user){ %>
 <table class="table table-hover">
     <thead>
@@ -12,7 +20,7 @@
           <th scope="col">Email</th>
           <th scope="col">ID</th>
           <th scope="col">Post</th>
-     
+        </tr>
       <tr>
         <th scope="col">Username : <%= user.username %></th>
         <th scope="col">E-mail : <%= user.email %></th>
@@ -21,3 +29,5 @@
     </thead>
 </table>
 <% }); %>
+</body>
+</html>

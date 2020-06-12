@@ -38,6 +38,7 @@ router.get("/me",function(req, res)
 
 router.get("/adminpanel",function(req,res)
 {
+   
     res.render("admin/adminpanel");
 });
 router.get("/adminpost",function(req,res)
