@@ -36,9 +36,9 @@ router.get("/me",function(req, res)
 })
 
 
-router.get("/adduser",function(req,res)
+router.get("/adminpanel",function(req,res)
 {
-    res.render("admin/adduser");
+    res.render("admin/adminpanel");
 });
 router.get("/adminpost",function(req,res)
 {
