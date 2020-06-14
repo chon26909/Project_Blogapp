@@ -243,6 +243,13 @@ function autocomplete(inp, arr) {
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
+
+      console.log(val);
+      const arrayVal = val.split(' ');
+      console.log(arrayVal);
+      val = arrayVal[arrayVal.length-1];
+      console.log(val);
+    
       /*close any already open lists of autocompleted values*/
       closeAllLists();
       if (!val) { return false;}
@@ -269,7 +276,11 @@ function autocomplete(inp, arr) {
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
+              const newtag = this.getElementsByTagName("input")[0].value;
+              arrayVal.pop();
+              arrayVal.push(newtag);
+              let tagcomplete = arrayVal.join(' ');
+              inp.value = tagcomplete;
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -350,10 +361,11 @@ if(tags)
     console.log(keyword);
     const arrayOfkeyword = keyword.split(' ');
     console.log(arrayOfkeyword);
+    console.log(arrayOfkeyword[arrayOfkeyword.length-1]);
     return arrayOfkeyword[arrayOfkeyword.length-1];
   }
-  
-  autocomplete(getTagFromUser, arrayOfTag);
+
+  autocomplete(document.getElementById("tags"), arrayOfTag);
 }
 
 

@@ -76,47 +76,51 @@ router.get("/new", async function(req, res)
 })
 
 
-router.post("/", middleware.checkAuthentication, upload_imgpost.single('img_title') ,function(req, res){
+router.post("/",function(req, res){
     
+  // middleware.checkAuthentication, upload_imgpost.single('img_title') 
+
   const title = req.body.title;
-  const author_by = req.user._id;
+  // const author_by = req.user._id;
   const category = req.body.category;
-  const image = req.file.filename;
+  // const image = req.file.filename;
   const content = req.body.editor;
   const price = req.body.length_price;
   const province = req.body.provinces;
   const map = req.body.map;
+  const day = req.body.day;
   const date = new Date();
-
 
   console.log("category "+category);
   console.log("price "+price);
   console.log("province "+province);
+  console.log("day "+day);
+  console.log(req.body.timeof);
   
-  const Arraytag = req.body.tag.split(" ");
+  // const Arraytag = req.body.tag.split(" ");
 
   
 
-  const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, length_price:price ,date:date ,province:province,googlemap:map }
+  // const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, length_price:price ,date:date ,province:province,googlemap:map }
 
-  console.log("newPost "+newPost);
-  conPost.create(newPost,function(err, post)
-    {
-      if(err) console.log(err)
-      else
-      {
+  // console.log("newPost "+newPost);
+  // conPost.create(newPost,function(err, post)
+  //   {
+  //     if(err) console.log(err)
+  //     else
+  //     {
 
-        for(let i=0; i<(Arraytag.length-1) ;i++)
-        {
-          conTag.create({ name:Arraytag[i] },function(err,successTag)
-          {
-            console.log(successTag);
-          });
-        }
-        res.redirect("/travel/review/" + post._id);
-      }
+  //       for(let i=0; i<(Arraytag.length-1) ;i++)
+  //       {
+  //         conTag.create({ name:Arraytag[i] },function(err,successTag)
+  //         {
+  //           console.log(successTag);
+  //         });
+  //       }
+  //       res.redirect("/travel/review/" + post._id);
+  //     }
       
-    });
+  //   });
     
 });
 
@@ -124,7 +128,7 @@ router.get("/review/:postid",async function(req, res)
 {
     const post = await conPost.findById(req.params.postid)
                 .populate({path: 'author_by', model: 'User'})
-                .populate({path: 'comments', model: 'Comment',populate:({path: 'comment_by', model: 'User'})})
+                .populate({path: 'comments', model: 'Comment',options:{ sort:{date : -1}} ,populate:({path: 'comment_by', model: 'User'})})
 
     const tag = await conTag.find();
     const recommend = await conPost.find().limit(5);
@@ -336,7 +340,7 @@ router.delete("/favorite/:postid",function(req, res)
 
 router.get("/showmore/:name", async function(req, res){
 
-  const post = await conPost.find({ category : req.params.name });
+  const post = await conPost.find({ category : req.params.name }).sort({date: -1});
   res.render("blogs/showmore",{ moment: moment, posts : post});
 })
 
@@ -353,7 +357,7 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
     {
       // จริง
       // ให้เอา create comment ลงใน collection ชื่อ comments
-      comment.create({text : req.body.text, comment_by : req.user._id} , function(err,comment)
+      comment.create({text : req.body.text, comment_by : req.user._id, date: Date.now()} , function(err,comment)
       {
         if(err)
         {
@@ -383,16 +387,62 @@ router.put("/comment/:commentid/edit",async function(req, res)
 
 router.delete("/comment/:commentid",async function(req,res)
 {
-    const commentid = req.params.commentid;
-    await comment.findByIdAndDelete(commentid);
+  const commentid = req.params.commentid;
+  await comment.findByIdAndDelete(commentid);
 });
 
 
 router.get("/search",async function(req, res)
 {
   const key = req.query.keyword;
-  const result = await conPost.find({ tags:{ $regex: key } });
-  res.render("blogs/search",{moment: moment, ItemSearch : result, key : key});
+
+  const result = await conPost.find({ tags:{ $regex: key }  });
+  const lengthOfcost = await conPrice.find();
+  const filterLength_price = null;
+  const provinces = await conProvinces.find();
+  res.render("blogs/search",{moment: moment, ItemSearch : result, key : key, Allprice:lengthOfcost,currentCost:filterLength_price,filterProvinces:provinces});
+});
+
+router.get("/search/filter",async function(req, res)
+{
+  const key = req.query.keyword;
+  const filterLength_price = req.query.length_price;
+  const filterprovince = req.query.selectprovinces;
+
+
+  if(filterprovince == "" && filterLength_price == "")
+  {
+    var query = { tags:{ $regex: key }}
+  }
+  else if(filterprovince == "")
+  {
+    var query = { tags:{ $regex: key },length_price: filterLength_price}
+  }
+
+  else if(filterLength_price == "")
+  {
+    var query = { tags:{ $regex: key },province:{ $regex: filterprovince }}
+  }
+  else
+  {
+    var query = { tags:{ $regex: key },length_price: filterLength_price, province:{ $regex: filterprovince } }
+  }
+
+
+  result = await conPost.find(query)
+  
+  const lengthOfcost = await conPrice.find();
+  const provinces = await conProvinces.find();
+
+  res.render("blogs/search",{moment: moment, ItemSearch : result, key : key, Allprice:lengthOfcost, currentCost:filterLength_price,filterProvinces:provinces});
+});
+
+router.get("/tag",async function(req, res)
+{
+  const tag = req.query.keyword;
+  
+  const result = await conPost.find({ tags:{ $regex: tag } });
+  res.render("blogs/search",{moment: moment, ItemSearch : result, key : tag});
 });
 
 router.get("/author/:authorid", async function(req, res)

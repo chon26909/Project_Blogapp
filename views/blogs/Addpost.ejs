@@ -2,7 +2,7 @@
 <%- include("../layout/layoutnavbar") %>
 
 <div class="container page-addpost p-3 shadow">
-    <form method="POST" action="/travel" class="p-2" enctype="multipart/form-data">
+    <form method="POST" action="/travel" class="p-2">
         <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">สร้างบทความ</h3>
         <div class="form-group">
               <label for="text">หัวเรื่อง :</label>
@@ -12,7 +12,7 @@
             <div class="col-lg-6 col-12">
                 <p>ภาพหน้าปก :</p>
                 <div class=" mb-3" >
-                    <input type="file" name="img_title" id="img_preview" class="form-control-file" required>
+                    <input type="file" name="img_title" id="img_preview" class="form-control-file">
                     <div class="pt-2">
                         <img src="/images/no-image.png" id="img_show" alt="" style="width: 100%; height: auto;">
                     </div>
@@ -56,37 +56,76 @@
                 </div>
             </div>
         </div>
-        <div class="">
-            <fieldset>
-                <label>วันที่เปิด :</label>
-                <div>
-                    <input type="checkbox" value="">
-                    <label for="coding">วันจันทร์</label>
-                
-                    <input type="checkbox" value="">
-                    <label for="music">วันอังคาร</label>
-             
-                    <input type="checkbox" value="">
-                    <label for="music">วันพุธ</label>
-             
-                    <input type="checkbox" value="">
-                    <label for="music">วันพฤหัสบดี</label>
-
-                    <input type="checkbox" value="">
-                    <label for="music">วันศุกร์</label>
-
-                    <input type="checkbox" value="">
-                    <label for="music">วันเสาร์</label>
-
-                    <input type="checkbox" value="">
-                    <label for="music">วันอาทิตย์</label>
+        <div class="row form-group">
+            <fieldset class=" col-lg-8 col-12">
+                <legend>วันเปิดทำการ</legend>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="ทุกวัน">
+                        <label >ทุกวัน</label>
+                        <input type="time" class="" autocomplete="off" name="day">
+                        <input type="time" class="" autocomplete="off" name="day">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="วันจันทร์">
+                        <label >วันจันทร์</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="วันอังคาร">
+                        <label >วันอังคาร</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="วันพุธ">
+                        <label >วันพุธ</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="วันพฤหัสบดี">
+                        <label >วันพฤหัสบดี</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="วันศุกร์">
+                        <label >วันศุกร์</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="day" value="วันเสาร์">
+                        <label >วันเสาร์</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="sunday" value="วันอาทิตย์">
+                        <label >วันอาทิตย์</label>
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
                 </div>
             </fieldset>
+            <div class="form-group col-lg-4 col-12">
+                <label for="text">เวลาเปิด-ปิด : </label>
+                <div class="row">
+                    <div class="col-6 mt-md-2 mt-lg-0">
+                        <input type="time" class="" autocomplete="off" name="time-open">
+                    </div>
+                    <div class="col-6 mt-md-2 mt-lg-0">
+                        <input type="time" class="" autocomplete="off" name="time-close">
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
         <div class="form-group">
             <label for="text">แผนที่ : <a class="far fa-question-circle" href="" target="_blank" >วิธีการนำแผนที่เข้ามาใส่ในบทความ</a></label>
-            <input type="text" class="form-control" autocomplete="off" autocomplete="off" name="map">
+            <input type="text" class="form-control" autocomplete="off"  name="map">
         </div>
 
         <div class="form-group">
