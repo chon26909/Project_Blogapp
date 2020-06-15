@@ -31,7 +31,8 @@ let PostSchema = new mongoose.Schema({
             ref: 'Cost'
         },
     province: String,
-    googlemap: String
+    googlemap: String,
+    openandclose: [],
     
 })
 

@@ -31,6 +31,15 @@
                 <div class="mt-2 mb-2 pt-2 content">
                     <%- post.content%>
                 </div>
+                <div>
+                    <span>แท็ก : </span>
+                    <% post.tags.forEach(tag => { %>
+                        <a href="/travel/search?keyword=<%= tag %>" id="categorytag">
+                            <span class=""> <%= tag %> </span>
+                        </a>
+                    <% }) %> 
+                </div>
+                
             </article>
             <hr>
             <div class="comment-box">
@@ -47,7 +56,7 @@
                                 <div class="edit-comment">
                                     
                                     <span id="editComment" data-id="<%= comment._id %>" data-text="<%= comment.text %>"><i class="fa fa-pencil-alt"></i>&nbsp;แก้ไข</span> 
-                                    <span id="deleteComment" data-id="<%= comment._id %>"><i class="fas fa-trash"></i>&nbsp;ลบ</span>
+                                    <span id="deleteComment" data-id="<%= comment._id %>" data-commentOfPostId="<%= post._id %>"><i class="fas fa-trash"></i>&nbsp;ลบ</span>
                                 </div>
                                 <% } %> 
                             </div>
@@ -80,8 +89,6 @@
                     <p>ที่ตั้ง : </p>
                     <p>เวลาเปิด-ปิด : </p>
                     <p>วันที่เปิดทำการ : </p>
-                    
-                    
                 </div>
                 <div>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.622794390887!2d100.90280781482087!3d12.867622490924166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310295905714b48f%3A0x63218b030a8654d8!2z4LiV4Lil4Liy4LiU4LiZ4LmJ4LizIDQg4Lig4Liy4LiELCDguJ7guLHguJfguKLguLI!5e0!3m2!1sth!2sth!4v1589558995558!5m2!1sth!2sth" width="100%" height="250px"  frameborder="1" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>

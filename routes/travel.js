@@ -94,10 +94,10 @@ router.post("/",function(req, res){
   console.log("category "+category);
   console.log("price "+price);
   console.log("province "+province);
-  console.log("day "+day);
-  console.log(req.body.timeof);
-  
-  // const Arraytag = req.body.tag.split(" ");
+
+  console.log(req.body);
+  // day.forEach(d => { console.log("day "+d) });
+
 
   
 
@@ -235,28 +235,36 @@ router.put("/:id", middleware.checkAuthor, upload_imgpost.single('img_title'), a
   }  
 });
 
+
 router.delete("/:postid",async function(req, res){
   conPost.findById(req.params.postid, function(err, currentpost){
-    if(err){
+    if(err)
+    {
         res.redirect('/user/me');
-    } else {
+    } 
+    else 
+    {
         const imagePath = './public/images/posts/' + currentpost.image;
-        fs.unlink(imagePath, function(err){
-            if(err){
+        fs.unlink(imagePath, function(err)
+        {
+            if(err)
+            {
                 console.log(err);
                 res.redirect('/user/me');
             }
-            else
-            {
-              
-            }
         })
+
+
+        currentpost.comments.forEach(c => { comment.findByIdAndDelete( c,function(err,success) {if(err)console.log(err)} ) });
     }
     
-})
+  })
+
   await conPost.findByIdAndRemove(req.params.postid);
   res.redirect("/user/me");
+
 });
+
 
 
 router.post("/favorite/:postid",function(req, res)
@@ -300,7 +308,7 @@ router.post("/favorite/:postid",function(req, res)
           if(thisfav == false)
           {
             thisUser.favourite.push(post._id);
-            thisUser.save()
+            thisUser.save();
             return res.send(post);
           }
           
@@ -385,9 +393,23 @@ router.put("/comment/:commentid/edit",async function(req, res)
   await comment.findByIdAndUpdate(req.params.commentid,{text:req.body.text});
 })
 
-router.delete("/comment/:commentid",async function(req,res)
+router.delete("/comment/:postid/:commentid",async function(req,res)
 {
   const commentid = req.params.commentid;
+  const postid = req.params.postid;
+  
+  conPost.findById(postid,function(err,thispost)
+  {
+    for(let i=0; i<thispost.comments.length; i++)
+    {
+      if( thispost.comments[i].equals(commentid) )
+      {
+        thispost.comments.splice(i, 1);
+        thispost.save();
+      }
+    }
+  })
+
   await comment.findByIdAndDelete(commentid);
 });
 

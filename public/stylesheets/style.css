@@ -977,7 +977,16 @@ legend {
   padding: 5px 12px;
 }
 
-
+.DateAndTime
+{
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr 1fr;
+}
+input.timeallday, input.timeeachday1, input.timeeachday2, input.timeeachday3, input.timeeachday4, input.timeeachday5, input.timeeachday6, input.timeeachday7
+{
+  width: 75px;
+  height: 25px;
+}
 
 .container
 {
