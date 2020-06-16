@@ -16,17 +16,17 @@ mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryW
 
 router.get("/",async function(req,res)
 {
-     const showusers = await conUser.find();
+     //const showusers = await conUser.find();
      //const users = await conUser.find();
   // console.log(users.adminpanel.length);
   //for (var i = 1; i <= 10; i++) 
   //{
    //  console.table(users,["id","name"]);
 
-   console.log(showusers )
-   res.render("admin/adduser",{ moment: moment, showallusers : showusers});
+   //console.log(showusers )
+   //res.render("admin/adduser",{ moment: moment, showallusers : showusers});
  // }
-  // res.render("admin/adminpanel");
+   res.render("admin/adminpanel");
   
 });
 
@@ -36,14 +36,19 @@ router.get("/me",function(req, res)
 })
 
 
-router.get("/adminpanel",function(req,res)
+router.get("/adminpanel",async function(req,res)
 {
+    const showusers = await conUser.find();
+
+
+  console.log(showusers )
+  res.render("admin/adminpanel",{ moment: moment, showallusers : showusers});
    
-    res.render("admin/adminpanel");
+    //res.render("admin/adminpanel");
 });
 router.get("/adminpost",function(req,res)
 {
-    res.render("adminpost");
+    res.render("admin/adminpost");
 });
 
 module.exports = router;
