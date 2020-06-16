@@ -56,7 +56,6 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
     //   }
     // ]
     //   );
-    console.log(post);
     res.render("users/profile",{moment: moment, post : post, category : category });
   });
   

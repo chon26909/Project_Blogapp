@@ -124,6 +124,7 @@ $(document).ready(function deletecomment()
     $(document).on('click', '#deleteComment', function()
     {
         const commentid = $(this).attr('data-id');
+        const postid = $(this).attr('data-commentOfPostId');
         Swal.fire({
                     title: 'คุณต้องการลบคอมเม้นนี้หรือไม่?',
                     icon: 'warning',
@@ -136,7 +137,7 @@ $(document).ready(function deletecomment()
                     if (result.value) 
                     {
                         $.ajax({
-                            url: "/travel/comment/" + commentid + "/?_method=DELETE",
+                            url: "/travel/comment/"+ postid + "/" + commentid + "/?_method=DELETE",
                             method: "POST",
                             success: (
                                 Swal.fire(
@@ -170,6 +171,7 @@ $(document).ready(function insertFavouritePost()
     {
         const postid = $('.bookmark-post').attr('data-favouritepost');
         console.log(postid);
+
         $.ajax({
             url: "/travel/favorite/" + postid,
             method: "POST",
@@ -184,8 +186,6 @@ $(document).ready(function insertFavouritePost()
               $('.bookmark-post').removeClass('bookmark-post').addClass('bookmark-post-saved');
               $('#iconfav').removeClass('far fa-bookmark').addClass('fas fa-bookmark');
               $('#text-addfavourite').text("บันทึกแล้ว");
-              
-              
             },
             error: function(err){
                 Swal.fire({
@@ -198,6 +198,7 @@ $(document).ready(function insertFavouritePost()
         })
     })
 })
+
 
 $(document).ready(function deleteFavouritePost()
 {
@@ -219,7 +220,6 @@ $(document).ready(function deleteFavouritePost()
               $('.bookmark-post-saved').removeClass('bookmark-post-saved').addClass('bookmark-post');
               $('#iconfav').removeClass('fas fa-bookmark').addClass('far fa-bookmark');
               $('#text-addfavourite').text("เพิ่มในรายการโปรด");
-              
             },
             error: function(err){
                 Swal.fire({
@@ -233,6 +233,92 @@ $(document).ready(function deleteFavouritePost()
     })
 })
 
+//select all day
+$(function() 
+{
+  disable_Eachday();
+  $(".allday").click(disable_Eachday);
+});
+function disable_Eachday() 
+{
+  if (this.checked) {
+    $("input.eachday").attr("disabled", true);
+    $("label.eachday").css("color", "#aaaaaa")
+  } else {
+    $("input.eachday").attr("disabled", false);
+    $("label.eachday").css("color", "black")
+  }
+}
+
+//select each day
+$(function() 
+{
+  disable_Allday();
+  $("input.eachday").click(disable_Allday);
+});
+function disable_Allday() 
+{
+  if ( $("input.eachday").is(':checked')) 
+  {
+    $("input.allday").attr("disabled", true);
+    $("label.allday").css("color", "#aaaaaa")
+  } 
+  else 
+  {
+    $("input.allday").attr("disabled", false);
+    $("label.allday").css("color", "black")
+  }
+}
+
+$(document).ready(function()
+{
+  $(".allday").click(enableTime);
+  $(".eachday").click(enableTimeForEachday);
+})
+
+function enableTime()
+{
+  if(this.checked)
+  {
+    $(".timeallday").attr("disabled", false);
+    $(".timeallday").attr("required", true);
+  }
+  else
+  {
+    $(".timeallday").attr("disabled", true);
+  }
+}
+
+
+function enableTimeForEachday()
+{
+  const dateid = $(this).attr('data-day');
+  console.log(dateid);
+  if(this.checked)
+  {
+    $(".timeeachday"+dateid).attr("disabled", false);
+    $(".timeeachday"+dateid).attr("required", true);
+  }
+  else
+  {
+    $(".timeeachday"+dateid).attr("disabled", true);
+  }
+}
+
+
+  // function EnableInputTime()
+  //   {
+  //     if(this.checked)
+  //     {
+  //       $(".timeallday").attr("disabled", false);
+  //     }
+  //     else
+  //     {
+  //       $(".timeallday").attr("disabled", true);
+  //     }
+  //   }
+
+
 
 
 // Auto Complete #Tag in page addpost
@@ -243,6 +329,13 @@ function autocomplete(inp, arr) {
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
+
+      // console.log(val);
+      const arrayVal = val.split(' ');
+      // console.log(arrayVal);
+      val = arrayVal[arrayVal.length-1];
+      // console.log(val);
+    
       /*close any already open lists of autocompleted values*/
       closeAllLists();
       if (!val) { return false;}
@@ -269,7 +362,11 @@ function autocomplete(inp, arr) {
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
+              const newtag = this.getElementsByTagName("input")[0].value;
+              arrayVal.pop();
+              arrayVal.push(newtag);
+              let tagcomplete = arrayVal.join(' ');
+              inp.value = tagcomplete;
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -341,19 +438,8 @@ const tags = $("#tags").attr('data-tags');
 if(tags)
 {
   const arrayOfTag = tags.split(',');
-  console.log(tags)
-  console.log(arrayOfTag)
 
-  function getTagFromUser()
-  {
-    const keyword = $('#tags').val();
-    console.log(keyword);
-    const arrayOfkeyword = keyword.split(' ');
-    console.log(arrayOfkeyword);
-    return arrayOfkeyword[arrayOfkeyword.length-1];
-  }
-  
-  autocomplete(getTagFromUser, arrayOfTag);
+  autocomplete(document.getElementById("tags"), arrayOfTag);
 }
 
 

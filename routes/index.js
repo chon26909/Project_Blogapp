@@ -12,8 +12,10 @@ router.get("/",function(req, res){
   res.render("landing");
 });
 
-router.get("/login", function(_req, res)
+router.get("/login", function(req, res)
 {
+  const currentURL = req.params;
+  console.log(currentURL);
   res.render("users/login");
 });
 

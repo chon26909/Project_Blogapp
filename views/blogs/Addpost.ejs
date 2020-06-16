@@ -2,7 +2,7 @@
 <%- include("../layout/layoutnavbar") %>
 
 <div class="container page-addpost p-3 shadow">
-    <form method="POST" action="/travel" class="p-2" enctype="multipart/form-data">
+    <form method="POST" action="/travel" class="p-2">
         <h3 class="text-center mt-lg-2 mt-md-4 mt-sm-4 ">สร้างบทความ</h3>
         <div class="form-group">
               <label for="text">หัวเรื่อง :</label>
@@ -12,7 +12,7 @@
             <div class="col-lg-6 col-12">
                 <p>ภาพหน้าปก :</p>
                 <div class=" mb-3" >
-                    <input type="file" name="img_title" id="img_preview" class="form-control-file" required>
+                    <input type="file" name="img_title" id="img_preview" class="form-control-file">
                     <div class="pt-2">
                         <img src="/images/no-image.png" id="img_show" alt="" style="width: 100%; height: auto;">
                     </div>
@@ -56,37 +56,90 @@
                 </div>
             </div>
         </div>
-        <div class="">
-            <fieldset>
-                <label>วันที่เปิด :</label>
-                <div>
-                    <input type="checkbox" value="">
-                    <label for="coding">วันจันทร์</label>
-                
-                    <input type="checkbox" value="">
-                    <label for="music">วันอังคาร</label>
-             
-                    <input type="checkbox" value="">
-                    <label for="music">วันพุธ</label>
-             
-                    <input type="checkbox" value="">
-                    <label for="music">วันพฤหัสบดี</label>
-
-                    <input type="checkbox" value="">
-                    <label for="music">วันศุกร์</label>
-
-                    <input type="checkbox" value="">
-                    <label for="music">วันเสาร์</label>
-
-                    <input type="checkbox" value="">
-                    <label for="music">วันอาทิตย์</label>
+        <div class="row form-group">
+            <fieldset class=" col-lg-6 col-12">
+                <legend>วันเปิดทำการ</legend>
+                <div class="row">
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day0" id="allday" value="ทุกวัน" class="allday">
+                            <label class="allday">ทุกวัน</label>
+                        </span>
+                        
+                        <input type="time" autocomplete="off" name="day0" class="timeallday" disabled>
+                        <input type="time" autocomplete="off" name="day0" class="timeallday" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day1" id="monday" data-day="1" value="วันจันทร์" class="eachday">
+                            <label class="eachday">วันจันทร์</label>
+                        </span>
+                        
+                        <input type="time" autocomplete="off" name="day1" class="timeeachday1" disabled>
+                        <input type="time" autocomplete="off" name="day1" class="timeeachday1" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day2" id="tuesday" data-day="2" value="วันอังคาร" class="eachday">
+                            <label class="eachday">วันอังคาร</label>
+                        </span>
+                        <input type="time" autocomplete="off" name="day2" class="timeeachday2" disabled>
+                        <input type="time" autocomplete="off" name="day2" class="timeeachday2" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day3" id="day3" data-day="3" value="วันพุธ" class="eachday">
+                            <label class="eachday">วันพุธ</label>
+                        </span>
+                        <input type="time" autocomplete="off" name="day3" class="timeeachday3" disabled>
+                        <input type="time" autocomplete="off" name="day3" class="timeeachday3" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day4" id="thursday" data-day="4" value="วันพฤหัสบดี" class="eachday">
+                            <label class="eachday">วันพฤหัสบดี</label>
+                        </span>
+                        
+                        <input type="time" autocomplete="off" name="day4" class="timeeachday4" disabled>
+                        <input type="time" autocomplete="off" name="day4" class="timeeachday4" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day5" id="friday" data-day="5" value="วันศุกร์" class="eachday">
+                            <label class="eachday">วันศุกร์</label>
+                        </span>
+                        
+                        <input type="time" autocomplete="off" name="day5" class="timeeachday5" disabled>
+                        <input type="time" autocomplete="off" name="day5" class="timeeachday5" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day6" id="saturday" data-day="6" value="วันเสาร์" class="eachday">
+                            <label class="eachday">วันเสาร์</label>
+                        </span>
+                        
+                        <input type="time" autocomplete="off" name="day7" class="timeeachday6" disabled>
+                        <input type="time" autocomplete="off" name="day7" class="timeeachday6" disabled>
+                    </div>
+                    <div class="col-12 DateAndTime">
+                        <span>
+                            <input type="checkbox" name="day8" id="sunday" data-day="7" value="วันอาทิตย์" class="eachday">
+                            <label class="eachday">วันอาทิตย์</label>
+                        </span>
+                        
+                        <input type="time" autocomplete="off" name="day8" class="timeeachday7" disabled>
+                        <input type="time" autocomplete="off" name="day8" class="timeeachday7" disabled>
+                    </div>
                 </div>
             </fieldset>
+            <div>
+
+            </div>
         </div>
-        
+
         <div class="form-group">
             <label for="text">แผนที่ : <a class="far fa-question-circle" href="" target="_blank" >วิธีการนำแผนที่เข้ามาใส่ในบทความ</a></label>
-            <input type="text" class="form-control" autocomplete="off" autocomplete="off" name="map">
+            <input type="text" class="form-control" autocomplete="off"  name="map">
         </div>
 
         <div class="form-group">
