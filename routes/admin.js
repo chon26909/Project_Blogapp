@@ -50,5 +50,8 @@ router.get("/adminpost",function(req,res)
 {
     res.render("admin/adminpost");
 });
-
+router.get("/addcatelog",function(req,res)
+{
+    res.render("admin/addcatelog");
+});
 module.exports = router;
