@@ -17,16 +17,16 @@
          
               <nav>
                 <div class="nav-wrapper">
-                  <a href="" class="brand-logo">ADMIN</a>
+                  <a href="#" class="brand-logo">ADMIN</a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="">User</a></li>
+                    <li>User<p class="secondary-content"><i class="material-icons">grade</i></p></li>
                     <li><a href="">Catelog</a></li>
-                    <li><a href="">Report</a></li>
+                    <li><a href="">Edit post</a></li>
                     <li><a href="">Back</a></li>
                   </ul>
                 </div>
               </nav>
-               <% showallusers.forEach(function(user){ %>
+             
               <table class="responsive-table">
                 <thead>
                   <tr>
@@ -34,11 +34,11 @@
                       <th>E-mail</th>
                       <th>Post</th>
                       <th>Usertype</th>
-                      <th>Delete</th>
-                      <th>Report</th>
+                      <th></th>
+                      <th></th>
                   </tr>
                 </thead>
-        
+                <% showallusers.forEach(function(user){ %>
                 <tbody>
                   <tr>
                     <td><%= user.username %></td>
@@ -46,15 +46,17 @@
                     <td><%= user.total_post%></td>
                     <td><%= user.permission %></td>
                     <td>
-                      <a href="#" class="btn btn-danger">Delete</a>
+                      <a href="#" class="btn waves-effect waves-light red">Delete</a>
                     </td>
                     <td>
-                      <a href="#" class="btn btn-warning">Report</a>
+                      <a href="#" class="btn waves-effect waves-light green">Edit</a>
                     </td>
                   </tr>
                 </tbody>
+                <% }); %>      
+
               </table>
-              <% }); %>      
+        
 
     
 </body>

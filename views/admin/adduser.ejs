@@ -25,7 +25,7 @@
                   <h2>ADMIN PANEL</h2>
                   <!--<h3>User</h3>-->
                   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-                  <% showallusers.forEach(function(user){ %>
+             
                     <!--<div class="row">
                       <div class="col-md-12">
                         <div class="card">
@@ -45,6 +45,7 @@
                                     <th>Report</th>
                                  
                                   </thead>
+                                  <% showallusers.forEach(function(user){ %>
                                   <tbody>
                                     <tr>
                                       <td><%= user.username %></td>
@@ -60,6 +61,7 @@
                                       </td>
                                    
                                   </tbody>
+                                  <% }); %>
                                 </table>
                               </div>
                             </div>
@@ -67,7 +69,7 @@
                         </div>
                       </div>
                     </div>-->
-                    <% }); %>
+              
                 
               <script>
               function openNav() {
