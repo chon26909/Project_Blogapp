@@ -1,8 +1,8 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
-<div class="container bg-white mt-3">
+<div class="container card mt-3">
     <h2 class="mt-3 mb-3 p-3">ค้นหา "<%= key %>" พบ <%= ItemSearch.length %> บทความ</h2>
-    <div class="bg-white p-3 shadow">
+    <div class=" p-3">
         <form action="/travel/search/filter" method="GET">
             <input type="hidden" value="<%= key %>" name="keyword">
             
@@ -12,7 +12,7 @@
                         <select class=""name="length_price">
                                 <option name="length_price" value="">ไม่จำกัด</option>
                                 <% Allprice.forEach(function(price){ %>
-                                    <option name="length_price" value="<%= price._id%>">ไม่เกิน <%= price.maximum_price %> บาท</option>
+                                    <option name="length_price" value="<%= price.maximum_price%>">ไม่เกิน <%= price.maximum_price %> บาท</option>
                                 <% }) %>    
                         </select>
                     </div>
@@ -39,8 +39,9 @@
 <div class="container page-search">
 
     <div class="">
-        <% ItemSearch.forEach(function(item) { %>        
-            <article class="item-article-search shadow">
+        <% ItemSearch.forEach(function(item) { %>   
+            <!-- class="item-article-search" -->
+            <article class="card mt-2">
                 <div class="items-search">
                     <figure class="image-search-page">
                         <a href="/travel/review/<%= item._id %>">

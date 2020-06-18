@@ -62,15 +62,16 @@ $(document).ready(function insertcomment()
     {
         const textcomment = $('#textInputComment').val();
         const postid = $('#textInputComment').attr('data-postIdOfCommment');
-        console.log(textcomment);
-        console.log(postid);
+        // const newComment = $('.comment-item');
+        // // alert(newComment);
+        // alert(newComment.('.comment-by').attr('id'));
         $.ajax({
             url: "/travel/comment/" + postid,
             method: "POST",
             data : {text:textcomment},
             success: function(comment)
             {
-                location.reload()
+                location.location();
             },
             error: function(err){
                 Swal.fire({
@@ -143,7 +144,7 @@ $(document).ready(function deletecomment()
                                 Swal.fire(
                                     'Deleted!',
                                     'ลบสำเร็จแล้ว!',
-                                    'success'
+                                    'success',
                                 ),
                                 location.reload()
                             ), 
@@ -286,6 +287,7 @@ function enableTime()
   else
   {
     $(".timeallday").attr("disabled", true);
+    $(".timeallday").val('');
   }
 }
 
@@ -302,6 +304,7 @@ function enableTimeForEachday()
   else
   {
     $(".timeeachday"+dateid).attr("disabled", true);
+    $(".timeeachday"+dateid).val('');
   }
 }
 
