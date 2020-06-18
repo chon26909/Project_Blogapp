@@ -28,7 +28,7 @@ let PostSchema = new mongoose.Schema({
     minimum_cost : Number, 
     province: String,
     googlemap: String,
-    openandclose: Array
+    openandclose: Object
     
 })
 

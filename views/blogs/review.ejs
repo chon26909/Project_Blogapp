@@ -45,22 +45,10 @@
             <div class="comment-box">
                 <h5>ความคิดเห็น <%= post.comments.length %> รายการ</h5>
                 <div class="p-1">
-                    <% if(locals.user){ %>
-                        <div class="comment-item">
-                            <figure class="comment-by-img">
-                                <img src="/images/img-profile/<%= user.image %>" alt="" class="usercomment-img mr-2">
-                            </figure>
-                            <form>
-                                <textarea name="comment" class="box-for-comment" data-postIdOfCommment="<%= post._id %>" id="textInputComment" rows="3" placeholder="แสดงความคิดเห็น"></textarea>
-                                <div>
-                                    <button id="btnPostcomment">&nbsp;โพสต์&nbsp;</button>
-                                </div>
-                            </form>
-                        </div>
-                    <% } %>
-                    <div class="append-newComment">
+                    
+                    <!-- <div class="append-newComment">
                         
-                    </div>
+                    </div> -->
                     <% post.comments.forEach(function(comment){ %>
                         <div class="comment-item">
                             <figure class="comment-by-img">
@@ -79,7 +67,19 @@
                         </div>
                     <% }) %>
 
-                   
+                    <% if(locals.user){ %>
+                        <div class="comment-item">
+                            <figure class="comment-by-img">
+                                <img src="/images/img-profile/<%= user.image %>" alt="" class="usercomment-img mr-2">
+                            </figure>
+                            <form>
+                                <textarea name="comment" class="box-for-comment" data-postIdOfCommment="<%= post._id %>" id="textInputComment" rows="3" placeholder="แสดงความคิดเห็น"></textarea>
+                                <div>
+                                    <button id="btnPostcomment">&nbsp;โพสต์&nbsp;</button>
+                                </div>
+                            </form>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>

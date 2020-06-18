@@ -26,7 +26,7 @@ router.get("/",async function(req,res)
    //console.log(showusers )
    //res.render("admin/adduser",{ moment: moment, showallusers : showusers});
  // }
-   res.render("admin/addpanel");
+   res.render("admin/addpanel",{title: "Manage Users"});
   
 });
 
@@ -42,16 +42,16 @@ router.get("/adminpanel",async function(req,res)
 
 
   console.log(showusers )
-  res.render("admin/adminpanel",{ moment: moment, showallusers : showusers});
+  res.render("admin/adminpanel",{title: "Manage Users", moment: moment, showallusers : showusers});
    
     //res.render("admin/adminpanel");
 });
 router.get("/adminpost",function(req,res)
 {
-    res.render("admin/adminpost");
+    res.render("admin/adminpost",{title: "Admin page"});
 });
 router.get("/addcatelog",function(req,res)
 {
-    res.render("admin/addcatelog");
+    res.render("admin/addcatelog",{title: "Admin page"});
 });
 module.exports = router;

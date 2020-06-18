@@ -56,14 +56,14 @@ router.get("/me",middleware.checkAuthentication, async function(req, res){
     //   }
     // ]
     //   );
-    res.render("users/profile",{moment: moment, post : post, category : category });
+    res.render("users/profile",{title: "บทความของฉัน", moment: moment, post : post, category : category });
   });
   
 router.get("/saved",middleware.checkAuthentication,async function(req,res)
 {
   const savedpost = await conUser.findById(req.user._id).populate({path:'favourite',model: 'Post'});
   console.log(savedpost.favourite.length);
-  res.render("users/favourite",{ moment: moment, favouritePosts : savedpost});
+  res.render("users/favourite",{ title: "รายการที่บันทึกไว้", moment: moment, favouritePosts : savedpost});
 })
 
   router.get("/mygallery", async function(req, res)
@@ -102,7 +102,7 @@ router.get("/saved",middleware.checkAuthentication,async function(req,res)
   
   router.get("/edit",middleware.checkAuthentication, async function(req, res)
   {
-    res.render("users/Editprofile",{moment: moment});
+    res.render("users/Editprofile",{ title: "แก้ไขข้อมูลส่วนตัว",moment: moment});
   });
 
   module.exports = router;
