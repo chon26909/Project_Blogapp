@@ -17,7 +17,7 @@ let PostSchema = new mongoose.Schema({
             ref: 'Comment'
         }
     ],
-    tags:[],
+    tags: Array,
     views:
     [
         {
@@ -25,14 +25,10 @@ let PostSchema = new mongoose.Schema({
             ref: 'User'
         }
     ],
-    length_price:
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Cost'
-        },
+    minimum_cost : Number, 
     province: String,
     googlemap: String,
-    openandclose: [],
+    openandclose: Array
     
 })
 

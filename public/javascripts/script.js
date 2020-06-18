@@ -62,32 +62,16 @@ $(document).ready(function insertcomment()
     {
         const textcomment = $('#textInputComment').val();
         const postid = $('#textInputComment').attr('data-postIdOfCommment');
-        const newComment = $('.comment-item');
-        // alert(newComment);
-        alert(newComment.('.comment-by').attr('id'));
+        // const newComment = $('.comment-item');
+        // // alert(newComment);
+        // alert(newComment.('.comment-by').attr('id'));
         $.ajax({
             url: "/travel/comment/" + postid,
             method: "POST",
             data : {text:textcomment},
             success: function(comment)
             {
-              const newComment = '<div class="comment-item">'+
-        '<figure class="comment-by-img">'+
-            '<img src="/images/img-profile/<%= comment.comment_by.image %>" alt="" class="usercomment-img mr-2">'+
-        '</figure>'+
-        '<div class="comment-by" id="<%= comment._id %>">'+
-            '<p><a href="/travel/author/<%= comment.comment_by._id %>"><%= comment.comment_by.username %></a>&nbsp;<span id=""><%= comment.text %></span></p>'+
-            '<% if(user && comment.comment_by.equals(user._id)){ %> '+
-            '<div class="edit-comment">'+
-                
-                '<span id="editComment" data-id="<%= comment._id %>" data-text="<%= comment.text %>"><i class="fa fa-pencil-alt"></i>&nbsp;แก้ไข</span> '+
-                '<span id="deleteComment" data-id="<%= comment._id %>" data-commentOfPostId="<%= post._id %>"><i class="fas fa-trash"></i>&nbsp;ลบ</span>'+
-            '</div>'+
-            '<% } %> '+
-        '</div>'+
-    '</div>'
-                // $('.append-newComment').append(newComment);
-                // location.location();
+                location.location();
             },
             error: function(err){
                 Swal.fire({

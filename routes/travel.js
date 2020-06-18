@@ -88,14 +88,48 @@ router.post("/",function(req, res){
   const price = req.body.length_price;
   const province = req.body.provinces;
   const map = req.body.map;
-  const day = req.body.day;
   const date = new Date();
 
+  
+
+  
+
+  const allday = req.body.day0
+  const monday = req.body.day1
+  const tuesday = req.body.day2
+  const wednesday = req.body.day3
+  const thursday = req.body.day4
+  const friday = req.body.day5
+  const saturday = req.body.day6
+  const sunday = req.body.day7
+
+  Array.prototype.convertToObject = function(){
+    for(let i = 0; i< this.length; i++)
+    {
+      this[i] = this[i];
+    }
+  }
+
+  const dayOfweek = [allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday]
+
+  let DayAndTime_isOpen = {};
+
+  for(i=0; i < dayOfweek.length; i++)
+  {
+    if(dayOfweek[i] == undefined)
+    {
+      continue;
+    }
+    else
+    {
+      DayAndTime_isOpen = dayOfweek[i];
+    }
+  }
+  // arraydayopen = {allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday};
   console.log("category "+category);
   console.log("price "+price);
   console.log("province "+province);
-
-  console.log(req.body);
+  console.log(DayAndTime_isOpen);
   // day.forEach(d => { console.log("day "+d) });
 
 
@@ -379,7 +413,7 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
           thispost.comments.push(comment);
           thispost.save();
 
-          return res.send(comment);
+          return res.send(comment._id);
         }
       });
     }
@@ -428,9 +462,8 @@ router.get("/search",async function(req, res)
 router.get("/search/filter",async function(req, res)
 {
   const key = req.query.keyword;
-  const filterLength_price = req.query.length_price;
-  const filterprovince = req.query.selectprovinces;
-
+  const filterLength_price = req.query.length_price; 
+  const filterprovince = req.query.selectprovinces; 
 
   if(filterprovince == "" && filterLength_price == "")
   {
@@ -438,16 +471,15 @@ router.get("/search/filter",async function(req, res)
   }
   else if(filterprovince == "")
   {
-    var query = { tags:{ $regex: key },length_price: filterLength_price}
+    var query = { tags:{ $regex: key }, minimum_cost: { $lte : filterLength_price} }
   }
-
   else if(filterLength_price == "")
   {
-    var query = { tags:{ $regex: key },province:{ $regex: filterprovince }}
+    var query = { tags:{ $regex: key }, province: { $regex: filterprovince } }
   }
   else
   {
-    var query = { tags:{ $regex: key },length_price: filterLength_price, province:{ $regex: filterprovince } }
+    var query = { tags:{ $regex: key }, minimum_cost: { $lte : filterLength_price}, province:{ $regex: filterprovince } }
   }
 
 
