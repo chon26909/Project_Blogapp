@@ -4,13 +4,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">    
     </head>
           
              <body>
@@ -34,10 +35,11 @@
                       <th>E-mail</th>
                       <th>Post</th>
                       <th>Usertype</th>
-                      <th></th>
-                      <th></th>
+                      <th>Warn</th>
+                      <th>Edit</th>
                   </tr>
                 </thead>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <% showallusers.forEach(function(user){ %>
                 <tbody>
                   <tr>
@@ -45,11 +47,12 @@
                     <td><%= user.email %></td>
                     <td><%= user.total_post%></td>
                     <td><%= user.permission %></td>
+                  
                     <td>
-                      <a href="#" class="btn waves-effect waves-light red">Delete</a>
+                      <a class="btn waves-effect waves-light red" href="/delete/<%= user._id %>"><i class="material-icons right">notifications_activee</i>เตือน</a>
                     </td>
                     <td>
-                      <a href="#" class="btn waves-effect waves-light green">Edit</a>
+                      <a class="waves-effect waves-light btn" href="#"><i class="material-icons right">edit</i>แก้ไข</a>
                     </td>
                   </tr>
                 </tbody>

@@ -15,6 +15,7 @@
         <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 
       
  
@@ -80,9 +81,9 @@
           </ul>
         </div>
         
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
+      <div class="row ">
+       
+          <div class="card" style="left: 140px;">
             <div class="card-image">
               <img src="https://assets.brandinside.asia/uploads/2018/04/cat-cat-cat.jpg" >
             
@@ -96,10 +97,10 @@
       </div>
   
       <footer class="page-footer">
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <div class="container">
           <div class="row">
             <div class="col s12 m8 l9">
-  
               <p class="text-align right">เว็บไซด์นี้จัดทำขึ้นเพื่อฝึกทักษะการเขียนเว็บของสมาชิกในทีม และนำเสนอต่ออาจารย์ผู้สอน โดยมิได้ตั้งใจที่จะละเมิดข้อมูลเว็บไซด์ต้นฉบับแต่อย่างใด</p>
             </div>
             <div class="contact-information">
@@ -118,7 +119,28 @@
           </div>
         </div>
       </footer>
-    
+      <div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+  </ul>
+</div>
+      <script> 
+ 
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+      direction: 'left'
+    });
+  });
+        
+      </script>
+     
 </html>
         
 
