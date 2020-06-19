@@ -14,6 +14,7 @@ const express = require('express'),
 //connect DB
 const mongoose = require('mongoose');
 const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
+const { nextTick } = require('process');
 const ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
@@ -68,12 +69,64 @@ router.get('/edit/:id', (req,res, next)=>{
     }
   })
 });*/
+/*router.post("/addcatelog", async function(req, res){
+  const alltag = await conTag.find();
+  console.log(alltag)
+  let n_name = req.body.name;
+ 
+  if(req.file)
+  {
+    let updateDataTags = { name:n_name, } 
+    await conTag.findByIdAndUpdate(req.user,updateDataTags);
+    res.redirect("/admin/addcatelog");
+  }
+  else
+  {
+    let updateDataTags = { name:n_name } 
+    await conTag.findByIdAndUpdate(req.user,updateDataTags);
+    res.redirect("/admin/addcatelog");
+  }
+  res.render("admin/addcatelog",{moment: moment, showtag : alltag});
+});*/
+
+/*router.get("/addcatelog",middleware.checkAuthentication, async function(req, res)
+{
+  res.render("admin/addcatelog",{moment: moment});
+});*/
+/*router.post("/addcatelog/:id" , async function(req, res)
+{
+  conTag.findByIdAndUpdate({_name:req.params.name}),req.body,(err,docs)=>{
+    if(err){
+      consolelog("something...");
+    next(err)
+  }else{
+    res.redirect("/addcatelog");
+  }
+
+  }
+});*/
 
 router.get("/addcatelog",async function(req, res)
 {
   const alltag = await conTag.find();
+  /*const Arraytag = [];
+  tags.forEach(function(tag)
+  {
+    Arraytag.push(tag.name);
+  });*/
+
+
+  /*conTag.findByIdAndUpdate({_name:req.params.name}),req.body,(err,docs)=>{
+    if(err){
+      console.log("something...");
+    next(err)
+  }else{
+    res.redirect("/addcatelog");
+  }
+}*/
+ 
   console.log(alltag)
-  res.render("admin/addcatelog",{moment: moment, showtag : alltag});
+  res.render("admin/addcatelog",{moment: moment, showtag : alltag,/* Arraytag: Arraytag*/});
 });
 
 
