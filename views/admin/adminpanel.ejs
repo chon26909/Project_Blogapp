@@ -28,40 +28,43 @@
                 </div>
               </nav>
              
-              <table class="responsive-table">
-                <thead>
-                  <tr>
-                      <th>Username</th>
-                      <th>E-mail</th>
-                      <th>Post</th>
-                      <th>Usertype</th>
-                      <th>Warn</th>
-                      <th>Edit</th>
-                  </tr>
-                </thead>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <% showallusers.forEach(function(user){ %>
-                <tbody>
-                  <tr>
-                    <td><%= user.username %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.total_post%></td>
-                    <td><%= user.permission %></td>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">ตารางข้อมูลผู้ใช้</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Username</th>
+            <th class="text-center">E-mail</th>
+            <th class="text-center">Post</th>
+            <th class="text-center">Usertype</th>
+            <th class="text-center">Warn</th>
+            <th class="text-center">Edit</th>
+          </tr>
+        </thead>
+        <% showallusers.forEach(function(user){ %>
+        <tbody>
+          <tr>
+            <td class="pt-3-half" contenteditable="true"><%= user.username %></td>
+            <td class="pt-3-half" contenteditable="true"><%= user.email %></td>
+            <td class="pt-3-half" contenteditable="true"><%= user.total_post%></td>
+            <td class="pt-3-half" contenteditable="true"><%= user.permission %></td>
+          
             
-                  
-                    <td>
-                      <a class="btn waves-effect waves-light red" href="/delete/<%= user._id %>"><i class="material-icons right">notifications_activee</i>เตือน</a>
-                    </td>
-                    <td>
-                      <a class="waves-effect waves-light btn" href="#"><i class="material-icons right">edit</i>แก้ไข</a>
-                    </td>
-                  </tr>
-                </tbody>
-                <% }); %>      
+            <td>
+              <a class="btn waves-effect waves-light red" href="/delete/<%= user._id %>"><i class="material-icons right">notifications_activee</i>เตือน</a>
+            </td>
+            <td>
+              <a class="waves-effect waves-light btn" href="#"><i class="material-icons right">edit</i>แก้ไข</a>
+            </td>
+          </tr>
+        </tbody>
+        <% }); %>    
+      </table>
+    </div>
+  </div>
+</div>
 
-              </table>
-        
-
-    
 </body>
 </html>
