@@ -14,18 +14,28 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
+        <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+        
         <!------ Include the above in your HEAD tag ---------->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
            
     </head>
     <style>
-     
+   .pt-3-half {
+padding-top: 1.4rem;
+}
+
     </style>
     <nav>
         <div class="nav-wrapper">
@@ -38,10 +48,177 @@
           </ul>
         </div>
       </nav>
-      <% showtag.forEach(function(tag){ %>
-      <ul class="collection with-header">
-        <li class="collection-header"><h3>รวมแท็ก</h3></li>
-        <li class="collection-item"><%= tag.name %></li>
-      </ul>
-      <% }); %> 
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <!--<div class="brand-logo center">
+       <h3>รวมแท็กทั้งหมด<i class="small material-icons">wb_sunny</i></h3>
+      </div>-->
+<!-- Editable table -->
+<!-- Material auto-sizing form -->
+
+<form>
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <label class="sr-only" for="inlineFormInputGroupMD">เพิ่มแท็ก</label>
+      <div class="md-form input-group mb-3">
+        <input type="text" class="form-control pl-0 rounded-0" id="inlineFormInputGroupMD"
+          placeholder="เพิ่มแท็ก">
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn aqua-gradient">เพิ่ม</button>
+    </div>
+  </div>
+</form>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">ตารางแท็ก</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+            class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center"><h4>AllTags</h4></th>
+            <th class="text-center"></th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% showtag.forEach(function(tag){ %>
+            
+            <td class="pt-3-half" contenteditable="true"> <%= tag.name %></td>
+            <td class="pt-3-half">
+              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                    aria-hidden="true"></i></a></span>
+              <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                    aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+              <span class="table-remove"><button type="button"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+            </td>
+          </tr>
+          <% }); %> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Editable table -->
+        <!--<div class="row center">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <label for="icon_prefix2">เพิ่มแท็ก...</label>
+              </div>
+            </div>
+          </form>
+        </div>
+              
+       
+        <table class="table">
+        <tbody>
+          <tr>
+            <div class="chip">
+              
+              <i class="close material-icons">close</i>
+            </div>
+          </tr>
+        </tbody>
+      </table>-->
+     
+      <script>
+        const $tableID = $('#table');
+        const $BTN = $('#export-btn');
+        const $EXPORT = $('#export');
+
+        const newTr = `
+        <tr class="hide">
+          <td class="pt-3-half" contenteditable="true">Example</td>
+          <td class="pt-3-half" contenteditable="true">Example</td>
+          <td class="pt-3-half" contenteditable="true">Example</td>
+          <td class="pt-3-half" contenteditable="true">Example</td>
+          <td class="pt-3-half" contenteditable="true">Example</td>
+          <td class="pt-3-half">
+            <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a></span>
+            <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a></span>
+          </td>
+          <td>
+            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button></span>
+          </td>
+        </tr>`;
+
+        $('.table-add').on('click', 'i', () => {
+
+          const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
+
+          if ($tableID.find('tbody tr').length === 0) {
+
+            $('tbody').append(newTr);
+          }
+
+          $tableID.find('table').append($clone);
+        });
+
+        $tableID.on('click', '.table-remove', function () {
+
+          $(this).parents('tr').detach();
+        });
+
+        $tableID.on('click', '.table-up', function () {
+
+          const $row = $(this).parents('tr');
+
+          if ($row.index() === 0) {
+            return;
+          }
+
+          $row.prev().before($row.get(0));
+        });
+
+        $tableID.on('click', '.table-down', function () {
+
+          const $row = $(this).parents('tr');
+          $row.next().after($row.get(0));
+        });
+
+        // A few jQuery helpers for exporting only
+        jQuery.fn.pop = [].pop;
+        jQuery.fn.shift = [].shift;
+
+        $BTN.on('click', () => {
+
+          const $rows = $tableID.find('tr:not(:hidden)');
+          const headers = [];
+          const data = [];
+
+          // Get the headers (add special header logic here)
+          $($rows.shift()).find('th:not(:empty)').each(function () {
+
+            headers.push($(this).text().toLowerCase());
+          });
+
+          // Turn all existing rows into a loopable array
+          $rows.each(function () {
+            const $td = $(this).find('td');
+            const h = {};
+
+            // Use the headers from earlier to name our hash keys
+            headers.forEach((header, i) => {
+
+              h[header] = $td.eq(i).text();
+            });
+
+            data.push(h);
+          });
+
+          // Output the result
+          $EXPORT.text(JSON.stringify(data));
+        });
+      </script>
 </html>

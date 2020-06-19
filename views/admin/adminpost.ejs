@@ -25,101 +25,41 @@
           </ul>
         </div>
       </nav>
+      <% showallusers.forEach(function(user){ %>
+        <tbody>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.total_post%></td>
+            <td><%= user.total_post%></td>
+            <td><%= user._id %></td>
+            <td><%= user.favourite%></td>
+       
+          </tr>
+        </tbody>
+        <% }); %>     
+
+        <% if(photogallery.length > 0 ) {%> 
+          <div class="row mt-3">
+              <!-- loop photogallerry -->
+                  <% for(var i=0; i < photogallery.length; i++) { %>
+                  <div class="col-lg-3 col-md-4 col-6 p-2">
+                      <a href="/admin/adminpost<%= photogallery[i]._id %>">
+                          <div class="card">
+                              <img src="/images/posts/<%= photogallery[i].imgurl %>" alt="" style="height: 150px;" class="img-crop">
+                          </div>
+                      </a>
+                      
+                  </div>     
+                  <% } %>
+          </div>
+          <% } %>
+          <% if(photogallery.length <= 0 ) { %>
+              <div class="text-center mt-3 p-3 bg-light">
+                  <h6>No Photo</h6>
+              </div>
+          <% } %>
+      </div>
   
-  <form action="#">
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file" multiple>
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div>
-  </form>
-  <div class="site">
-    <div class="ui massive menu">
-        <div class="ui container">
-            <div class="item"><a href="/">Home</a></div>
-            <div class="item">About</div>
-            <div class="item">Contact</div>
-            <div class="item">Blog</div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="ui container">
-        <form id="form" action="/add" class="ui form" method="POST">
-            <div class="three fields">
-                <div class="field">
-                    <label for="label" class="ui header green">Enter club name</label>
-                    <input type="text" name="name" placeholder="Enter club name" value=""  id="name">
-                </div>
-                <div class="field">
-                    <label for="label" class="ui header green">Enter players name</label>
-                    <input type="text" name="players" placeholder="Enter players name" value="" id="players">
-                </div>
-                <div class="field">
-                    <label for="label" class="ui header green">Enter coach name</label>
-                    <input type="text" name="coach" placeholder="Enter coach name" value="" id="coach">
-                </div>
-            </div>
-            <!-- <div class=" one fields"> -->
-                <div class="field fluid">
-                    <button type="submit" class="ui button fluid green">Save</button>
-                </div>
-            <!-- </div> -->
-        </form>
-        <br>
-        <br>
-        <br>
-        
-        <table class="ui table green" >
-            <thead>
-                <tr>
-                    <th>Club Name</th>
-                    <th>Players</th>
-                    <th>Coach</th>
-                    <th >Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-              
-                    <tr>
-                        <td id="teamName"></td>
-                        <td id="teamPlayers"></td>
-                        <td id="teamCoach"></td>
-                        <td><a class="ui button green editBtn" href=""><i class="edit white icon"></i></a></td>
-                        <td><a class="ui button green actnBtn" href=""><i id="delete" class="minus red icon"></i></a></td>
-                    </tr>
-               
-            </tbody>
-        
-            <!-- <tbody>
-                <tr>
-                    <td>Bayern Munich</td>
-                    <td>Lawendoski, Coutinho</td>
-                    <td>Niko Kovač</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
-                </tr>
-                <tr>
-                    <td>PSG</td>
-                    <td>Neymar, Mbappe</td>
-                    <td>Thomas Tuchel</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
-                </tr>
-                <tr>
-                    <td>FC Barcelona</td>
-                    <td>Messi, Suarez</td>
-                    <td>Ernesto Valverde</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
-                </tr>
-            </tbody> -->
-        </table>
-    </div>
-</div>
+  </div>
+  

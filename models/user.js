@@ -68,18 +68,7 @@ module.exports.getUserByEmail = function(email,callback)
     User.findOne(query,callback);
 }
 
-// module.exports.resetPassword = function(email, result)
-// {
-//   const result = User.find({email: email});
-// }
 
-
-/*passport.deserializeUser(function(obj, done) {
-  console.log("deserializing " + obj);
-  // simulate an admin user
-  obj.role = obj.username == 'admin' ? 'admin' : 'user';
-  done(null, obj);
-});*/
 
 
 module.exports.comparePassword = function(password,hash,callback)
