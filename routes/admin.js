@@ -82,8 +82,20 @@ router.get("/addcatelog",async function(req, res)
 {
   const alltag = await conTag.find();
   console.log(alltag)
-  res.render("admin/addcatelog",{moment: moment, showtag : alltag});
+  res.render("admin/addcatelog",{title: "Add Tags" ,moment: moment, showtag : alltag});
 });
 
+
+router.get("/Alluser",async function(req, res)
+{
+  const user = await conUser.aggregate([{$lookup: {
+    from: 'posts',
+    localField: '_id',
+    foreignField: 'author_by',
+    as: 'totalpost'
+  }}])
+  console.log(user);
+  res.render("admin/postofuser",{title: "PostOfUser", moment:moment, user:user});
+})
 
 module.exports = router;

@@ -55,8 +55,8 @@ padding-top: 1.4rem;
       </div>-->
 <!-- Editable table -->
 <!-- Material auto-sizing form -->
-
-<form>
+<div class="container">
+<form >
   <div class="form-row align-items-center">
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInputGroupMD">เพิ่มแท็ก</label>
@@ -88,7 +88,7 @@ padding-top: 1.4rem;
           <tr>
             <% showtag.forEach(function(tag){ %>
             
-            <td class="pt-3-half" contenteditable="true"> <%= tag.name %></td>
+            <td class="pt-3-half"> <%= tag.name %></td>
             <td class="pt-3-half">
               <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
                     aria-hidden="true"></i></a></span>
@@ -106,7 +106,7 @@ padding-top: 1.4rem;
     </div>
   </div>
 </div>
-
+</div> 
 <!-- Editable table -->
         <!--<div class="row center">
           <form class="col s12">

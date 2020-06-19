@@ -1,0 +1,40 @@
+<%- include("../layout/header") %>
+<div class="container">
+    <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">บทความของผู้ใช้ทั้งหมด</h3>
+        <div class="card-body">
+        <div id="table" class="table-editable">
+            <!-- <span class="table-add float-right mb-3 mr-2"><a href="" class="text-success"><i
+                class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span> -->
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <thead>
+                    <tr>
+                    <th class="text-center">ชื่อผู้ใช้</th>
+                    <th class="text-center">จำนวนบทความ</th>
+                    <th class="text-center">ดูทั้งหมด</th>
+                    </tr>
+                </thead>
+                <tbody id="accordion">
+                    <% user.map(function(u) { %>
+                    <tr>
+                        <td><%= u.username %> </td>
+                        <td><%= u.totalpost.length %> </td>
+                        <td><a data-toggle="collapse" data-parent="#accordion" href="#collapse1">คลิก</a></td>
+                    </tr>
+                    <tr id="collapse1" class="collapse">
+                        <td colspan="3">
+                            <ul style="padding: 10px; text-align: start;">
+                            <% u.totalpost.map(function (post) { %>
+                                  <a href="/travel/review/<%= post._id %>"><li> <%= post.title %> </li></a>
+                            <% }); %> 
+                            </ul>
+                        </td>
+                    </tr>
+                    <% }); %> 
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div> 
+</div>
