@@ -46,12 +46,22 @@ router.get("/adminpanel",async function(req,res)
     //res.render("admin/adminpanel");
 });
 
-router.get("/adminpost",function(req,res)
+router.get("/adminpost",async function(req,res)
 {
-    res.render("admin/adminpost",{title: "Admin page"});
+// <<<<<<< HEAD
+    res.render("admin/adminpost");
+// =======
+  
+    const { userid } = req.admin;
+    const result = await conPost.find({userid : userid});
+    res.render("admin/adminpost",{ moment: moment, photogallery : result});
+
+  
+    //res.render("admin/adminpost");
+// >>>>>>> ff220060dd22b5afe25994ccdf78e86692b95adc
 });
 
-router.get("/addcatelog",function(req,res)
+/*router.get("/addcatelog",function(req,res)
 {
     res.render("admin/addcatelog",{title: "Admin page"});
 });
@@ -66,7 +76,7 @@ router.get('/edit/:id', (req,res, next)=>{
 
     }
   })
-});
+});*/
 
 router.get("/addcatelog",async function(req, res)
 {

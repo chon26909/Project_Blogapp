@@ -8,7 +8,8 @@ let hashtagSchema = new mongoose.Schema({
     //         type: mongoose.Schema.Types.ObjectId,
     //         ref: 'Categories'
     //     }
-    name: String
+    name: String,
+    _tags: Number
 });
 
 module.exports = mongoose.model('Tag', hashtagSchema);
