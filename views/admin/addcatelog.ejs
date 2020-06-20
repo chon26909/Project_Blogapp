@@ -36,19 +36,31 @@
     {
       padding-top: 1.4rem;
     }
+    .right hide-on-med-and-down{
+      font-size: medium;
+    }
 
     </style>
-    <nav>
-        <div class="nav-wrapper">
-          <a href="/admin" class="brand-logo">ADMIN</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/admin/adminpanel">User</a></li>
+     <nav>
+      <div class="nav-wrapper">
+        <a href="/admin" class="brand-logo">ADMIN</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/admin/adminpanel">User</a></li>
             <li>Catelog<p class="secondary-content"><i class="material-icons">grade</i></p></li>
-            <li><a href="">Edit post</a></li>
+            <li><a href="/admin/Alluser">Post users</a></li>
             <li><a href="/admin">Back</a></li>
-          </ul>
-        </div>
-      </nav>
+        </ul>
+      </div>
+    </nav>
+
+    <ul class="sidenav-trigger" id="mobile-demo">
+      <li><a href="/admin/adminpanel">User</a></li>
+            <li>Catelog<p class="secondary-content"><i class="material-icons">grade</i></p></li>
+            <li><a href="/admin/Alluser">Post users</a></li>
+            <li><a href="/admin">Back</a></li>
+    </ul>
+   
 
       &nbsp;&nbsp;&nbsp;&nbsp;
       <!--<div class="brand-logo center">
@@ -78,8 +90,8 @@
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center"><h4>AllTags</h4></th>
-            <th class="text-center"></th>
+            <th class="text-center"><h4>รวมแท็กทั้งหมด</h4></th>
+            <!--<th class="text-center"></th>-->
             
           </tr>
         </thead>
@@ -88,12 +100,12 @@
             <% showtag.forEach(function(tag){ %>
             
             <td class="pt-3-half"> <%= tag.name %></td>
-            <td class="pt-3-half">
+            <!--<td class="pt-3-half">
               <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
                     aria-hidden="true"></i></a></span>
               <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
                     aria-hidden="true"></i></a></span>
-            </td>
+            </td>-->
 
           </tr>
           <% }); %> 
@@ -129,7 +141,7 @@
       </table>-->
      
       <script>
-        const $tableID = $('#table');
+        /*const $tableID = $('#table');
         const $BTN = $('#export-btn');
         const $EXPORT = $('#export');
 
@@ -215,6 +227,18 @@
 
           // Output the result
           $EXPORT.text(JSON.stringify(data));
+        });*/
+        
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems, options);
         });
+
+        // Or with jQuery
+
+        $(document).ready(function(){
+          $('.sidenav').sidenav();
+        });
+      
       </script>
 </html>

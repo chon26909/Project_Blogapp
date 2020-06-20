@@ -1,11 +1,54 @@
 <%- include("../layout/header") %>
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">    
+        
+        
+    </head>
+    <style>
+   
+
+   
+      </style>
+             <body>
+
+                <nav>
+                    <div class="nav-wrapper">
+                      <a href="/admin" class="brand-logo">ADMIN</a>
+                      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                      <ul class="right hide-on-med-and-down">
+                        <li><a href="/admin/adminpanel">User</a></li>
+                        <li><a href="/admin/addcatelog">Catelog</a></li>
+                        <li>Post users<p class="secondary-content"><i class="material-icons">grade</i></p></li>
+                        <li><a href="/admin">Back</a></li>
+                      </ul>
+                    </div>
+                  </nav>
+                
+                  <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/admin/adminpanel">User</a></li>
+                    <li><a href="/admin/addcatelog">Catelog</a></li>
+                    <li><a href="/admin/Alluser">Post users</a></li>
+                    <li><a href="/admin">Back</a></li>
+                  </ul>-->
+      
 <div class="container">
     <div class="card">
         <h3 class="card-header text-center font-weight-bold text-uppercase py-4">บทความของผู้ใช้ทั้งหมด</h3>
         <div class="card-body">
         <div id="table" class="table-editable">
-            <!-- <span class="table-add float-right mb-3 mr-2"><a href="" class="text-success"><i
-                class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span> -->
             <table class="table table-bordered table-responsive-md table-striped text-center">
                 <thead>
                     <tr>
@@ -38,3 +81,28 @@
     </div>
     </div> 
 </div>
+<script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "nav-wrapper") {
+        x.className += " responsive";
+      } else {
+        x.className = "nav-wrapper";
+      }
+    }
+   
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems, options);
+        });
+
+        // Or with jQuery
+
+        $(document).ready(function(){
+          $('.sidenav').sidenav();
+        });
+     
+    </script>
+
+</body>
+</html>

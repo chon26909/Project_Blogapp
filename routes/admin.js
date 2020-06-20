@@ -25,7 +25,7 @@ router.get("/",async function(req,res)
    //res.render("admin/adduser",{ moment: moment, showallusers : showusers});
  // }
 
-   res.render("admin/addpanel",);
+   //res.render("admin/addpanel",);
   
 
    res.render("admin/addpanel");
