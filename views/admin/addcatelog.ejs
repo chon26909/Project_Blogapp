@@ -51,8 +51,13 @@
       </nav>
 
       &nbsp;&nbsp;&nbsp;&nbsp;
-
-<form>
+      <!--<div class="brand-logo center">
+       <h3>รวมแท็กทั้งหมด<i class="small material-icons">wb_sunny</i></h3>
+      </div>-->
+<!-- Editable table -->
+<!-- Material auto-sizing form -->
+<div class="container">
+<form >
   <div class="form-row align-items-center">
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInputGroupMD">เพิ่มแท็ก</label>
@@ -82,7 +87,7 @@
           <tr>
             <% showtag.forEach(function(tag){ %>
             
-            <td class="pt-3-half" contenteditable="true"> <%= tag.name %></td>
+            <td class="pt-3-half"> <%= tag.name %></td>
             <td class="pt-3-half">
               <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
                     aria-hidden="true"></i></a></span>
@@ -97,7 +102,7 @@
     </div>
   </div>
 </div>
-
+</div> 
 <!-- Editable table -->
         <!--<div class="row center">
           <form class="col s12">

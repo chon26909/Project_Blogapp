@@ -24,7 +24,12 @@ router.get("/",async function(req,res)
    //console.log(showusers )
    //res.render("admin/adduser",{ moment: moment, showallusers : showusers});
  // }
+
+   res.render("admin/addpanel",);
+  
+
    res.render("admin/addpanel");
+
 });
 
 router.get("/me",function(req, res)
@@ -37,13 +42,16 @@ router.get("/adminpanel",async function(req,res)
 {
   const showusers = await conUser.find();
   console.log(showusers )
-  res.render("admin/adminpanel",{ moment: moment, showallusers : showusers});
+  res.render("admin/adminpanel",{title: "Manage Users", moment: moment, showallusers : showusers});
    
     //res.render("admin/adminpanel");
 });
 
 router.get("/adminpost",async function(req,res)
 {
+// <<<<<<< HEAD
+    res.render("admin/adminpost");
+// =======
   
     const { userid } = req.admin;
     const result = await conPost.find({userid : userid});
@@ -51,11 +59,12 @@ router.get("/adminpost",async function(req,res)
 
   
     //res.render("admin/adminpost");
+// >>>>>>> ff220060dd22b5afe25994ccdf78e86692b95adc
 });
 
 /*router.get("/addcatelog",function(req,res)
 {
-    res.render("admin/addcatelog");
+    res.render("admin/addcatelog",{title: "Admin page"});
 });
 
 router.get('/edit/:id', (req,res, next)=>{
@@ -91,8 +100,20 @@ router.get("/addcatelog",async function(req, res)
 }*/
  
   console.log(alltag)
-  res.render("admin/addcatelog",{moment: moment, showtag : alltag,/* Arraytag: Arraytag*/});
+  res.render("admin/addcatelog",{title: "Add Tags" ,moment: moment, showtag : alltag});
 });
 
+
+router.get("/Alluser",async function(req, res)
+{
+  const user = await conUser.aggregate([{$lookup: {
+    from: 'posts',
+    localField: '_id',
+    foreignField: 'author_by',
+    as: 'totalpost'
+  }}])
+  console.log(user);
+  res.render("admin/postofuser",{title: "PostOfUser", moment:moment, user:user});
+})
 
 module.exports = router;
