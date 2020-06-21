@@ -146,7 +146,7 @@
                   <th class="text-center">Post</th>
                   <th class="text-center">Usertype</th>
                   <th class="text-center">Warn</th>
-                  <th class="text-center">Edit</th>
+                  <th class="text-center">บทความของผู้ใช้</th>
                 </tr>
               </thead>
               <% showallusers.forEach(function(user){ %>
@@ -154,7 +154,7 @@
                 <tr>
                   <td class="pt-3-half" contenteditable="true"><%= user.username %></td>
                   <td class="pt-3-half" contenteditable="true"><%= user.email %></td>
-                  <td class="pt-3-half" contenteditable="true"><%= user.total_post%></td>
+                  <td class="pt-3-half" contenteditable="true"><%= user.totalpost.length%></td>
                   <td class="pt-3-half" contenteditable="true"><%= user.permission %></td>
                 
                   
@@ -162,7 +162,7 @@
                     <a class="btn waves-effect waves-light red" href="#"><i class="material-icons right">notifications_activee</i>เตือน</a>
                   </td>
                   <td>
-                    <a class="waves-effect waves-light btn" href="#"><i class="material-icons right">edit</i>แก้ไข</a>
+                    <a class="waves-effect waves-light btn" href="/admin/postofuser/<%= user._id %>"><i class="material-icons right"></i>ดูทั้งหมด</a>
                   </td>
                 </tr>
               </tbody>

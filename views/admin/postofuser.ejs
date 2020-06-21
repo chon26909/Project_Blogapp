@@ -141,33 +141,27 @@
                   
   <br><br>    
 <div class="container">
-    <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">บทความของผู้ใช้ทั้งหมด</h3>
-        <div class="card-body">
+
+    <div>
+      <h3>บทความทั้งหมดของ : <%= Authorname %></h3>
+    </div>
         <div id="table" class="table-editable">
             <table class="table table-bordered table-responsive-md table-striped text-center">
                 <thead>
                     <tr>
-                    <th class="text-center">ชื่อผู้ใช้</th>
-                    <th class="text-center">จำนวนบทความ</th>
-                    <th class="text-center">ดูทั้งหมด</th>
+                    <th class="text-center">ชื่อบทความ</th>
+                    <th class="text-center">วันที่โพสต์</th>
+                    <th class="text-center">ยอดผู้เข้าชม</th>
+                    <!-- <th class="text-center"></th> -->
                     </tr>
                 </thead>
                 <tbody id="accordion">
-                    <% user.map(function(u) { %>
+                    <% PostOfUser.map(function(p) { %>
                     <tr>
-                        <td><%= u.username %> </td>
-                        <td><%= u.totalpost.length %> </td>
-                        <td><a data-toggle="collapse" data-parent="#accordion" href="#collapse1">คลิก</a></td>
-                    </tr>
-                    <tr id="collapse1" class="collapse">
-                        <td colspan="3">
-                            <ul style="padding: 10px; text-align: start;">
-                            <% u.totalpost.map(function (post) { %>
-                                  <a href="/travel/review/<%= post._id %>"><li> <%= post.title %> </li></a>
-                            <% }); %> 
-                            </ul>
-                        </td>
+
+                        <td><a href="/travel/review/<%= p._id %>"> <%= p.title %></a> </td>
+                        <td><%= moment(p.date).format("DD/MMMM/YYYY HH:mm")%> </td>
+                        <td><%= p.views %> </td>
                     </tr>
                     <% }); %> 
                 </tbody>
