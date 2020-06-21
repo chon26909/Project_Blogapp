@@ -17,138 +17,150 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">-->
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     </head>
+
     <style>
       @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-}
-nav{
-  background: #ff8a65 ;
-  height: 80px;
-  width: 100%;
-}
-label.logo{
-  color: #f2f2f2;
-  font-size: 33px;
-  line-height: 80px;
-  padding: 0 140px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-}
-nav ul{
-  float: right;
-  margin-right: 60px;
-}
-nav ul li{
-  display: inline-block;
-  line-height: 80px;
-  margin: 0 2px;
-}
-nav ul li a{
-  color: #f2f2f2;
-  font-weight: 500;
-  font-size: 20px;
-  padding: 7px 13px;
-  border-radius: 3px;
-  /* text-transform: uppercase; */
-  font-family: 'Poppins', sans-serif;
-}
-a.active,a:hover{
-  background: #ff9e80;
-  transition: .5s;
-}
-.checkbtn{
-  font-size: 30px;
-  color: white;
-  float: right;
-  line-height: 80px;
-  margin-right: 40px;
-  cursor: pointer;
-  display: none;
-}
-#check{
-  display: none;
-}
-@media (max-width: 952px){
-  label.logo{
-    font-size: 27px;
-    padding-left: 25px;
-  }
-  nav ul li a{
-    font-size: 16px;
-  }
-}
-@media (max-width: 858px){
-  .checkbtn{
-    display: block;
-    margin-right: 40px;
-  }
-  ul{
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #ffcc80 ;
-    top: 80px;
-    left: -100%;
-    text-align: center;
-    transition: all .5s;
-  }
-  nav ul li{
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
-  }
-  nav ul li a{
-    font-size: 20px;
-  }
-  a:hover,a.active{
-    background: none;
-    color: #3e2723;
-  }
-  #check:checked ~ ul{
-    left: 0;
-  }
-}
-section{
-  background: url(bg1.jpg) no-repeat;
-  background-size: cover;
-  height: calc(100vh - 80px);
-}
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+      }
+      nav{
+        background: #ff8a65 ;
+        height: 80px;
+        width: 100%;
+      }
+      label.logo{
+        color: #f2f2f2;
+        font-size: 33px;
+        line-height: 80px;
+        padding: 0 140px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+      }
+      nav ul{
+        float: right;
+        margin-right: 60px;
+      }
+      nav ul li{
+        display: inline-block;
+        line-height: 80px;
+        margin: 0 2px;
+      }
+      nav ul li a{
+        color: #f2f2f2;
+        font-weight: 500;
+        font-size: 20px;
+        padding: 7px 13px;
+        border-radius: 3px;
+        /* text-transform: uppercase; */
+        font-family: 'Poppins', sans-serif;
+      }
+      a.active,a:hover{
+        background: #ff9e80;
+        transition: .5s;
+      }
+      .checkbtn{
+        font-size: 30px;
+        color: white;
+        float: right;
+        line-height: 80px;
+        margin-right: 40px;
+        cursor: pointer;
+        display: none;
+      }
+      #check{
+        display: none;
+      }
+      @media (max-width: 952px){
+        label.logo{
+          font-size: 27px;
+          padding-left: 25px;
+        }
+        nav ul li a{
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 858px){
+        .checkbtn{
+          display: block;
+          margin-right: 40px;
+        }
+        ul{
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          background: #ffcc80 ;
+          top: 80px;
+          left: -100%;
+          text-align: center;
+          transition: all .5s;
+        }
+        nav ul li{
+          display: block;
+          margin: 50px 0;
+          line-height: 30px;
+        }
+        nav ul li a{
+          font-size: 20px;
+        }
+        a:hover,a.active{
+          background: none;
+          color: #3e2723;
+        }
+        #check:checked ~ ul{
+          left: 0;
+        }
+      }
+       /* @media (max-width: 576px) {  
+        .xs {color:red;font-weight:bold;}
+        }
 
-       /*body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    }
+       
+        @media (min-width: 576px) and (max-width:768px) {  
+          .sm {color:red;font-weight:bold;}
+        }
+        
+       
+        @media (min-width: 768px) and (max-width:992px) {  
+        .md {color:red;font-weight:bold;}
+        }
+        
+      
+        @media (min-width: 992px) and (max-width:1200px) { 
+        .lg {color:red;font-weight:bold;}
+        }
+        
+       
+        @media (min-width: 1200px) {  
+            .xl {color:red;font-weight:bold;}
+        }*/
+        .card{
+         
+          border-radius: 0.25rem;
+          box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .card-body{
+          background-color: #ffe0b2;
+          
+        }
 
-    main {
-      flex: 1 0 auto;
-    }
-
-    .left {
-      width: 25%;
-    }
-
-    .right {
-      width: 75%;
-    }
-    .page-footer{
-      padding: 20px;
-      text-align: center;
-      margin-top: 100px;
-      height: 35%;
-      width: 100%;
-    }
-    .card-image{
-      width: 500px;
-      height: 330px;
-  
-    }*/
+      /*section{
+        background: url(bg1.jpg) no-repeat;
+        background-size: cover;
+        height: calc(100vh - 80px);
+      }*/
+      
     </style>
      <nav>
         <input type="checkbox" id="check">
@@ -164,55 +176,93 @@ section{
              
             </ul>
       </nav>
-         <section></section>
-         
+         <!--<section></section>-->
+         <div class="container">
+          <br><br>
+          <h1>
+           Top Post
+          </h1>
+          <br><br>
+          
+          <h2>โพสที่นิยมและมีการบันทึกมากที่สุด</h2>
 
-      <!--<nav>
-        <div class="nav-wrapper right">
-          <p class="brand-logo center">ADMIN PANEL</p>
-        </div>
-      </nav>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-     
-      <div class="row col-md-3">
-        <div class="column left">
-          <ul id="sidenav-left" class="sidenav sidenav-fixed">
-            <li><a href="/admin" class="logo-container">Admin<i class="material-icons left">account_circle</i></a></li>
-            <li class="no-padding">
-              <ul class="collapsible collapsible-accordion">
-                  <div>
-                    <li class="bold waves-effect"><a href="admin/adminpanel" class="collapsible-header">User<i class="material-icons chevron">chevron_left</i></a>
-                  </div>
-                
-                  <div>
-                    <li class="bold waves-effect"><a href="admin/addcatelog" class="collapsible-header">Catelog<i class="material-icons chevron">chevron_left</i></a>
-                  </div>
-      
-                  <div>
-                    <li class="bold waves-effect"><a href="admin/Alluser" class="collapsible-header">Post users<i class="material-icons chevron">chevron_left</i></a>
-                  </div>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        
-        
-      <div class="row col-md-6">
-       
-          <div class="card" style="left: 140px;">
-            <div class="card-image">
-              <img src="https://assets.brandinside.asia/uploads/2018/04/cat-cat-cat.jpg" >
-            
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
             </div>
-            <div class="card-content">
-              <p>ปล่อยวาง...</p>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card">
+              <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-  
-      <footer class="page-footer">
+          
+            
+      <!--<footer class="page-footer">
         &nbsp;&nbsp;&nbsp;&nbsp;
         <div class="container">
           <div class="row">
@@ -234,18 +284,10 @@ section{
             </div>
           </div>
         </div>
-      </footer>
-     
-      <script> 
- 
- document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      direction: 'left'
-    });
-  });
-        
-      </script>-->
+      </footer>-->
+
+    
+      
      
 </html>
         
