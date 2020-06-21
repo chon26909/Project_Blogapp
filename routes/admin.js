@@ -25,7 +25,7 @@ router.get("/",async function(req,res)
    //res.render("admin/adduser",{ moment: moment, showallusers : showusers});
  // }
 
-   res.render("admin/addpanel",);
+   //res.render("admin/addpanel",);
   
 
    res.render("admin/addpanel");
@@ -78,42 +78,7 @@ router.get('/edit/:id', (req,res, next)=>{
     }
   })
 });*/
-/*router.post("/addcatelog", async function(req, res){
-  const alltag = await conTag.find();
-  console.log(alltag)
-  let n_name = req.body.name;
- 
-  if(req.file)
-  {
-    let updateDataTags = { name:n_name, } 
-    await conTag.findByIdAndUpdate(req.user,updateDataTags);
-    res.redirect("/admin/addcatelog");
-  }
-  else
-  {
-    let updateDataTags = { name:n_name } 
-    await conTag.findByIdAndUpdate(req.user,updateDataTags);
-    res.redirect("/admin/addcatelog");
-  }
-  res.render("admin/addcatelog",{moment: moment, showtag : alltag});
-});*/
 
-/*router.get("/addcatelog",middleware.checkAuthentication, async function(req, res)
-{
-  res.render("admin/addcatelog",{moment: moment});
-});*/
-/*router.post("/addcatelog/:id" , async function(req, res)
-{
-  conTag.findByIdAndUpdate({_name:req.params.name}),req.body,(err,docs)=>{
-    if(err){
-      consolelog("something...");
-    next(err)
-  }else{
-    res.redirect("/addcatelog");
-  }
-
-  }
-});*/
 
 router.get("/addcatelog",async function(req, res)
 {

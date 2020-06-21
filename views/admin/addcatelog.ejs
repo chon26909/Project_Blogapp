@@ -1,4 +1,4 @@
-<%- include("../layout/header") %>
+
 <!DOCTYPE html>
 
     <head>
@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -19,7 +19,15 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
         <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
-        <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+        <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">-->
+       
+        
+
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         
         <!------ Include the above in your HEAD tag ---------->
         <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
@@ -36,35 +44,129 @@
     {
       padding-top: 1.4rem;
     }
+    .right hide-on-med-and-down{
+      font-size: medium;
+    }
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+      }
+      nav{
+        background: #ff8a65 ;
+        height: 80px;
+        width: 100%;
+      }
+      label.logo{
+        color: #f2f2f2;
+        font-size: 33px;
+        line-height: 80px;
+        padding: 0 140px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+      }
+      nav ul{
+        float: right;
+        margin-right: 60px;
+      }
+      nav ul li{
+        display: inline-block;
+        line-height: 80px;
+        margin: 0 2px;
+      }
+      nav ul li a{
+        color: #f2f2f2;
+        font-weight: 500;
+        font-size: 20px;
+        padding: 7px 13px;
+        border-radius: 3px;
+        /* text-transform: uppercase; */
+        font-family: 'Poppins', sans-serif;
+      }
+      a.active,a:hover{
+        background: #ff9e80;
+        transition: .5s;
+      }
+      .checkbtn{
+        font-size: 30px;
+        color: white;
+        float: right;
+        line-height: 80px;
+        margin-right: 40px;
+        cursor: pointer;
+        display: none;
+      }
+      #check{
+        display: none;
+      }
+      @media (max-width: 952px){
+        label.logo{
+          font-size: 27px;
+          padding-left: 25px;
+        }
+        nav ul li a{
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 858px){
+        .checkbtn{
+          display: block;
+          margin-right: 40px;
+        }
+        ul{
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          background: #ffcc80 ;
+          top: 80px;
+          left: -100%;
+          text-align: center;
+          transition: all .5s;
+        }
+        nav ul li{
+          display: block;
+          margin: 50px 0;
+          line-height: 30px;
+        }
+        nav ul li a{
+          font-size: 20px;
+        }
+        a:hover,a.active{
+          background: none;
+          color: #3e2723;
+        }
+        #check:checked ~ ul{
+          left: 0;
+        }
+      }
 
     </style>
-    <nav>
-        <div class="nav-wrapper">
-          <a href="/admin" class="brand-logo">ADMIN</a>
-          
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="">User</a></li>
-            <li>Catelog<p class="secondary-content"><i class="material-icons">grade</i></p></li>
-            <li><a href="">Edit post</a></li>
+     <nav>
+      <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">ADMIN</label>
+          <ul>
+            <li><a href="/admin">Home</a></li>
+            <li><a href="/admin/adminpanel">User</a></li>
+            <li><a class="active" href="/admin/addcatelog">Catelog</a></li>
+            <li><a href="/admin/Alluser">Post users</a></li>
             <li><a href="/admin">Back</a></li>
+           
           </ul>
-        </div>
-      </nav>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <!--<div class="brand-logo center">
-       <h3>รวมแท็กทั้งหมด<i class="small material-icons">wb_sunny</i></h3>
-      </div>-->
-<!-- Editable table -->
-<!-- Material auto-sizing form -->
+    </nav>
+ <br><br>     
 <div class="container">
-<form >
+<form action="/admin/addTag" method="POST">
   <div class="form-row align-items-center">
     <div class="col-auto">
       <label class="sr-only" for="inlineFormInputGroupMD">เพิ่มแท็ก</label>
       <div class="md-form input-group mb-3">
-        <input type="text" class="form-control pl-0 rounded-0"  id="inlineFormInputGroupMD"
-          placeholder="เพิ่มแท็ก">
+        <input type="text" class="form-control pl-0 rounded-0"  id="inlineFormInputGroupMD" name="naw_tag" placeholder="เพิ่มแท็ก">
       </div>
     </div>
     <div class="col-auto">
@@ -77,25 +179,19 @@
   <div class="card-body">
     <div id="table" class="table-editable">
       <table class="table table-bordered table-responsive-md table-striped text-center">
-        <thead>
+        <!-- <thead>
           <tr>
-            <th class="text-center"><h4>AllTags</h4></th>
+            <th class="text-center"><h4>รวมแท็กทั้งหมด</h4></th>
             <th class="text-center"></th>
             
           </tr>
-        </thead>
+        </thead> -->
         <tbody>
           <tr>
             <% showtag.forEach(function(tag){ %>
             
             <td class="pt-3-half"> <%= tag.name %></td>
-            <td class="pt-3-half">
-              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
-                    aria-hidden="true"></i></a></span>
-              <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
-                    aria-hidden="true"></i></a></span>
-            </td>
-
+            
           </tr>
           <% }); %> 
         </tbody>
@@ -104,118 +200,6 @@
   </div>
 </div>
 </div> 
-<!-- Editable table -->
-        <!--<div class="row center">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">เพิ่มแท็ก...</label>
-              </div>
-            </div>
-          </form>
-        </div>
-              
-       
-        <table class="table">
-        <tbody>
-          <tr>
-            <div class="chip">
-              
-              <i class="close material-icons">close</i>
-            </div>
-          </tr>
-        </tbody>
-      </table>-->
+
      
-      <script>
-        const $tableID = $('#table');
-        const $BTN = $('#export-btn');
-        const $EXPORT = $('#export');
-
-        const newTr = `
-        <tr class="hide">
-          <td class="pt-3-half" contenteditable="true">Example</td>
-          <td class="pt-3-half" contenteditable="true">Example</td>
-          <td class="pt-3-half" contenteditable="true">Example</td>
-          <td class="pt-3-half" contenteditable="true">Example</td>
-          <td class="pt-3-half" contenteditable="true">Example</td>
-          <td class="pt-3-half">
-            <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a></span>
-            <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a></span>
-          </td>
-          <td>
-            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button></span>
-          </td>
-        </tr>`;
-
-        $('.table-add').on('click', 'i', () => {
-
-          const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
-
-          if ($tableID.find('tbody tr').length === 0) {
-
-            $('tbody').append(newTr);
-          }
-
-          $tableID.find('table').append($clone);
-        });
-
-        $tableID.on('click', '.table-remove', function () {
-
-          $(this).parents('tr').detach();
-        });
-
-        $tableID.on('click', '.table-up', function () {
-
-          const $row = $(this).parents('tr');
-
-          if ($row.index() === 0) {
-            return;
-          }
-
-          $row.prev().before($row.get(0));
-        });
-
-        $tableID.on('click', '.table-down', function () {
-
-          const $row = $(this).parents('tr');
-          $row.next().after($row.get(0));
-        });
-
-        // A few jQuery helpers for exporting only
-        jQuery.fn.pop = [].pop;
-        jQuery.fn.shift = [].shift;
-
-        $BTN.on('click', () => {
-
-          const $rows = $tableID.find('tr:not(:hidden)');
-          const headers = [];
-          const data = [];
-
-          // Get the headers (add special header logic here)
-          $($rows.shift()).find('th:not(:empty)').each(function () {
-
-            headers.push($(this).text().toLowerCase());
-          });
-
-          // Turn all existing rows into a loopable array
-          $rows.each(function () {
-            const $td = $(this).find('td');
-            const h = {};
-
-            // Use the headers from earlier to name our hash keys
-            headers.forEach((header, i) => {
-
-              h[header] = $td.eq(i).text();
-            });
-
-            data.push(h);
-          });
-
-          // Output the result
-          $EXPORT.text(JSON.stringify(data));
-        });
-      </script>
 </html>

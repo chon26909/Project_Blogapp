@@ -9,22 +9,129 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
             
     </head>
-    
+    <style>
+       @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+      }
+      nav{
+        background: #ff8a65 ;
+        height: 80px;
+        width: 100%;
+      }
+      label.logo{
+        color: #f2f2f2;
+        font-size: 33px;
+        line-height: 80px;
+        padding: 0 140px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+      }
+      nav ul{
+        float: right;
+        margin-right: 60px;
+      }
+      nav ul li{
+        display: inline-block;
+        line-height: 80px;
+        margin: 0 2px;
+      }
+      nav ul li a{
+        color: #f2f2f2;
+        font-weight: 500;
+        font-size: 20px;
+        padding: 7px 13px;
+        border-radius: 3px;
+        /* text-transform: uppercase; */
+        font-family: 'Poppins', sans-serif;
+      }
+      a.active,a:hover{
+        background: #ff9e80;
+        transition: .5s;
+      }
+      .checkbtn{
+        font-size: 30px;
+        color: white;
+        float: right;
+        line-height: 80px;
+        margin-right: 40px;
+        cursor: pointer;
+        display: none;
+      }
+      #check{
+        display: none;
+      }
+      @media (max-width: 952px){
+        label.logo{
+          font-size: 27px;
+          padding-left: 25px;
+        }
+        nav ul li a{
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 858px){
+        .checkbtn{
+          display: block;
+          margin-right: 40px;
+        }
+        ul{
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          background: #ffcc80 ;
+          top: 80px;
+          left: -100%;
+          text-align: center;
+          transition: all .5s;
+        }
+        nav ul li{
+          display: block;
+          margin: 50px 0;
+          line-height: 30px;
+        }
+        nav ul li a{
+          font-size: 20px;
+        }
+        a:hover,a.active{
+          background: none;
+          color: #3e2723;
+        }
+        #check:checked ~ ul{
+          left: 0;
+        }
+      }
+    </style>
     <nav>
-        <div class="nav-wrapper">
-          <a href="/admin" class="brand-logo">ADMIN</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="">User</a></li>
-            <li><a href="">Catelog</a></li>
-            <li>Edit post<p class="secondary-content"><i class="material-icons">grade</i></p></li>
+      <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">ADMIN</label>
+          <ul>
+           
+            <li><a href="/admin">Home</a></li>
+            <li><a href="/admin/adminpanel">User</a></li>
+            <li><a href="admin/addcatelog">Catelog</a></li>
+            <li><a class="active" href="/admin/Alluser">Post users</a></li>
             <li><a href="/admin">Back</a></li>
+           
           </ul>
-        </div>
-      </nav>
+    </nav>
+    
       <% showallusers.forEach(function(user){ %>
         <tbody>
           <tr>
