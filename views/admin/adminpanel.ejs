@@ -100,8 +100,8 @@
         }
         nav ul li{
           display: block;
-          margin: 50px 0;
-          line-height: 30px;
+          margin: 40px 0;
+          line-height: 0px;
         }
         nav ul li a{
           font-size: 20px;
@@ -146,7 +146,7 @@
                   <th class="text-center">Post</th>
                   <th class="text-center">Usertype</th>
                   <th class="text-center">Warn</th>
-                  <th class="text-center">Edit</th>
+                
                 </tr>
               </thead>
               <% showallusers.forEach(function(user){ %>
@@ -161,9 +161,7 @@
                   <td>
                     <a class="btn waves-effect waves-light red" href="#"><i class="material-icons right">notifications_activee</i>เตือน</a>
                   </td>
-                  <td>
-                    <a class="waves-effect waves-light btn" href="#"><i class="material-icons right">edit</i>แก้ไข</a>
-                  </td>
+                 
                 </tr>
               </tbody>
               <% }); %>    

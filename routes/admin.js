@@ -62,45 +62,17 @@ router.get("/adminpost",async function(req,res)
 // >>>>>>> ff220060dd22b5afe25994ccdf78e86692b95adc
 });
 
-/*router.get("/addcatelog",function(req,res)
-{
-    res.render("admin/addcatelog",{title: "Admin page"});
-});
 
-router.get('/edit/:id', (req,res, next)=>{
-    console.log(req.params.id);
-        club.findOneAndUpdate({_id: req.params.id}, req.body, {new:true},(err,docs)=>{
-            if(err){
-              console.log("Can't retrive data and edit because of some database problem");
-            }else{
-        res.render('edit');
-
-    }
-  })
-});*/
 
 
 router.get("/addcatelog",async function(req, res)
 {
+  const tag = req.query.keyword;
   const alltag = await conTag.find();
-  /*const Arraytag = [];
-  tags.forEach(function(tag)
-  {
-    Arraytag.push(tag.name);
-  });*/
-
-
-  /*conTag.findByIdAndUpdate({_name:req.params.name}),req.body,(err,docs)=>{
-    if(err){
-      console.log("something...");
-    next(err)
-  }else{
-    res.redirect("/addcatelog");
-  }
-}*/
- 
+  
+  
   console.log(alltag)
-  res.render("admin/addcatelog",{title: "Add Tags" ,moment: moment, showtag : alltag});
+  res.render("admin/addcatelog",{title: "Add Tags" ,moment: moment, showtag : alltag, key : tag,});
 });
 
 
