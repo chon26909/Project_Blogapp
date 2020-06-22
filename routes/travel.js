@@ -168,6 +168,11 @@ router.get("/review/:postid",async function(req, res)
     const tag = await conTag.find();
     const recommend = await conPost.find().limit(5);
 
+    
+    await conPost.findByIdAndUpdate(req.params.postid, { views: (post.views++)})
+
+
+
     // ตรวจสอบว่า ผู้ใช้คนนี้ บันทึกบทความนี้ไว้หรือไม่ boolean
     let favouriteThisPost = false;
 
@@ -176,18 +181,18 @@ router.get("/review/:postid",async function(req, res)
     {
       // await conPost.find({view:[req.user._id]})
       // นับยอดผู้เข้าชม
-      await conPost.findById(req.params.postid,function(err,ViewcurrentPost)
-      {
-        if(err)
-        {
-          console.log(err)
-        }
-        else
-        {
-          ViewcurrentPost.views.push(req.user._id);
-          ViewcurrentPost.save();
-        }
-      })
+      // await conPost.findById(req.params.postid,function(err,ViewcurrentPost)
+      // {
+      //   if(err)
+      //   {
+      //     console.log(err)
+      //   }
+      //   else
+      //   {
+      //     ViewcurrentPost.views.push(req.user._id);
+      //     ViewcurrentPost.save();
+      //   }
+      // })
       
 
       // loop favouritePost in user 

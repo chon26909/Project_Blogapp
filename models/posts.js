@@ -18,13 +18,7 @@ let PostSchema = new mongoose.Schema({
         }
     ],
     tags: Array,
-    views:
-    [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
+    views: Number,
     minimum_cost : Number, 
     province: String,
     googlemap: String,

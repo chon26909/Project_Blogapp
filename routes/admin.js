@@ -40,9 +40,16 @@ router.get("/me",function(req, res)
 
 router.get("/adminpanel",async function(req,res)
 {
-  const showusers = await conUser.find();
-  console.log(showusers )
-  res.render("admin/adminpanel",{title: "Manage Users", moment: moment, showallusers : showusers});
+  // const showusers = await conUser.find();
+  // console.log(showusers )
+
+  const user = await conUser.aggregate([{$lookup: {
+    from: 'posts',
+    localField: '_id',
+    foreignField: 'author_by',
+    as: 'totalpost'
+  }}])
+  res.render("admin/adminpanel",{title: "Manage Users", moment: moment, showallusers : user});
    
     //res.render("admin/adminpanel");
 });
@@ -55,6 +62,7 @@ router.get("/adminpost",async function(req,res)
   
     const { userid } = req.admin;
     const result = await conPost.find({userid : userid});
+    
     res.render("admin/adminpost",{ moment: moment, photogallery : result});
 
   
@@ -75,17 +83,25 @@ router.get("/addcatelog",async function(req, res)
   res.render("admin/addcatelog",{title: "Add Tags" ,moment: moment, showtag : alltag, key : tag,});
 });
 
-
-router.get("/Alluser",async function(req, res)
+router.post("/addTag", async function(req, res)
 {
-  const user = await conUser.aggregate([{$lookup: {
-    from: 'posts',
-    localField: '_id',
-    foreignField: 'author_by',
-    as: 'totalpost'
-  }}])
-  console.log(user);
-  res.render("admin/postofuser",{title: "PostOfUser", moment:moment, user:user});
+  const new_tag = req.body.naw_tag;
+  await conTag.create({name:new_tag});
+  res.redirect("/admin/addcatelog");
+})
+router.get("/postofuser/:userid",async function(req, res)
+{
+  // const user = await conUser.aggregate([{$lookup: {
+  //   from: 'posts',
+  //   localField: '_id',
+  //   foreignField: 'author_by',
+  //   as: 'totalpost'
+  // }}])
+  // console.log(user);
+  const user = await conUser.findById(req.params.userid);
+  const post = await conPost.find({ author_by :req.params.userid});
+  
+  res.render("admin/postofuser",{title: "PostOfUser", moment:moment, PostOfUser:post, Authorname : user.username});
 })
 
 module.exports = router;
