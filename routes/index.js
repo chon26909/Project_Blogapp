@@ -69,14 +69,14 @@ router.post("/register",[
     }
     else
     {
-      let username = req.body.username_register;
-      let email = req.body.email_register;
-      let password = req.body.password_register;
+      let username = req.body.username;
+      let email = req.body.email;
+      let password = req.body.password;
       let password2 = req.body.password2;
       //let password3 = req.body.password3;
 
-      console.log(username);
-      console.log(email);
+      // console.log(username);
+      // console.log(email);
 
       //ค่าเริ่มต้นในการ register แล้วค่อยไปเพิ่มข้อมูลอื่นๆ ในภายหลัง
       const newUser = new conUser

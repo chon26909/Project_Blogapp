@@ -54,11 +54,11 @@ var upload_imgpost = multer({storage : StorageOfimagepost, fileFilter: imageFilt
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/', async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
-    const group1 = await conPost.find({category : "ที่กิน"});
+    const group1 = await conPost.find({category : "ที่กิน"}).sort({views : -1});
 
-    const group2 = await conPost.find({category: "ที่เที่ยว"});
+    const group2 = await conPost.find({category: "ที่เที่ยว"}).sort({views : -1});
     
-    const group3 = await conPost.find({category : "ที่พัก"});
+    const group3 = await conPost.find({category : "ที่พัก"}).sort({views : -1});
     
     const cat = await conCatelog.find();
 
