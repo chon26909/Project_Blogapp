@@ -195,10 +195,9 @@ router.get("/review/:postid",async function(req, res)
                 .populate({path: 'comments', model: 'Comment',options:{ sort:{date : -1}} ,populate:({path: 'comment_by', model: 'User'})})
 
     const tag = await conTag.find();
-    const recommend = await conPost.find().limit(5);
+    const recommend = await conPost.find().limit(5).sort({views:-1});
 
     await conPost.findByIdAndUpdate(req.params.postid, { views: (post.views + 1)})
-
 
 
     // ตรวจสอบว่า ผู้ใช้คนนี้ บันทึกบทความนี้ไว้หรือไม่ boolean
@@ -508,16 +507,12 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
         if(err)
         {
           console.log(err);
-
-          return res.send(err);
         } 
         else 
         {
           // หลังจากเอา commment ลง DB สำเร้จ ให้นำ commentid เก็บลงไปในบทความนั้นด้วย
           thispost.comments.push(comment);
           thispost.save();
-
-          return res.send(comment._id);
         }
       });
     }
