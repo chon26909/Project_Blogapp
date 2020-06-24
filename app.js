@@ -95,7 +95,7 @@ user.use(function (req) {
     return true;
   }
 });*/
-port = process.env.PORT || 3000;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -145,8 +145,8 @@ app.use('/admin',adminRouter);
 app.get('/admin', user.can('access admin page'), function (req, res) {
   res.render('admin');
 });*/
-
-app.listen(3000,function(req,res){
+port = process.env.PORT || 3000;
+app.listen(port,function(req,res){
   console.log('started!');
 });
 
