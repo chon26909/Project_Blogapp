@@ -15,7 +15,7 @@ var methodOverride = require('method-override');
 var ConnectRoles = require('connect-roles');*/
 
 
-const port = process.env.port || 3000;
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
@@ -95,6 +95,7 @@ user.use(function (req) {
     return true;
   }
 });*/
+port = process.env.PORT || 3000
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
