@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color: cornflowerblue;
+        }
+        form{
+            margin: 100px auto;
+            padding: 40px 30px;
+            max-width: 380px;
+            height: auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: whitesmoke;
+        }
+        form h2
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/register" method="post">
+            <h2>Create account</h2>
+            <% if(locals.errors){ %>
+				<div class="alert alert-warning mt-md-0 mt-2 p-1">
+					<strong>Warning!</strong>
+					<ul style="font-size: 15px;">
+					<% Object.values(errors).forEach(function(error){ %>
+						<li><%= error.msg %></li>
+					<% }) %>
+					</ul>
+				</div>	
+			<% } %>
+            <div class="form-group">
+                <label for="usr">Username :</label>
+                <input type="text" class="form-control" name="username">
+              </div>
+            <div class="form-group">
+                <label for="usr">Email :</label>
+                <input type="email" class="form-control" name="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password :</label>
+                <input type="password" class="form-control" name="password">
+              </div>
+            <div>
+                <button type="submit" class="btn btn-block btn-primary">Create</button>
+            </div>
+            <div style="text-align: center; margin: 10px 0; ">I have my account <a href="/login">sign up</a></div>
+        </form>
+    </div>
+</body>
+</html>

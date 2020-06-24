@@ -69,7 +69,7 @@ $(document).ready(function insertcomment()
             url: "/travel/comment/" + postid,
             method: "POST",
             data : {text:textcomment},
-            success: function()
+            success: function(comment)
             {
                 location.location();
             },

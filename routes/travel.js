@@ -14,19 +14,28 @@ const express = require('express'),
       conPrice = require('../models/price'),
       conProvinces = require('../models/provinces');
 
+      var cloudinary = require('cloudinary').v2;
+      var { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 //connect DB
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
+cloudinary.config({ 
+  cloud_name: 'dvzib8cte', 
+  api_key: '192494392215866', 
+  api_secret: '5uGKxDU0UWmbCtKs7hAS_YzrByY'
+});
 
 
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/posts
-const StorageOfimagepost = multer.diskStorage({
-  destination:function(req,file,cb){
-    cb(null,"./public/images/posts/")
-  },
+const StorageOfimagepost = new CloudinaryStorage({
+  cloudinary : cloudinary,
+  // destination:function(req,file,cb){
+  //   cb(null,"./public/images/posts/")
+  // },
+  folder : 'post',
   filename:function(req,file,cb){
     //เปลี่ยนชื่อรูปก่อนเก็บลงโฟลเดอร์
     cb(null,file.fieldname + '-' + Date.now());
@@ -45,15 +54,15 @@ var upload_imgpost = multer({storage : StorageOfimagepost, fileFilter: imageFilt
 //แสดงหน้าแรก ถ้า login แล้วจะแสดงอีกหน้านึ่ง
 router.get('/', async function(req, res,) {
   //ไปดึงข้อมูล posts มาแสดงหน้าแรก
-    const songkran_post = await conPost.find({category : "เที่ยวสงกรานต์"});
+    const group1 = await conPost.find({category : "ที่กิน"});
 
-    const market_post = await conPost.find({category: "ตลาดกลางคืน"});
+    const group2 = await conPost.find({category: "ที่เที่ยว"});
     
-    const marketfloat_post = await conPost.find({category : "ตลาดน้ำ"});
+    const group3 = await conPost.find({category : "ที่พัก"});
     
     const cat = await conCatelog.find();
 
-    res.render("blogs/index",{ title: "เที่ยวพาเพลิน", moment: moment, section1 : songkran_post, Marketfloat : marketfloat_post, category : cat });
+    res.render("blogs/index",{ title: "เที่ยวพาเพลิน", moment: moment, group1:group1, group2:group2, group3:group3, category : cat });
 });
 
 router.get("/new", async function(req, res)
@@ -92,20 +101,20 @@ router.post("/",middleware.checkAuthentication, upload_imgpost.single('img_title
   const timeopen = req.body.timestart;
   const timeclose = req.body.timeend;
 
-  const Arraytag = tag.split(' ');
+  
 
 
-  objectd = {
-    monday: req.body.day1 ? true : false,
-    tuesday: req.body.day2 ? true : false,
-    wednesday: req.body.day3 ? true : false,
-    thursday: req.body.day4 ? true : false,
-    friday: req.body.day5 ? true : false,
-    saturday: req.body.day6 ? true : false,
-    sunday: req.body.day7 ? true : false,
-  };
+  // objectd = {
+  //   monday: req.body.day1 ? true : false,
+  //   tuesday: req.body.day2 ? true : false,
+  //   wednesday: req.body.day3 ? true : false,
+  //   thursday: req.body.day4 ? true : false,
+  //   friday: req.body.day5 ? true : false,
+  //   saturday: req.body.day6 ? true : false,
+  //   sunday: req.body.day7 ? true : false,
+  // };
 
-    console.log(objectd)
+    // console.log(objectd)
   // const allday = req.body.day0
   // const monday = req.body.day1
   // const tuesday = req.body.day2
@@ -147,7 +156,7 @@ router.post("/",middleware.checkAuthentication, upload_imgpost.single('img_title
 
   // console.log(DayAndTime_isOpen);
   // day.forEach(d => { console.log("day "+d) });
-
+  const Arraytag = tag.split(' ');
 
   const n_open = 
   {
@@ -277,13 +286,40 @@ router.put("/:id", middleware.checkAuthor, upload_imgpost.single('img_title'), a
               else
               {
                 //ส่งรูปไปเก็บในโฟลเดอร
-                let n_name = req.body.title;
-                let n_category = req.body.category;
-                let n_imgurl = req.file.filename;
-                let n_content = req.body.editor;
-                let n_date = new Date();
-                conPost.findByIdAndUpdate(req.params.id,{title:n_name, category:n_category , image : n_imgurl, content:n_content, date:n_date},function(err,sucess)
+                const title = req.body.title;
+                const category = req.body.category;
+                const image = req.file.filename;
+                const content = req.body.editor;
+                const price = req.body.length_price;
+                const province = req.body.provinces;
+                const map = req.body.map;
+                const tag = req.body.tags;
+                const dayopen = req.body.day;
+                const timeopen = req.body.timestart;
+                const timeclose = req.body.timeend;
+
+                let date = new Date();
+
+                const Arraytag = tag.split(' ');
+
+                const n_open = 
                 {
+                  day : dayopen,
+                  open : timeopen,
+                  close : timeclose
+                }
+              
+                const updatePost = { title:title, category:category,tags: Arraytag, image:image, content:content, minimum_cost:price ,openandclose : n_open ,date:date ,province:province, googlemap:map, views:0}
+
+                conPost.findByIdAndUpdate(req.params.id,updatePost,function(err,sucess)
+                {
+                  for(let i=0; i<(Arraytag.length-1) ;i++)
+                      {
+                        conTag.create({ name:Arraytag[i] },function(err,successTag)
+                        {
+                          console.log(successTag);
+                        });
+                      }
                   res.redirect("/travel/review/" + req.params.id);
                 });
                 
@@ -295,15 +331,48 @@ router.put("/:id", middleware.checkAuthor, upload_imgpost.single('img_title'), a
   }
   else
   {
-    //ถ้าไม่มีการอัพเดตรูปภาพ
-    let n_name = req.body.title;
-    let n_category = req.body.category;
-    let n_content = req.body.editor;
-    let n_date = new Date();
-    await conPost.findByIdAndUpdate(req.params.id,{title:n_name, category:n_category, content:n_content, date:n_date});
-    res.redirect("/travel/review/" + req.params.id);
-  }  
-});
+    //ส่งรูปไปเก็บในโฟลเดอร
+    const title = req.body.title;
+    const category = req.body.category;
+    const content = req.body.editor;
+    const price = req.body.length_price;
+    const province = req.body.provinces;
+    const map = req.body.map;
+    const tag = req.body.tags;
+    const dayopen = req.body.day;
+    const timeopen = req.body.timestart;
+    const timeclose = req.body.timeend;
+
+    let date = new Date();
+
+    const Arraytag = tag.split(' ');
+
+    const n_open = 
+    {
+      day : dayopen,
+      open : timeopen,
+      close : timeclose
+    }
+  
+    const updatePost = { title:title, category:category,tags: Arraytag, content:content, minimum_cost:price ,openandclose : n_open ,date:date ,province:province, googlemap:map}
+  
+    
+          
+
+
+    conPost.findByIdAndUpdate(req.params.id,updatePost,function(err,sucess)
+    {
+      for(let i=0; i<(Arraytag.length-1) ;i++)
+          {
+            conTag.create({ name:Arraytag[i] },function(err,successTag)
+            {
+              console.log(successTag);
+            });
+          }
+          res.redirect("/travel/review/" + req.params.id);
+    }) 
+  } 
+})
 
 
 router.delete("/:postid",async function(req, res){

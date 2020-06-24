@@ -16,7 +16,7 @@ router.get("/login", function(req, res)
 {
   const currentURL = req.params;
   console.log(currentURL);
-  res.render("users/login");
+  res.render("login");
 });
 
 router.post("/login", passport.authenticate('local',{
@@ -49,14 +49,14 @@ router.get("/logout", function(req, res)
 
 router.get("/register", function(_req, res)
 {
-  res.render("users/login");
+  res.render("register");
 });
 
 router.post("/register",[
-  check("username_register","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
-  check("email_register","กรุณาป้อนอีเมล").isEmail(),
-  check("password_register","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
-  check("password2_register","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
+  check("username","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
+  check("email","กรุณาป้อนอีเมล").isEmail(),
+  check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
+  // check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   //check("password3","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   ] ,function(req, res)
   {
@@ -65,7 +65,7 @@ router.post("/register",[
     if(!result.isEmpty())
     {
       //return to page
-      res.render("users/login", { errors : errors });
+      res.render("register", { errors : errors });
     }
     else
     {

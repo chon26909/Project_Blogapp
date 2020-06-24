@@ -40,7 +40,7 @@
     </div>
   </section>
   
-  <section>
+  <div>
     <div class="container">
           <!-- content section 1-->
           <section class="section-content1 shadow">
@@ -56,16 +56,16 @@
               </div>
               
               <div class="row m-0">
-                <% for(let i=0; i < section1.length ; i++) { %> 
+                <% for(let i=0; i < group1.length ; i++) { %> 
                   <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
-                    <a href="/travel/review/<%= section1[i]._id %>">
+                    <a href="/travel/review/<%= group1[i]._id %>">
                       <div class="card">
-                        <img src="/images/posts/<%= section1[i].image %>" alt="" class="img-crop-section1">
+                        <img src="/images/posts/<%= group1[i].image %>" alt="" class="img-crop-section1">
                         <div class="desc-card">
-                          <h5><%= description(section1[i].title,50) %></h5>
+                          <h5><%= description(group1[i].title,50) %></h5>
                           <div class="mt-auto">
                             <span class="viewOfPost">
-                              <i class="fa fa-eye"></i><span> <%= section1[i].views.length %></span>
+                              <i class="fa fa-eye"></i><span> <%= group1[i].views %></span>
                             </span>
                           </div>
                         </div>
@@ -75,9 +75,9 @@
                 <% } %> 
           </section>
     </div>
-  </section>
+  </div>
   
-  <section>
+  <div>
     <div class="container">
           <!-- content section 1-->
           <section class="section-content2 shadow">
@@ -93,16 +93,16 @@
               </div>
               
               <div class="row m-0">
-                <% for(let i=0; i < section1.length ; i++) { %> 
+                <% for(let i=0; i < group2.length ; i++) { %> 
                   <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
-                    <a href="/travel/review/<%= section1[i]._id %>">
+                    <a href="/travel/review/<%= group2[i]._id %>">
                       <div class="card">
-                        <img src="/images/posts/<%= section1[i].image %>" alt="" class="img-crop-section1">
+                        <img src="/images/posts/<%= group2[i].image %>" alt="" class="img-crop-section1">
                         <div class="desc-card">
-                          <h5><%= description(section1[i].title,50) %></h5>
+                          <h5><%= description(group2[i].title,50) %></h5>
                           <div class="mt-auto">
                             <span class="viewOfPost">
-                              <i class="fa fa-eye"></i><span> <%= section1[i].views.length %></span>
+                              <i class="fa fa-eye"></i><span> <%= group2[i].views %></span>
                             </span>
                           </div>
                         </div>
@@ -112,80 +112,46 @@
                 <% } %> 
           </section>
     </div>
-  </section>
+  </div>
   
-<% if(Marketfloat.length > 0) {%>
-  <div class="main-content-section3 container mt-3">
-    <div class="background-section3" style="background-image: url(images/background-section3.jpg);"></div>
+  <div>
     <div class="container">
-      <div class="blog-group-contect mt-3 p-3">
-        <div class="title-section3">
-          <h3>
-            <i class="far fa-newspaper"></i>
-            <a href="/blogs/showmore/<%= Marketfloat[0].category %>">
-              เดินกินของอร่อยริมน้ำ <i class="fa fa-angle-right"></i>
-            </a>
-          </h3>
-        </div>
-        <hr>
-        <br>
-      <div class="row p-2">
-        <% for(var i=0; i<(Marketfloat.length); i++) { %> 
-        <article class="col-xl-3 col-lg-4 col-md-4 col-6 p-2">
-          <a href="/blogs/review/<%= Marketfloat[i]._id %>">
-            <div class="card">
-              <img src="/images/posts/<%= Marketfloat[i].imgurl %>" alt="">
-              <div class="p-2">
-                <h6><%= Marketfloat[i].name %></h6>
-                <div class="mt-auto">
-                  <i class="fas fa-eye eye-view"> 0 </i>
-                </div>
+          <!-- content section 1-->
+          <section class="section-content2 shadow">
+            <div class=" blog-group-contect mt-3 p-lg-3 p-1">
+              <div class="title-section mt-1 p-2">
+                <h3>
+                  <i class="far fa-newspaper"></i>
+                  <a href="/travel/category/ที่เที่ยว">
+                    ที่พัก&nbsp;<i class="fas fa-angle-right"></i>
+                  </a>
+                </h3>
+                <hr>
               </div>
-            </div>
-          </a>     
-        </article>
-        <% } %> 
-      </div>
+              
+              <div class="row m-0">
+                <% for(let i=0; i < group3.length ; i++) { %> 
+                  <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
+                    <a href="/travel/review/<%= group3[i]._id %>">
+                      <div class="card">
+                        <img src="/images/posts/<%= group3[i].image %>" alt="" class="img-crop-section1">
+                        <div class="desc-card">
+                          <h5><%= description(group3[i].title,50) %></h5>
+                          <div class="mt-auto">
+                            <span class="viewOfPost">
+                              <i class="fa fa-eye"></i><span> <%= group3[i].views %></span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>     
+                  </article>
+                <% } %> 
+          </section>
     </div>
   </div>
-  </div>
-<% } %> 
 
 
-<div class="container">
-  <!-- content section 3-->
-  <section class="section-content2 shadow">
-    <div class=" blog-group-contect mt-3 p-lg-3 p-1">
-      <div class="title-section mt-1 p-2">
-        <h3>
-          <i class="far fa-newspaper"></i>
-          <a href="/travel/category/ที่พัก">
-            ที่พัก&nbsp;<i class="fas fa-angle-right"></i>
-          </a>
-        </h3>
-        <hr>
-      </div>
-      
-      <div class="row m-0">
-        <% for(let i=0; i < section1.length ; i++) { %> 
-          <article class="col-xl-3 col-lg-4 col-md-6 col-6 p-1 p-lg-2">
-            <a href="/travel/review/<%= section1[i]._id %>">
-              <div class="card">
-                <img src="/images/posts/<%= section1[i].image %>" alt="" class="img-crop-section1">
-                <div class="desc-card">
-                  <h5><%= description(section1[i].title,50) %></h5>
-                  <div class="mt-auto">
-                    <span class="viewOfPost">
-                      <i class="fa fa-eye"></i><span> <%= section1[i].views.length %></span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </a>     
-          </article>
-        <% } %> 
-  </section>
-</div>
  
 <%- include("../layout/footer") %>
 

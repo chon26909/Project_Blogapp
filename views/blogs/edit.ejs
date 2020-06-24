@@ -12,7 +12,7 @@
             <div class="col-lg-6 col-12">
                 <p>ภาพหน้าปก :</p>
                 <div class=" mb-3" >
-                    <input type="file" name="img_title" id="img_preview" class="form-control-file" required>
+                    <input type="file" name="img_title" id="img_preview" class="form-control-file">
                     <div class="pt-2">
                         <img src="/images/posts/<%= post.image %>" id="img_show" alt="" style="width: 100%; height: auto;">
                     </div>
@@ -37,12 +37,17 @@
                     <label for="text">งบประมาณ :</label>
                     <% Allprice.forEach(function(price){ %>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="length_price" value="<%= price.maximum_price%>" >
+                            <% if(price.maximum_price == post.minimum_cost ){%> 
+                            <input class="form-check-input" type="radio" name="length_price" value="<%= price.maximum_price%>" checked>
                             <label class="form-check-label">ขั้นต่ำ <%= price.maximum_price %> บาท</label>
+                            <% }else{ %> 
+                                <input class="form-check-input" type="radio" name="length_price" value="<%= price.maximum_price%>">
+                                <label class="form-check-label">ขั้นต่ำ <%= price.maximum_price %> บาท</label>  
+                            <% } %> 
                         </div>
                     <% }) %>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="length_price" value="" checked>
+                            <input class="form-check-input" type="radio" name="length_price" value="">
                             <label class="form-check-label">ไม่จำกัด</label>
                         </div>
                 </div>
@@ -62,34 +67,64 @@
             <div class=""> 
                 <label for="">วันที่เปิด</label>
                 <div class="col-12">
-                    <input type="checkbox" name="day1" value="true">
-                    <label for="day">จันทร์</label>
-                    <input type="checkbox" name="day2" value="true">
-                    <label for="day">อังคาร</label>
-                    <input type="checkbox" name="day3" value="true">
-                    <label for="day">พุธ</label>
-                    <input type="checkbox" name="day4" value="true">
-                    <label for="day">พฤหัสบดี</label>
-                    <input type="checkbox" name="day5" value="true">
-                    <label for="day">ศุกร์</label>
-                    <input type="checkbox" name="day6" value="true">
-                    <label for="day">เสาร์</label>
-                    <input type="checkbox" name="day7" value="true">
-                    <label for="day">อาทิตย์</label>
-                    <!-- <span> -->
-                        <!-- <select name="day" id="optionday">
-                            <option value="ทุกวัน" id="openAllday">ทุกวัน</option>
-                            <option value="วันจันทร์" >วันจันทร์</option>
-                            <option value="วันอังคาร" >วันอังคาร</option>
-                            <option value="วันพุธ" ></option>
-                            <option value="วันพฤหัสบดี" >วันพฤหัสบดี</option>
-                            <option value="วันศุกร์" >วันศุกร์</option>
-                            <option value="วันเสาร์" >วันเสาร์</option>
-                            <option value="วันอาทิตย์" >วันอาทิตย์</option>
-                        </select> -->
-                        <!-- <input type="checkbox" name="day0" id="allday" value="ทุกวัน" class="allday">
-                        <label class="allday">ทุกวัน</label> -->
-                    <!-- </span> -->
+                    <% if(post.openandclose.day.includes("จันทร์")){ %>
+                        <input type="checkbox" name="day" value="จันทร์" checked>
+                        <label for="day">จันทร์</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="จันทร์">
+                        <label for="day">จันทร์</label>
+                    <% }%>
+
+                    <% if(post.openandclose.day.includes("อังคาร")){ %>
+                        <input type="checkbox" name="day" value="อังคาร" checked>
+                        <label for="day">อังคาร</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="อังคาร">
+                        <label for="day">อังคาร</label>
+                    <% }%>
+
+                    <% if(post.openandclose.day.includes("พุธ")){ %>
+                        <input type="checkbox" name="day" value="พุธ" checked>
+                        <label for="day">พุธ</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="พุธ">
+                        <label for="day">พุธ</label>
+                    <% }%>
+
+                    <% if(post.openandclose.day.includes("พฤหัสบดี")){ %>
+                        <input type="checkbox" name="day" value="พฤหัสบดี" checked>
+                        <label for="day">พฤหัสบดี</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="พฤหัสบดี">
+                        <label for="day">พฤหัสบดี</label>
+                    <% }%>
+
+                    <% if(post.openandclose.day.includes("ศุกร์")){ %>
+                        <input type="checkbox" name="day" value="ศุกร์" checked>
+                        <label for="day">ศุกร์</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="ศุกร์">
+                        <label for="day">ศุกร์</label>
+                    <% }%>
+
+                    <% if(post.openandclose.day.includes("เสาร์")){ %>
+                        <input type="checkbox" name="day" value="เสาร์" checked>
+                        <label for="day">เสาร์</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="เสาร์">
+                        <label for="day">เสาร์</label>
+                    <% }%>
+
+                    <% if(post.openandclose.day.includes("อาทิตย์")){ %>
+                        <input type="checkbox" name="day" value="อาทิตย์" checked>
+                        <label for="day">อาทิตย์</label>
+                    <% }else {%> 
+                        <input type="checkbox" name="day" value="อาทิตย์">
+                        <label for="day">อาทิตย์</label>
+                    <% }%>
+
+
+                    
                     <!-- <input type="time" autocomplete="off" name="day0" class="timeallday">
                     <input type="time" autocomplete="off" name="day0" class="timeallday"> -->
                 </div>
