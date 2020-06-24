@@ -442,7 +442,7 @@
         <form action="/login" method="POST">
           <input type="email" placeholder="Email" name="username">
           <input type="password" placeholder="Password" name="password">
-          <button type="submit" class="btn_login" onclick="cambiar_login()" >ลงชื่อเข้าใช้</button>
+          <button type="submit" class="btn_login">ลงชื่อเข้าใช้</button>
         </form>
 		 
 		  </div>
@@ -451,11 +451,11 @@
 		<a href="" onclick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
        <h2>สร้างบัญชีผู้ใช้</h2>
        <form action="/register" method="post">
-          <input type="text" placeholder="๊Username" name="username">
-          <input type="email" placeholder="Email" name="email">
-          <input type="password" placeholder="Password" name="password">
-          <input type="password" placeholder="Confirm Password"/>
-          <button type="submit" class="btn_sign_up" onclick="cambiar_sign_up()">สร้างบัญชีผู้ใช้</button>
+          <input type="text" placeholder="Username" name="username_register" autocomplete="off">
+          <input type="email" placeholder="Email" name="email_register" autocomplete="off">
+          <input type="password" placeholder="Password" name="password_register">
+          <input type="password" placeholder="Confirm Password" name="password2_register">
+          <button type="submit" class="btn_sign_up">สร้างบัญชีผู้ใช้</button>
           
         </form>
 		

@@ -988,6 +988,12 @@ input.timeallday, input.timeeachday1, input.timeeachday2, input.timeeachday3, in
   height: 25px;
 }
 
+.map iframe
+{
+  height: auto !important;
+  width: 100% !important;
+}
+
 .container
 {
     max-width: 1100px;

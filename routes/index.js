@@ -49,14 +49,14 @@ router.get("/logout", function(req, res)
 
 router.get("/register", function(_req, res)
 {
-  res.render("users/register");
+  res.render("users/login");
 });
 
 router.post("/register",[
-  check("username","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
-  check("email","กรุณาป้อนอีเมล").isEmail(),
-  check("password","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
-  check("password2","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
+  check("username_register","กรุณาป้อนชื่อผู้ใช้").not().isEmpty(),
+  check("email_register","กรุณาป้อนอีเมล").isEmail(),
+  check("password_register","กรุณาป้อนรหัสผ่าน").not().isEmpty(),
+  check("password2_register","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   //check("password3","กรุณายืนยันรหัสผ่าน").not().isEmpty(),
   ] ,function(req, res)
   {
@@ -65,13 +65,13 @@ router.post("/register",[
     if(!result.isEmpty())
     {
       //return to page
-      res.render("users/register", { errors : errors });
+      res.render("users/login", { errors : errors });
     }
     else
     {
-      let username = req.body.username;
-      let email = req.body.email;
-      let password = req.body.password;
+      let username = req.body.username_register;
+      let email = req.body.email_register;
+      let password = req.body.password_register;
       let password2 = req.body.password2;
       //let password3 = req.body.password3;
 
@@ -95,7 +95,7 @@ router.post("/register",[
         else
         {
          /* res.location('/travel/');*/
-          res.redirect('/travel');
+          res.redirect('/login');
         }
       });
       

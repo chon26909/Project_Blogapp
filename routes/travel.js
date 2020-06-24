@@ -78,8 +78,6 @@ router.get("/new", async function(req, res)
 
 router.post("/",middleware.checkAuthentication, upload_imgpost.single('img_title'),function(req, res){
     
-  
-
   const title = req.body.title;
   const author_by = req.user._id;
   const category = req.body.category;
@@ -88,55 +86,77 @@ router.post("/",middleware.checkAuthentication, upload_imgpost.single('img_title
   const price = req.body.length_price;
   const province = req.body.provinces;
   const map = req.body.map;
-  const Arraytag = req.body.tags;
+  const tag = req.body.tags;
   const date = new Date();
+  const dayopen = req.body.day;
+  const timeopen = req.body.timestart;
+  const timeclose = req.body.timeend;
 
-  
+  const Arraytag = tag.split(' ');
 
-  
 
-  const allday = req.body.day0
-  const monday = req.body.day1
-  const tuesday = req.body.day2
-  const wednesday = req.body.day3
-  const thursday = req.body.day4
-  const friday = req.body.day5
-  const saturday = req.body.day6
-  const sunday = req.body.day7
+  objectd = {
+    monday: req.body.day1 ? true : false,
+    tuesday: req.body.day2 ? true : false,
+    wednesday: req.body.day3 ? true : false,
+    thursday: req.body.day4 ? true : false,
+    friday: req.body.day5 ? true : false,
+    saturday: req.body.day6 ? true : false,
+    sunday: req.body.day7 ? true : false,
+  };
 
-  Array.prototype.convertToObject = function(){
-    for(let i = 0; i< this.length; i++)
-    {
-      this[i] = this[i];
-    }
-  }
+    console.log(objectd)
+  // const allday = req.body.day0
+  // const monday = req.body.day1
+  // const tuesday = req.body.day2
+  // const wednesday = req.body.day3
+  // const thursday = req.body.day4
+  // const friday = req.body.day5
+  // const saturday = req.body.day6
+  // const sunday = req.body.day7
 
-  const dayOfweek = [allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday]
+  // Array.prototype.convertToObject = function(){
+  //   for(let i = 0; i< this.length; i++)
+  //   {
+  //     this[i] = this[i];
+  //   }
+  // }
 
-  let DayAndTime_isOpen = [];
+  // const dayOfweek = [allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday]
 
-  for(i=0; i < dayOfweek.length; i++)
-  {
-    if(dayOfweek[i] == undefined)
-    {
-      continue;
-    }
-    else
-    {
-      DayAndTime_isOpen.push(dayOfweek[i]);
-    }
-  }
+  // let DayAndTime_isOpen = [];
+
+  // for(i=0; i < dayOfweek.length; i++)
+  // {
+  //   if(dayOfweek[i] == undefined)
+  //   {
+  //     continue;
+  //   }
+  //   else
+  //   {
+  //     DayAndTime_isOpen.push(dayOfweek[i]);
+  //   }
+  // }
   // arraydayopen = {allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday};
   console.log("category "+category);
   console.log("price "+price);
   console.log("province "+province);
-  console.log(DayAndTime_isOpen);
+  console.log("dayopen "+dayopen);
+  console.log(timeopen);
+  console.log(timeclose);
+
+  // console.log(DayAndTime_isOpen);
   // day.forEach(d => { console.log("day "+d) });
 
 
-  
+  const n_open = 
+  {
+    day : dayopen,
+    open : timeopen,
+    close : timeclose
+  }
 
-  const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, minimum_cost:price ,openandclose:DayAndTime_isOpen,date:date ,province:province,googlemap:map }
+  const newPost = { title:title, author_by:author_by, category:category,tags: Arraytag, image:image, content:content, minimum_cost:price ,openandclose : n_open ,date:date ,province:province, googlemap:map, views:0}
 
   console.log("newPost "+newPost);
   conPost.create(newPost,function(err, post)
@@ -168,8 +188,7 @@ router.get("/review/:postid",async function(req, res)
     const tag = await conTag.find();
     const recommend = await conPost.find().limit(5);
 
-    
-    await conPost.findByIdAndUpdate(req.params.postid, { views: (post.views++)})
+    await conPost.findByIdAndUpdate(req.params.postid, { views: (post.views + 1)})
 
 
 
@@ -225,11 +244,22 @@ router.get("/review/:postid",async function(req, res)
 router.get("/:id/edit", middleware.checkAuthor, async function(req, res){
   const Editpost = await conPost.findById(req.params.id);
   const cat = await conCatelog.find();
-  res.render("blogs/Editpost", { title : "แก้ไขบทความ", moment : moment, post : Editpost, categories : cat });
+  const tags = await conTag.find();
+  const price = await conPrice.find();
+  const province = await conProvinces.find();
+
+  let Arraytag = [];
+  tags.forEach(function(tag)
+  {
+    Arraytag.push(tag.name);
+  });
+
+  let tagsOfpost = Editpost.tags.join(' ');
+  console.log(tags);
+  res.render("blogs/edit", { title : "แก้ไขบทความ", moment : moment, post : Editpost, categories : cat , Arraytag : Arraytag, tagsOfpost:tagsOfpost,Allprice :price, AllProvinces:province});
 });
 
 router.put("/:id", middleware.checkAuthor, upload_imgpost.single('img_title'), async function(req,res){
-
   console.log(req.params.id);
   //ถ้ามีการอัพเดตรูปภาพ
   if(req.file)
