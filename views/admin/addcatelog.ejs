@@ -54,7 +54,7 @@
         font-size: 20px;
         padding: 7px 13px;
         border-radius: 3px;
-        /* text-transform: uppercase; */
+       
         font-family: 'Poppins', sans-serif;
       }
       a.active,a:hover{
@@ -122,10 +122,10 @@
         </label>
         <label class="logo">ADMIN</label>
           <ul>
-            <li><a href="/admin">Home</a></li>
-            <li><a href="/admin/adminpanel">User</a></li>
-            <li><a class="active" href="/admin/addcatelog">Catelog</a></li>
-            <li><a href="/admin">Back</a></li>
+            <li><a href="/admin"><i class="fas fa-star">Home</a></i></li>
+            <li><a href="/admin/adminpanel"><i class="fas fa-star">User</a></i></li>
+            <li><a class="active" href="/admin/addcatelog"><i class="fas fa-star">Catalog</a></i></li>
+            <li><a href="/admin"><i class="fas fa-star">Back</a></i></li>
           </ul>
     </nav>
  <br><br>     
@@ -143,14 +143,14 @@
   <table class="table table-bordered text-center">
     <thead>
       <tr>
-        <th scope="col" style="background-color: rgb(163, 162, 162); font-size:25px;">ตารางแท็ก</th>
+        <th scope="col" style="background-color: rgb(177, 174, 174); font-size:25px;"><i class="fas fa-tags">ตารางแท็ก</i></th>
       </tr>
     </thead>
     <tbody>
       <tr>
       
         <% showtag.forEach(function(tag){ %>
-          <td style="background-color: rgb(235, 230, 230);"><%= tag.name %></td>
+          <td style="background-color: rgb(231, 231, 231);"><i class="fas fa-hashtag"><%= tag.name %></i></td>
        
       </tr>
       <% }); %> 

@@ -54,24 +54,6 @@ router.get("/adminpanel",async function(req,res)
     //res.render("admin/adminpanel");
 });
 
-router.get("/adminpost",async function(req,res)
-{
-// <<<<<<< HEAD
-    res.render("admin/adminpost");
-// =======
-  
-    const { userid } = req.admin;
-    const result = await conPost.find({userid : userid});
-    
-    res.render("admin/adminpost",{ moment: moment, photogallery : result});
-
-  
-    //res.render("admin/adminpost");
-// >>>>>>> ff220060dd22b5afe25994ccdf78e86692b95adc
-});
-
-
-
 
 router.get("/addcatelog",async function(req, res)
 {
