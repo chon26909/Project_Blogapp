@@ -95,7 +95,7 @@ user.use(function (req) {
     return true;
   }
 });*/
-port = process.env.PORT || 3000
+port = process.env.PORT || 3000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -118,13 +118,13 @@ app.get("*",function(req,res,next){
   next();
 })
 
-app.use(function(err, req, res, next){
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function(err, req, res, next){
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 app.locals.description = function(text,lenght){
   //ส่งผลลัพธ์กลับไป
@@ -146,6 +146,8 @@ app.get('/admin', user.can('access admin page'), function (req, res) {
   res.render('admin');
 });*/
 
-
+app.listen(3000,function(req,res){
+  console.log('started!');
+});
 
 module.exports = app;
