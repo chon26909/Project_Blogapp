@@ -21,7 +21,8 @@ router.get("/login", function(req, res)
 
 router.post("/login", passport.authenticate('local',{
   failureRedirect:'/login',
-  failureFlash:false
+  failureFlash:false,
+  failureFlash: 'Invalid username or password!'
 }),
 function(req, res)
 {
@@ -84,7 +85,7 @@ router.post("/register",[
         username : username,
         email : email,
         password : password,
-        image: "no-imgprofile.png",
+        image: "no-imgprofile",
         facebook: "ไม่มีข้อมูล",
         line : "ไม่มีข้อมูล",
         phone : "ไม่มีข้อมูล"

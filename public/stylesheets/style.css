@@ -691,7 +691,7 @@ hr
 {
   
   border-radius: 3px;
-  height: 100% auto;
+  min-height: 1200px;
   display: grid;
   grid-template-columns: 70% 30%;
 }

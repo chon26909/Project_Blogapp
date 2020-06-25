@@ -307,7 +307,6 @@ router.put("/:id", middleware.checkAuthor, upload_imgpost.single('img_title'), a
                   open : timeopen,
                   close : timeclose
                 }
-              
                 const updatePost = { title:title, category:category,tags: Arraytag, image:image, content:content, minimum_cost:price ,openandclose : n_open ,date:date ,province:province, googlemap:map, views:0}
 
                 conPost.findByIdAndUpdate(req.params.id,updatePost,function(err,sucess)
@@ -509,7 +508,7 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
           console.log(err);
         } 
         else 
-        {
+        { 
           // หลังจากเอา commment ลง DB สำเร้จ ให้นำ commentid เก็บลงไปในบทความนั้นด้วย
           thispost.comments.push(comment);
           thispost.save();

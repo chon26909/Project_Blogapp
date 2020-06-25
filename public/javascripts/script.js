@@ -69,7 +69,7 @@ $(document).ready(function insertcomment()
             url: "/travel/comment/" + postid,
             method: "POST",
             data : {text:textcomment},
-            success: function(comment)
+            success: function()
             {
                 location.location();
             },
@@ -164,6 +164,48 @@ $(document).ready(function deletecomment()
     })
 })
 
+$(document).ready(function deletepost()
+{
+    $(document).on('click', '#delete_post', function()
+    {
+        const dpostid = $(this).attr('data-id_delete');
+        Swal.fire({
+                    title: 'คุณต้องการลบบทความนี้หรือไม่?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'ใช่',
+                    cancelButtonText: 'ยกเลิก'
+                  }).then((result) => {
+                    if (result.value) 
+                    {
+                        $.ajax({
+                            url: "/travel/"+ dpostid +"/?_method=DELETE",
+                            method: "POST",
+                            success: (
+                                Swal.fire(
+                                    'Deleted!',
+                                    'ลบสำเร็จแล้ว!',
+                                    'success',
+                                ),
+                                location.reload()
+                            ), 
+                            error: function(){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'เกิดข้อผิดพลาด ไม่สามารถดำเนินการได้!',
+                                    timer: 2000
+                                  })
+                            }
+                        })
+                        
+                    }
+                  })
+        
+    })
+})
 
 
 $(document).ready(function insertFavouritePost()

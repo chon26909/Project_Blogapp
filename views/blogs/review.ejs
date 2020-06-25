@@ -6,7 +6,7 @@
             <h1 class="pt-3"><%= post.title %></h1>
             <div class="author_post">
                 <div>
-                    <img src="/images/img-profile/<%= post.author_by.image %>" alt="" class="author-img mr-2">
+                    <img src="https://res.cloudinary.com/dvzib8cte/image/upload/v1593015941/<%= post.author_by.image %>" alt="" class="author-img mr-2">
                     <div>
                         <a href="/travel/author/<%= post.author_by._id %>" id="AuthorName"><%= description(post.author_by.username,15) %></a><br><span id="dateOfPost"><i class="fa fa-clock"></i>&nbsp;<%= moment(post.date).format("DD-MMMM-YYYY HH:mm") %></span>
                     </div>
@@ -52,7 +52,7 @@
                     <% post.comments.forEach(function(comment){ %>
                         <div class="comment-item">
                             <figure class="comment-by-img">
-                                <img src="/images/img-profile/<%= comment.comment_by.image %>" alt="" class="usercomment-img mr-2">
+                                <img src="https://res.cloudinary.com/dvzib8cte/image/upload/v1593015941/<%= comment.comment_by.image %>" alt="" class="usercomment-img mr-2">
                             </figure>
                             <div class="comment-by" id="<%= comment._id %>">
                                 <p><a href="/travel/author/<%= comment.comment_by._id %>"><%= comment.comment_by.username %></a>&nbsp;<span id=""><%= comment.text %></span></p>
@@ -70,7 +70,7 @@
                     <% if(locals.user){ %>
                         <div class="comment-item">
                             <figure class="comment-by-img">
-                                <img src="/images/img-profile/<%= user.image %>" alt="" class="usercomment-img mr-2">
+                                <img src="https://res.cloudinary.com/dvzib8cte/image/upload/v1593015941/<%= user.image %>" alt="" class="usercomment-img mr-2">
                             </figure>
                             <form>
                                 <textarea name="comment" class="box-for-comment" data-postIdOfCommment="<%= post._id %>" id="textInputComment" rows="3" placeholder="แสดงความคิดเห็น"></textarea>
@@ -103,7 +103,9 @@
                     <span class="tag"><%= post.openandclose.open %></span>
                     <span> - </span>
                     <span class="tag"><%= post.openandclose.close %> </span>
-                     
+                    <hr>
+                    <label class="tag-title">งบประมาณ : </label>
+                    <span class="tag">ขั้นต่ำ <%= post.minimum_cost %> บาท</span>
                 </div>
                 <div class="map">
                     <%- post.googlemap %>

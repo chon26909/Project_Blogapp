@@ -50,14 +50,9 @@
                     </figure>
                     <div class="detail-search">
                         <a href="/travel/review/<%= item._id %>">
-                            <h4><%= description(item.title,10)%></h4>
+                            <h4><%= description(item.title,30)%></h4>
                         </a>
                         <p class="content"><%- description(item.content,50) %></p>
-                        <div>
-                            <% item.tags.forEach(function(tag) { %>  
-                                <span class=""><a href="/travel/search?keyword=<%= tag %>"> #<%= tag %> </a></span>
-                            <% }); %> 
-                        </div>
                         
                     </div>
                 </div>

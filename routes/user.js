@@ -7,6 +7,8 @@ const express = require('express'),
       conPost = require('../models/posts'),
       conCatelog = require('../models/categories');
 
+      var cloudinary = require('cloudinary').v2;
+      var { CloudinaryStorage } = require('multer-storage-cloudinary');
 //connect DB
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectId;
@@ -15,17 +17,24 @@ mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryW
 //ย้ายรูปจาก form หน้า editprofile ไปเก็บในโฟลเดอร์ images/img-profile
 var multer = require('multer');
 
-var StorageOfimageprofile = multer.diskStorage(
-  {
-  destination:function(req,file,cb){
-    cb(null,"./public/images/img-profile/");
-  },
+cloudinary.config({ 
+  cloud_name: 'dvzib8cte', 
+  api_key: '192494392215866', 
+  api_secret: '5uGKxDU0UWmbCtKs7hAS_YzrByY'
+});
+
+const StorageOfimagepost = new CloudinaryStorage({
+  cloudinary : cloudinary,
+  // destination:function(req,file,cb){
+  //   cb(null,"./public/images/posts/")
+  // },
+  folder : 'post',
   filename:function(req,file,cb){
-    //เก็บชื่อรูปต้นฉบับลงโฟลเดอร์
-    cb(null,file.originalname);
+    //เปลี่ยนชื่อรูปก่อนเก็บลงโฟลเดอร์
+    cb(null,file.fieldname + '-' + Date.now());
   }
 });
-var upload_profile = multer({storage : StorageOfimageprofile});
+var upload_profile = multer({storage : StorageOfimagepost});
 
 
 
