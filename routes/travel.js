@@ -65,12 +65,12 @@ router.get('/', async function(req, res,) {
     res.render("blogs/index",{ title: "เที่ยวพาเพลิน", moment: moment, group1:group1, group2:group2, group3:group3, category : cat });
 });
 
-router.get("/new", async function(req, res)
+router.get("/new",middleware.checkAuthentication, async function(req, res)
 {
   const cat = await conCatelog.find();
   const tags = await conTag.find();
   const price = await conPrice.find();
-  const provinces = await conProvinces.find();
+  const provinces = await conProvinces.find().sort({name:-1});
 
   const Arraytag = [];
   tags.forEach(function(tag)
@@ -254,7 +254,7 @@ router.get("/:id/edit", middleware.checkAuthor, async function(req, res){
   const cat = await conCatelog.find();
   const tags = await conTag.find();
   const price = await conPrice.find();
-  const province = await conProvinces.find();
+  const province = await conProvinces.find().sort({_id:-1});
 
   let Arraytag = [];
   tags.forEach(function(tag)
@@ -554,7 +554,7 @@ router.get("/search",async function(req, res)
   const result = await conPost.find({ tags:{ $regex: key }  });
   const lengthOfcost = await conPrice.find();
   const filterLength_price = null;
-  const provinces = await conProvinces.find();
+  const provinces = await conProvinces.find().sort({_id:-1});
   res.render("blogs/search",{ title: "ค้นหา "+key,moment: moment, ItemSearch : result, key : key, Allprice:lengthOfcost,currentCost:filterLength_price,filterProvinces:provinces});
 });
 
@@ -585,7 +585,7 @@ router.get("/search/filter",async function(req, res)
   result = await conPost.find(query)
   
   const lengthOfcost = await conPrice.find();
-  const provinces = await conProvinces.find();
+  const provinces = await conProvinces.find().sort({_id:-1});
 
   res.render("blogs/search",{title: "ค้นหา "+key, moment: moment, ItemSearch : result, key : key, Allprice:lengthOfcost, currentCost:filterLength_price,filterProvinces:provinces});
 });

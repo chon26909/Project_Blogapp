@@ -49,6 +49,20 @@
                     <!-- <div class="append-newComment">
                         
                     </div> -->
+
+                    <% if(locals.user){ %>
+                        <div class="comment-item">
+                            <figure class="comment-by-img">
+                                <img src="https://res.cloudinary.com/dvzib8cte/image/upload/v1593015941/<%= user.image %>" alt="" class="usercomment-img mr-2">
+                            </figure>
+                            <form>
+                                <textarea name="comment" class="box-for-comment" data-postIdOfCommment="<%= post._id %>" id="textInputComment" rows="3" placeholder="แสดงความคิดเห็น"></textarea>
+                                <div>
+                                    <button id="btnPostcomment">&nbsp;โพสต์&nbsp;</button>
+                                </div>
+                            </form>
+                        </div>
+                    <% } %>
                     <% post.comments.forEach(function(comment){ %>
                         <div class="comment-item">
                             <figure class="comment-by-img">
@@ -67,19 +81,7 @@
                         </div>
                     <% }) %>
 
-                    <% if(locals.user){ %>
-                        <div class="comment-item">
-                            <figure class="comment-by-img">
-                                <img src="https://res.cloudinary.com/dvzib8cte/image/upload/v1593015941/<%= user.image %>" alt="" class="usercomment-img mr-2">
-                            </figure>
-                            <form>
-                                <textarea name="comment" class="box-for-comment" data-postIdOfCommment="<%= post._id %>" id="textInputComment" rows="3" placeholder="แสดงความคิดเห็น"></textarea>
-                                <div>
-                                    <button id="btnPostcomment">&nbsp;โพสต์&nbsp;</button>
-                                </div>
-                            </form>
-                        </div>
-                    <% } %>
+                    
                 </div>
             </div>
         </div>
@@ -115,7 +117,9 @@
                     <% } else{%> 
                     <span class="tag">ขั้นต่ำ <%= post.minimum_cost %> บาท</span>
                     <% } %> 
-                    
+                    <hr>
+                    <label class="tag-title">จังหวัด : </label>
+                    <span class="tag"><%= post.province %> </span>
                 </div>
                 <div class="map">
                     <%- post.googlemap %>
@@ -146,7 +150,7 @@
             </section>
             <section class="mt-3">
                 <div class="p-2 category">
-                    <div class="category-title"> <h5>แท็กยอดนิยม</h5> </div>
+                    <div class="category-title"> <h5>ค้นหาด้วยแท็ก</h5> </div>
                         <div class="mt-2 p-2">
                                 <% Alltag.forEach(function(tag){  %>
                                     <a href="/travel/search?keyword=<%= tag.name %>" id="categorytag">
