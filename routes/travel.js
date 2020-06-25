@@ -78,9 +78,6 @@ router.get("/new",middleware.checkAuthentication, async function(req, res)
     Arraytag.push(tag.name);
   });
 
-  // console.log(tags);
-  // console.log(Arraytag);
-
   res.render("blogs/Addpost",{ title: "สร้างบทความ", moment: moment, categories : cat, Arraytag: Arraytag, Allprice:price, AllProvinces:provinces});
 })
 
@@ -101,61 +98,6 @@ router.post("/",middleware.checkAuthentication, upload_imgpost.single('img_title
   const timeopen = req.body.timestart;
   const timeclose = req.body.timeend;
 
-  
-
-
-  // objectd = {
-  //   monday: req.body.day1 ? true : false,
-  //   tuesday: req.body.day2 ? true : false,
-  //   wednesday: req.body.day3 ? true : false,
-  //   thursday: req.body.day4 ? true : false,
-  //   friday: req.body.day5 ? true : false,
-  //   saturday: req.body.day6 ? true : false,
-  //   sunday: req.body.day7 ? true : false,
-  // };
-
-    // console.log(objectd)
-  // const allday = req.body.day0
-  // const monday = req.body.day1
-  // const tuesday = req.body.day2
-  // const wednesday = req.body.day3
-  // const thursday = req.body.day4
-  // const friday = req.body.day5
-  // const saturday = req.body.day6
-  // const sunday = req.body.day7
-
-  // Array.prototype.convertToObject = function(){
-  //   for(let i = 0; i< this.length; i++)
-  //   {
-  //     this[i] = this[i];
-  //   }
-  // }
-
-  // const dayOfweek = [allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday]
-
-  // let DayAndTime_isOpen = [];
-
-  // for(i=0; i < dayOfweek.length; i++)
-  // {
-  //   if(dayOfweek[i] == undefined)
-  //   {
-  //     continue;
-  //   }
-  //   else
-  //   {
-  //     DayAndTime_isOpen.push(dayOfweek[i]);
-  //   }
-  // }
-  // arraydayopen = {allday,monday,tuesday,wednesday,thursday,friday,saturday,sunday};
-  console.log("category "+category);
-  console.log("price "+price);
-  console.log("province "+province);
-  console.log("dayopen "+dayopen);
-  console.log(timeopen);
-  console.log(timeclose);
-
-  // console.log(DayAndTime_isOpen);
-  // day.forEach(d => { console.log("day "+d) });
   const Arraytag = tag.split(' ');
 
   const n_open = 
@@ -206,23 +148,6 @@ router.get("/review/:postid",async function(req, res)
     // ถ้ามีผู้ใช้ login เข้ามาแล้ว
     if(req.user)
     {
-      // await conPost.find({view:[req.user._id]})
-      // นับยอดผู้เข้าชม
-      // await conPost.findById(req.params.postid,function(err,ViewcurrentPost)
-      // {
-      //   if(err)
-      //   {
-      //     console.log(err)
-      //   }
-      //   else
-      //   {
-      //     ViewcurrentPost.views.push(req.user._id);
-      //     ViewcurrentPost.save();
-      //   }
-      // })
-      
-
-      // loop favouritePost in user 
       console.log(req.user.favourite.length);
       //วนลูปหาว่า ผู้ใชคนนี้ เก็บpostidของบทความนี้ ในรายการโปรดหรือไม่
       for(let i=0; i < req.user.favourite.length ;i++)
