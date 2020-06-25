@@ -176,10 +176,20 @@ router.post("/",middleware.checkAuthentication, upload_imgpost.single('img_title
 
         for(let i=0; i<(Arraytag.length-1) ;i++)
         {
-          conTag.create({ name:Arraytag[i] },function(err,successTag)
+          let t = await conTag.find({name: Arraytag[i]});
+          
+          if(t.name.equals(Arraytag[i]))
           {
-            console.log(successTag);
-          });
+            continue;
+            
+          }
+          else
+          {
+            conTag.create({ name:Arraytag[i] },function(err,successTag)
+            {
+              console.log(successTag);
+            });
+          }
         }
         res.redirect("/travel/review/" + post._id);
       }
