@@ -21,7 +21,8 @@ body
   background-color: whitesmoke;
   /* background-image: url("https://blog.bangkokair.com/wp-content/uploads/2018/08/%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88.jpg"); */
 
-  background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0,0,0,0.1)), url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-pd-sasi-03.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=cec9b4798fd70605e2a95fa61259c5db");
+  /* background-image:url("https://st2.depositphotos.com/3503231/7703/v/950/depositphotos_77039327-stock-illustration-blue-white-polygonal-mosaic-background.jpg"); */
+  background-image:url("https://www.pivotcpas.com/wp-content/uploads/2016/12/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -1042,7 +1043,7 @@ input.timeallday, input.timeeachday1, input.timeeachday2, input.timeeachday3, in
 
 .container
 {
-    max-width: 1100px;
+    max-width: 1150px;
     width: 100%;
     padding: 1px;
     margin: 0 auto;
@@ -1064,7 +1065,7 @@ input.timeallday, input.timeeachday1, input.timeeachday2, input.timeeachday3, in
 }
 .navbar-top
 {
-    background-color: rgb(0, 85, 243);
+    background-color: rgb(4, 79, 218);
     /* background-color: #272727; */
 }
 .navbar-top .container

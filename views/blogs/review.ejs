@@ -1,7 +1,7 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
-<section class="bg-white">
-    <div class="row container bg-white">
+<section class="">
+    <div class="row container bg-white shadow">
         <div class="col-lg-8 p-3 ">
             <h1 class="pt-3"><%= post.title %></h1>
             <div class="author_post">
@@ -134,7 +134,8 @@
                         <div class="p-1">
                             <p><%= rec.title %></p> 
                                 <div class="viewOfPost">
-                                    <i class="fa fa-eye"></i><span> <%= rec.views %></span>
+                                    <i class="far fa-eye"></i><span> <%= rec.views %></span>
+                                    <i class="far fa-comments"></i><span> <%= rec.comments.length %></span>
                                 </div>
                         </div>
                         

@@ -40,7 +40,8 @@
                                 </a>
                                 <div class="mt-auto">
                                   <span class="viewOfPost">
-                                    <i class="fa fa-eye"></i><span> <%= post[i].views %></span>
+                                    <i class="far fa-eye"></i><span> <%= post[i].views %></span>
+                                    <i class="far fa-comments"></i><span> <%= post[i].comments.length %></span>
                                   </span>
                                   <div style="float: right;">
                                     <span id="delete_post" style="cursor: pointer;" data-id_delete="<%= post[i]._id %>"> ลบ </span>

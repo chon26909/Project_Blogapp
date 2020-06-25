@@ -194,7 +194,7 @@ router.get("/review/:postid",async function(req, res)
                 .populate({path: 'author_by', model: 'User'})
                 .populate({path: 'comments', model: 'Comment',options:{ sort:{date : -1}} ,populate:({path: 'comment_by', model: 'User'})})
 
-    const tag = await conTag.find();
+    const tag = await conTag.find().limit(30);
     const recommend = await conPost.find().limit(5).sort({views:-1});
 
     await conPost.findByIdAndUpdate(req.params.postid, { views: (post.views + 1)})
