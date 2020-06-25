@@ -85,7 +85,7 @@ router.post("/register",[
         username : username,
         email : email,
         password : password,
-        image: "no-imgprofile",
+        image: "no-img",
         facebook: "ไม่มีข้อมูล",
         line : "ไม่มีข้อมูล",
         phone : "ไม่มีข้อมูล"

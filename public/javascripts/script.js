@@ -42,18 +42,7 @@ $(document).ready(function()
 });
 
 
-$(document).ready(function editcomment()
-{
-    $(document).on('click', '#editComment', function()
-    {
-        const commentid = $(this).attr('data-id');
-        const textcomment = $(this).attr('data-text');
-        
-        $('#IdEditcomment').val(commentid);
-        $('#textEditcomment').text(textcomment);
-        $('#updatecomment').modal('show');
-    })
-})
+
 
 
 $(document).ready(function insertcomment()
@@ -62,16 +51,14 @@ $(document).ready(function insertcomment()
     {
         const textcomment = $('#textInputComment').val();
         const postid = $('#textInputComment').attr('data-postIdOfCommment');
-        // const newComment = $('.comment-item');
-        // // alert(newComment);
-        // alert(newComment.('.comment-by').attr('id'));
+        console.log(textcomment);
+        console.log(postid);
         $.ajax({
             url: "/travel/comment/" + postid,
             method: "POST",
             data : {text:textcomment},
-            success: function()
-            {
-                location.location();
+            success: function(comment){
+                location.reload()
             },
             error: function(err){
                 Swal.fire({
@@ -85,7 +72,18 @@ $(document).ready(function insertcomment()
     })
 })
 
-
+$(document).ready(function editcomment()
+{
+    $(document).on('click', '#editComment', function()
+    {
+        const commentid = $(this).attr('data-id');
+        const textcomment = $(this).attr('data-text');
+        
+        $('#IdEditcomment').val(commentid);
+        $('#textEditcomment').text(textcomment);
+        $('#updatecomment').modal('show');
+    })
+})
 
 $(document).ready(function updatecomment()
 {
@@ -203,7 +201,6 @@ $(document).ready(function deletepost()
                         
                     }
                   })
-        
     })
 })
 

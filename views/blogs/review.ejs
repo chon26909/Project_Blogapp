@@ -100,12 +100,22 @@
                     <% } %> 
                     <hr>
                     <label class="tag-title">เวลาเปิด-ปิด : </label>
-                    <span class="tag"><%= post.openandclose.open %></span>
-                    <span> - </span>
-                    <span class="tag"><%= post.openandclose.close %> </span>
+                    <% if((post.openandclose.open || post.openandclose.close) == "") {%> 
+                        <span class="tag">ไม่มีข้อมูล</span>
+                    <% } else {%> 
+                        
+                        <span class="tag"><%= post.openandclose.open %></span>
+                        <span> - </span>
+                        <span class="tag"><%= post.openandclose.close %> </span>
+                    <% }  %> 
                     <hr>
                     <label class="tag-title">งบประมาณ : </label>
+                    <% if(post.minimum_cost == null){ %> 
+                        <span class="tag">ไม่จำกัด</span>
+                    <% } else{%> 
                     <span class="tag">ขั้นต่ำ <%= post.minimum_cost %> บาท</span>
+                    <% } %> 
+                    
                 </div>
                 <div class="map">
                     <%- post.googlemap %>

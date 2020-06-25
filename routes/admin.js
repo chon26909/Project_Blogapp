@@ -18,7 +18,7 @@ const { nextTick } = require('process');
 const ObjectId = require('mongodb').ObjectId;
 mongoose.connect('mongodb+srv://chon:1234@cluster0-zk4v3.mongodb.net/Blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
 
-router.get("/",async function(req,res)
+router.get("/",middleware.checkPermissionAdmin,async function(req,res)
 {
      //const showusers = await conUser.find();
    //console.log(showusers )
@@ -38,7 +38,7 @@ router.get("/me",function(req, res)
 })
 
 
-router.get("/adminpanel",async function(req,res)
+router.get("/adminpanel",middleware.checkPermissionAdmin,async function(req,res)
 {
   // const showusers = await conUser.find();
   // console.log(showusers )
@@ -55,7 +55,7 @@ router.get("/adminpanel",async function(req,res)
 });
 
 
-router.get("/addcatelog",async function(req, res)
+router.get("/addcatelog",middleware.checkPermissionAdmin,async function(req, res)
 {
   const tag = req.query.keyword;
   const alltag = await conTag.find();
@@ -65,13 +65,13 @@ router.get("/addcatelog",async function(req, res)
   res.render("admin/addcatelog",{title: "Add Tags" ,moment: moment, showtag : alltag, key : tag,});
 });
 
-router.post("/addTag", async function(req, res)
+router.post("/addTag",middleware.checkPermissionAdmin, async function(req, res)
 {
   const new_tag = req.body.naw_tag;
   await conTag.create({name:new_tag});
   res.redirect("/admin/addcatelog");
 })
-router.get("/postofuser/:userid",async function(req, res)
+router.get("/postofuser/:userid",middleware.checkPermissionAdmin,async function(req, res)
 {
   // const user = await conUser.aggregate([{$lookup: {
   //   from: 'posts',

@@ -1,7 +1,7 @@
 <%- include("../layout/header") %>
 <%- include("../layout/layoutnavbar") %>
 <% if(locals.user){ %>
-    <div class="container p-4 mb-5 shadow" style="background-color: whitesmoke;">
+    <div class="container p-4 mb-5 shadow" style="background-color: white;">
         <h3 class="text-center mt-lg-0 mt-md-4 mt-sm-4 ">แก้ไขข้อมูลส่วนตัว</h3>
         <form method="POST" action="/user/edit" enctype="multipart/form-data">
             <div class="row">
@@ -51,12 +51,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3">
+                
+            </div>
+            <div class="m-3">
                     <button type="submit" class="btn btn-success" >save</button>
                     <button type="reset" class="btn btn-primary" onclick="Clickreset()">reset</button>
                 </div>
-            </div>
-            
         </form>
         <script>
             // document.getElementById("edit_username").disabled = true;

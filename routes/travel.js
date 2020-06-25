@@ -512,6 +512,7 @@ router.post("/comment/:postid", middleware.checkAuthentication, function(req,res
           // หลังจากเอา commment ลง DB สำเร้จ ให้นำ commentid เก็บลงไปในบทความนั้นด้วย
           thispost.comments.push(comment);
           thispost.save();
+          return res.send(comment);
         }
       });
     }
